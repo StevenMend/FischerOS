@@ -13,24 +13,24 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: 'var(--color-primary)',
-          light: 'var(--color-primary-light)',
-          dark: 'var(--color-primary-dark)',
+          DEFAULT: '#4a90a4',
+          light: '#6ba3b5',
+          dark: '#3a7285',
         },
         accent: {
-          DEFAULT: 'var(--color-accent)',
-          light: 'var(--color-accent-light)',
-          dark: 'var(--color-accent-dark)',
+          DEFAULT: '#d4af37',
+          light: '#e6c55a',
+          dark: '#b8941f',
         },
         surface: {
-          DEFAULT: 'var(--color-surface)',
-          light: 'var(--color-surface-light)',
-          dark: 'var(--color-surface-dark)',
+          DEFAULT: '#f9fafb',
+          light: '#ffffff',
+          dark: '#e5e7eb',
         },
         foreground: {
-          DEFAULT: 'var(--color-foreground)',
-          light: 'var(--color-foreground-light)',
-          dark: 'var(--color-foreground-dark)',
+          DEFAULT: '#8b7355',
+          light: '#a08968',
+          dark: '#73604a',
         },
       },
       fontFamily: {
