@@ -1,5 +1,6 @@
 // lib/services/guest.service.ts
 import { supabase } from '../api/supabase';
+import { logger } from '../../core/utils/logger';
 
 interface GuestInfo {
   id: string;
@@ -23,7 +24,7 @@ export class GuestService {
       .single();
 
     if (error) {
-      console.error('❌ Error fetching guest info:', error);
+      logger.error('GuestService', 'Error fetching guest info', error);
       // Return fallback data instead of throwing
       return {
         id: userId,

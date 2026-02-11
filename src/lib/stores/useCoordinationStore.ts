@@ -1,5 +1,6 @@
 // src/lib/stores/useCoordinationStore.ts - Simplified Version (No RealtimeAPI)
 import { create } from 'zustand';
+import { logger } from '../../core/utils/logger';
 import {
   CoordinationEvent,
   LiveUpdate,
@@ -54,7 +55,7 @@ export const useCoordinationStore = create<CoordinationState>((set, get) => ({
 
   // Connect to WebSocket (SIMPLIFIED - no actual connection)
   connect: async (userId, userType, authToken) => {
-    console.log('🟡 Mock coordination connect:', userId, userType);
+    logger.debug('Coordination', 'Mock coordination connect', { userId, userType });
     set({ connectionStatus: 'connecting', error: null });
     
     // Simulate connection success after brief delay
@@ -68,7 +69,7 @@ export const useCoordinationStore = create<CoordinationState>((set, get) => ({
 
   // Disconnect WebSocket
   disconnect: () => {
-    console.log('🟡 Mock coordination disconnect');
+    logger.debug('Coordination', 'Mock coordination disconnect');
     set({ 
       isConnected: false, 
       connectionStatus: 'disconnected' 
@@ -77,7 +78,7 @@ export const useCoordinationStore = create<CoordinationState>((set, get) => ({
 
   // Send Event (MOCK)
   sendEvent: (eventType, data, target) => {
-    console.log('🟡 Mock sendEvent:', eventType, data, target);
+    logger.debug('Coordination', 'Mock sendEvent', { eventType, data, target });
     if (!get().isConnected) {
       set({ error: 'Not connected to real-time service' });
     }
@@ -85,7 +86,7 @@ export const useCoordinationStore = create<CoordinationState>((set, get) => ({
 
   // Send Broadcast (MOCK)
   sendBroadcast: (message) => {
-    console.log('🟡 Mock sendBroadcast:', message);
+    logger.debug('Coordination', 'Mock sendBroadcast', message);
     if (get().isConnected) {
       // Add to local state
       set({
@@ -134,9 +135,9 @@ export const useCoordinationStore = create<CoordinationState>((set, get) => ({
 
   // Subscribe to Event (MOCK)
   subscribe: (eventType, callback) => {
-    console.log('🟡 Mock subscribe:', eventType);
+    logger.debug('Coordination', 'Mock subscribe', { eventType });
     // Return unsubscribe function
-    return () => console.log('🟡 Mock unsubscribe:', eventType);
+    return () => logger.debug('Coordination', 'Mock unsubscribe', { eventType });
   },
 
   // Clear Error

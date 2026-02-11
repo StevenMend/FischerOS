@@ -1,6 +1,7 @@
 // src/components/shared/ErrorBoundary.tsx
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 import { AlertTriangle, Home, RefreshCw } from 'lucide-react';
+import { logger } from '../../core/utils/logger';
 
 interface Props {
   children: ReactNode;
@@ -22,7 +23,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('🔴 Error caught:', error, errorInfo);
+    logger.error('ErrorBoundary', 'Error caught', { error, errorInfo });
   }
 
   render() {

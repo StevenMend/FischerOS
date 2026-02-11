@@ -1,5 +1,6 @@
 // lib/services/auth.service.ts
 import { supabase } from '../api/supabase';
+import { logger } from '../../core/utils/logger';
 
 export class AuthService {
   /**
@@ -10,7 +11,7 @@ export class AuthService {
     const { data: { user }, error } = await supabase.auth.getUser();
     
     if (error) {
-      console.error('❌ Error getting current user:', error);
+      logger.error('AuthService', 'Error getting current user', error);
       throw new Error('Failed to get current user');
     }
     

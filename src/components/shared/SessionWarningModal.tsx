@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Clock, AlertTriangle, RefreshCw } from 'lucide-react';
 import { useAuth } from '../../auth/AuthProvider';
+import { logger } from '../../core/utils/logger';
 
 export default function SessionWarningModal() {
   const [showWarning, setShowWarning] = useState(false);
@@ -25,7 +26,7 @@ export default function SessionWarningModal() {
       await refreshToken();
       setShowWarning(false);
     } catch (error) {
-      console.error('Failed to extend session:', error);
+      logger.error('Session', 'Failed to extend session', error);
     }
   };
 

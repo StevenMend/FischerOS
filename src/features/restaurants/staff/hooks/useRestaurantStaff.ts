@@ -238,6 +238,7 @@ import { useAuthStore } from '../../../../lib/stores/useAuthStore';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import type { RestaurantReservation, UpdateReservationStatusDTO } from '../../api/types';
 import { ToastService } from '../../../../lib/services';
+import { logger } from '../../../../core/utils/logger';
 
 interface StaffRestaurantInfo {
   id: string;
@@ -276,7 +277,7 @@ interface UseRestaurantStaffResult {
 }
 
 async function fetchRestaurantReservations(restaurantId: string): Promise<RestaurantReservation[]> {
-  console.log('🍽️ Fetching reservations for restaurant:', restaurantId);
+  logger.debug('Restaurants', 'Fetching reservations for restaurant', { restaurantId });
 
   const { data, error } = await supabase
     .from('restaurant_reservations')

@@ -1,6 +1,7 @@
 // src/features/service-requests/queries/unified-activities-queries.ts
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '../../../lib/api/supabase';
+import { logger } from '../../../core/utils/logger';
 
 export type ActivityType = 'service_request' | 'restaurant' | 'tour' | 'spa';
 
@@ -113,7 +114,7 @@ function transformSpaAppointment(appt: any): UnifiedActivity {
 }
 
 async function fetchUnifiedActivities(guestId: string): Promise<UnifiedActivity[]> {
-  console.log('🔍 Fetching unified activities for guest:', guestId);
+  logger.debug('ServiceRequests', 'Fetching unified activities for guest', { guestId });
 
   const [serviceRequestsRes, restaurantReservationsRes, tourBookingsRes, spaAppointmentsRes] = await Promise.all([
     supabase.from('service_requests').select('*').eq('guest_id', guestId).order('created_at', { ascending: false }),
@@ -136,7 +137,7 @@ async function fetchUnifiedActivities(guestId: string): Promise<UnifiedActivity[
 
   activities.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
-  console.log('✅ Unified activities loaded:', {
+  logger.info('ServiceRequests', 'Unified activities loaded', {
     service_requests: serviceRequestsRes.data?.length || 0,
     restaurants: restaurantReservationsRes.data?.length || 0,
     tours: tourBookingsRes.data?.length || 0,

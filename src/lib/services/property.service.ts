@@ -1,5 +1,6 @@
 // lib/services/property.service.ts
 import { supabase } from '../api/supabase';
+import { logger } from '../../core/utils/logger';
 
 interface PropertyInfo {
   id: string;
@@ -20,7 +21,7 @@ export class PropertyService {
       .single();
 
     if (error) {
-      console.error('❌ Error fetching default property:', error);
+      logger.error('PropertyService', 'Error fetching default property', error);
       return null;
     }
 
@@ -38,7 +39,7 @@ export class PropertyService {
       .single();
 
     if (error) {
-      console.error('❌ Error fetching property info:', error);
+      logger.error('PropertyService', 'Error fetching property info', error);
       return null;
     }
 
@@ -55,7 +56,7 @@ export class PropertyService {
       .order('name');
 
     if (error) {
-      console.error('❌ Error fetching properties:', error);
+      logger.error('PropertyService', 'Error fetching properties', error);
       return [];
     }
 
@@ -74,7 +75,7 @@ export class PropertyService {
       .single();
 
     if (error) {
-      console.error('❌ Error fetching property by name:', error);
+      logger.error('PropertyService', 'Error fetching property by name', error);
       return null;
     }
 

@@ -3,6 +3,7 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { AuthSession, UserSession, UserRole } from '../../types';
 import { supabase, signOut } from '../api/supabase';
+import { logger } from '../../core/utils/logger';
 
 interface AuthState {
   session: AuthSession | null;
@@ -31,13 +32,13 @@ export const useAuthStore = create<AuthState>()(
       error: null,
 
       // Guest Authentication - FIXED: usar signInWithPassword
-      authenticateGuest: async (roomNumber = '', confirmationCode = '', property = 'Tamarindo Diriá') => {
+      authenticateGuest: async (roomNumber = '', confirmationCode = '', property = 'Default Property') => {
         set({ isLoading: true, error: null });
         
         try {
           // Password-based authentication for guests
           const { data, error } = await supabase.auth.signInWithPassword({
-            email: `guest-${roomNumber}@diria.local`,
+            email: `guest-${roomNumber}@hotel.local`,
             password: confirmationCode
           });
 
@@ -74,39 +75,23 @@ export const useAuthStore = create<AuthState>()(
       },
 
 
-      authenticateStaff: async (staffId, department, password, property = 'Tamarindo Diriá') => {
+      authenticateStaff: async (staffId, department, password, property = 'Default Property') => {
   set({ isLoading: true, error: null });
   
   try {
-    console.log('🔐 [1] Attempting staff login:', { 
-      staffId, 
-      department,
-      passwordLength: password.length 
-    });
-    
+    logger.debug('Auth', 'Attempting staff login', { staffId, department });
+
     const { data, error } = await supabase.auth.signInWithPassword({
       email: staffId,
       password: password,
     });
 
-    console.log('🔐 [2] Supabase response:', { 
-      hasData: !!data,
-      hasUser: !!data?.user,
-      hasSession: !!data?.session,
-      error: error ? {
-        message: error.message,
-        status: error.status,
-        name: error.name,
-        code: (error as any).code
-      } : null
-    });
-
     if (error) {
-      console.error('❌ [3] Full error object:', JSON.stringify(error, null, 2));
+      logger.error('Auth', 'Staff login failed', { message: error.message, status: error.status });
       throw error;
     }
 
-    console.log('✅ [4] Login successful, creating session...');
+    logger.debug('Auth', 'Staff login successful');
 
     const session: AuthSession = {
       user: {
@@ -128,9 +113,8 @@ export const useAuthStore = create<AuthState>()(
     };
     
     set({ session, isAuthenticated: true, isLoading: false });
-    console.log('✅ [5] Session created successfully');
   } catch (error) {
-    console.error('❌ [6] Catch block error:', error);
+    logger.error('Auth', 'Staff auth failed', error);
     set({ 
       error: error instanceof Error ? error.message : 'Authentication failed',
       isLoading: false 
@@ -142,7 +126,7 @@ export const useAuthStore = create<AuthState>()(
 
 
       // Admin Authentication
-      authenticateAdmin: async (email, password, property = 'Tamarindo Diriá') => {
+      authenticateAdmin: async (email, password, property = 'Default Property') => {
         set({ isLoading: true, error: null });
         
         try {
@@ -184,7 +168,7 @@ export const useAuthStore = create<AuthState>()(
         try {
           await signOut();
         } catch (error) {
-          console.error('Logout error:', error);
+          logger.error('Auth', 'Logout failed', error);
         }
         
         set({ 

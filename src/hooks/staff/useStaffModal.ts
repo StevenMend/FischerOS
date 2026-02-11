@@ -53,7 +53,7 @@ export const useStaffModal = () => {
      * Expected API: POST /api/staff/handover
      * Payload: { notes: string, timestamp: string, staffId: string }
      */
-    logger.info('Submitting shift handover', { notes: handoverNotes });
+    logger.info('StaffModal', 'Submitting shift handover', { notes: handoverNotes });
     
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 500));
@@ -81,10 +81,10 @@ export const useStaffModal = () => {
      * Expected API: POST /api/staff/satisfaction/:requestId
      * Payload: { rating: number, feedback: string, staffId: string }
      */
-    logger.info('Submitting satisfaction feedback', { 
-      requestId: selectedCompletedItem.id, 
-      rating, 
-      feedback 
+    logger.info('StaffModal', 'Submitting satisfaction feedback', {
+      requestId: selectedCompletedItem.id,
+      rating,
+      feedback
     });
     
     // Simulate API call

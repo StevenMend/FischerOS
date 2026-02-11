@@ -1,5 +1,6 @@
 // src/hooks/admin/useAdminMetrics.ts
 import { useState, useEffect } from 'react';
+import { logger } from '../../core/utils/logger';
 import { supabase } from '../../lib/api/supabase';
 import { useAuthStore } from '../../lib/stores/useAuthStore';
 
@@ -72,7 +73,7 @@ export const useAdminMetrics = (): UseAdminMetricsResult => {
 
   const fetchMetrics = async () => {
     if (!session?.user?.id) {
-      console.log('⚠️ No session - skipping fetch');
+      logger.debug('AdminMetrics', 'No session - skipping fetch');
       setLoading(false);
       return;
     }
@@ -82,7 +83,7 @@ export const useAdminMetrics = (): UseAdminMetricsResult => {
       setError(null);
 
       const timeFilter = getTimeframeFilter();
-      console.log('🌐 Fetching admin metrics for timeframe:', timeframe);
+      logger.info('AdminMetrics', 'Fetching admin metrics', { timeframe });
 
       // Fetch all requests for the timeframe
       const { data: requests, error: requestsError } = await supabase
@@ -96,7 +97,7 @@ export const useAdminMetrics = (): UseAdminMetricsResult => {
 
       if (requestsError) throw requestsError;
 
-      console.log('✅ Total requests loaded:', requests?.length || 0);
+      logger.info('AdminMetrics', 'Total requests loaded', { count: requests?.length || 0 });
 
       // Calculate department metrics
       const deptMap = new Map<string, any>();
@@ -220,9 +221,9 @@ export const useAdminMetrics = (): UseAdminMetricsResult => {
       const ratingsCount = requests?.filter(r => r.rating !== null).length || 0;
       setOverallSatisfaction(ratingsCount > 0 ? ratingsSum / ratingsCount : null);
 
-      console.log('✅ Admin metrics calculated');
+      logger.info('AdminMetrics', 'Admin metrics calculated');
     } catch (err: any) {
-      console.error('❌ Fetch metrics error:', err);
+      logger.error('AdminMetrics', 'Fetch metrics error', err);
       setError(err.message || 'Failed to load metrics');
     } finally {
       setLoading(false);
@@ -233,7 +234,7 @@ export const useAdminMetrics = (): UseAdminMetricsResult => {
     fetchMetrics();
 
     // Set up real-time subscription for all requests
-    console.log('🔔 Setting up real-time subscription for admin metrics');
+    logger.info('AdminMetrics', 'Setting up real-time subscription for admin metrics');
     
     const subscription = supabase
       .channel('admin-metrics')
@@ -245,14 +246,14 @@ export const useAdminMetrics = (): UseAdminMetricsResult => {
           table: 'service_requests'
         },
         (payload) => {
-          console.log('🔔 Real-time update (admin):', payload);
+          logger.debug('AdminMetrics', 'Real-time update (admin)', payload);
           fetchMetrics();
         }
       )
       .subscribe();
 
     return () => {
-      console.log('🔕 Unsubscribing from real-time updates (admin)');
+      logger.debug('AdminMetrics', 'Unsubscribing from real-time updates (admin)');
       subscription.unsubscribe();
     };
   }, [session?.user?.id, timeframe]);

@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { Clock, CheckCircle, AlertCircle, User, MapPin, Package } from 'lucide-react';
 import { useServiceRequests } from '../../features/service-requests/hooks/useServiceRequests';
 import type { RequestStatus } from '../../features/service-requests/api';
+import { logger } from '../../core/utils/logger';
 
 export default function AllRequestsPage() {
   const {
@@ -37,7 +38,7 @@ export default function AllRequestsPage() {
         ...(newStatus === 'completed' ? { completed_at: new Date().toISOString() } : {})
       });
     } catch (error) {
-      console.error('Failed to update status:', error);
+      logger.error('Requests', 'Failed to update status', error);
       alert('Failed to update request status');
     } finally {
       setUpdatingId(null);

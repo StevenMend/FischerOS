@@ -2,6 +2,7 @@
 import React from 'react';
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { ROUTE_PATHS } from '../config/routes';
+import { logger } from '../core/utils/logger';
 import GuestGuard from '../auth/guards/GuestGuard';
 import GuestLayout from '../components/layout/GuestLayout';
 import GuestDashboard from '../components/GuestDashboard';
@@ -15,10 +16,10 @@ function GuestDashboardWrapper() {
   const navigate = useNavigate();
   const location = useLocation();
   
-  console.log('🔥 GuestDashboardWrapper - current path:', location.pathname);
+  logger.debug('Router', 'GuestDashboardWrapper - current path:', location.pathname);
   
   const handleNavigate = (page: string) => {
-    console.log('📍 Navigating to:', page);
+    logger.debug('Router', 'Navigating to:', page);
     switch(page) {
       case 'restaurants': navigate('/guest/restaurants'); break;
       case 'tours': navigate('/guest/tours'); break;
@@ -35,7 +36,7 @@ function GuestDashboardWrapper() {
 }
 
 export function GuestRoutes() {
-  console.log('🛣️ GuestRoutes initialized - all pages from features/');
+  logger.debug('Router', 'GuestRoutes initialized - all pages from features/');
   
   return (
     <Routes>

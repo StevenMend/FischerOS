@@ -5,6 +5,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ROUTE_PATHS } from '../config/routes';
+import { logger } from '../core/utils/logger';
 import AdminGuard from '../auth/guards/AdminGuard';
 import AdminLayout from '../components/layout/AdminLayout';
 import AdminDashboard from '../components/AdminDashboard';
@@ -15,7 +16,7 @@ import PartnerManagementPage from '../pages/admin/PartnerManagementPage';
 import SettingsPage from '../pages/admin/SettingsPage';
 
 export function AdminRoutes() {
-  console.log('🔥 AdminRoutes executing');
+  logger.debug('Router', 'AdminRoutes executing');
   
   return (
     <Routes>

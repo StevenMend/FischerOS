@@ -5,6 +5,7 @@ import { Utensils, Clock, CheckCircle, Users, TrendingUp, AlertTriangle } from '
 import { supabase } from '../../../../lib/api/supabase';
 import { useRestaurantStaff } from '../hooks/useRestaurantStaff';
 import ReservationCard from '../components/ReservationCard';
+import { logger } from '../../../../core/utils/logger';
 
 type TabType = 'pending' | 'confirmed' | 'seated' | 'completed';
 
@@ -18,7 +19,7 @@ export default function RestaurantStaffDashboard() {
   const [loadingRestaurant, setLoadingRestaurant] = useState(true);
   const [restaurantError, setRestaurantError] = useState<string | null>(null);
 
-  console.log('🍽️ RestaurantStaffDashboard rendering for slug:', slug);
+  logger.debug('Restaurants', 'RestaurantStaffDashboard rendering for slug', { slug });
 
   // Fetch restaurant data by slug
   useEffect(() => {
@@ -30,7 +31,7 @@ export default function RestaurantStaffDashboard() {
       }
 
       try {
-        console.log('🔍 Fetching restaurant by slug:', slug);
+        logger.debug('Restaurants', 'Fetching restaurant by slug', { slug });
 
         const { data, error } = await supabase
           .from('restaurants')
@@ -46,13 +47,13 @@ export default function RestaurantStaffDashboard() {
           return;
         }
 
-        console.log('✅ Restaurant found:', data);
+        logger.info('Restaurants', 'Restaurant found', { data });
 
         setRestaurantId(data.id);
         setRestaurantName(data.name);
         setLoadingRestaurant(false);
       } catch (err: any) {
-        console.error('❌ Error fetching restaurant:', err);
+        logger.error('Restaurants', 'Error fetching restaurant', { error: err });
         setRestaurantError(err.message || 'Failed to load restaurant');
         setLoadingRestaurant(false);
       }
@@ -75,7 +76,7 @@ export default function RestaurantStaffDashboard() {
     cancelReservation,
   } = useRestaurantStaff({ restaurantId: restaurantId || undefined });
 
-  console.log('🍽️ Dashboard state:', {
+  logger.debug('Restaurants', 'Dashboard state', {
     slug,
     restaurantId,
     restaurantName,

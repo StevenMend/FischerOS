@@ -3,6 +3,7 @@ import React from 'react';
 import { Home } from 'lucide-react';
 import { DepartmentLayout } from '../../../components/staff/DepartmentLayout';
 import { useStaffRequests } from '../../../hooks/staff/useStaffRequests';
+import { logger } from '../../../core/utils/logger';
 import RequestCard from '../../../components/staff/RequestCard';
 import { RoomStatusWidget } from './widgets/RoomStatusWidget';
 import { InventoryWidget } from './widgets/InventoryWidget';
@@ -61,7 +62,7 @@ export default function HousekeepingDashboard() {
       sidebarWidgets={
         <>
           <RoomStatusWidget />
-          <InventoryWidget onQuickRequest={(item) => console.log('Quick request:', item)} />
+          <InventoryWidget onQuickRequest={(item) => logger.debug('Housekeeping', 'Quick request', item)} />
         </>
       }
       

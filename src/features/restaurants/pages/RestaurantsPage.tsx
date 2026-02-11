@@ -5,12 +5,13 @@
 import React from 'react';
 import { Utensils } from 'lucide-react';
 import { useRestaurants } from '../hooks/useRestaurants';
-import { 
-  CuisineFilter, 
-  OperationalOverview, 
-  RestaurantCard, 
-  ReservationModal 
+import {
+  CuisineFilter,
+  OperationalOverview,
+  RestaurantCard,
+  ReservationModal
 } from '../components';
+import { logger } from '../../../core/utils/logger';
 
 interface RestaurantsPageProps {
   onBack: () => void;
@@ -43,7 +44,7 @@ export default function RestaurantsPage({ onBack }: RestaurantsPageProps) {
     try {
       await submitReservation();
     } catch (error) {
-      console.error('❌ Reservation failed:', error);
+      logger.error('Restaurants', 'Reservation failed', { error });
     }
   };
 

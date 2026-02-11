@@ -1,5 +1,6 @@
 // src/hooks/guest/useGuestDashboard.ts - VERSIÓN ORIGINAL QUE FUNCIONA
 import { useState, useMemo } from 'react';
+import { logger } from '../../core/utils/logger';
 import { 
   Sun, CloudRain, Wind, Calendar, Crown, Star, Gift, 
   Waves, Utensils, Flower, Car, Phone, MessageSquare, 
@@ -183,7 +184,7 @@ export const useGuestDashboard = () => {
       label: 'Chat Support', 
       color: 'text-green-600', 
       bg: 'bg-green-500/10',
-      action: () => console.log('Open chat'),
+      action: () => logger.debug('GuestDashboard', 'Open chat'),
       available: true
     },
     { 
@@ -191,7 +192,7 @@ export const useGuestDashboard = () => {
       label: 'Photo Request', 
       color: 'text-purple-600', 
       bg: 'bg-purple-500/10',
-      action: () => console.log('Photo request'),
+      action: () => logger.debug('GuestDashboard', 'Photo request'),
       available: true
     },
     { 
@@ -199,7 +200,7 @@ export const useGuestDashboard = () => {
       label: 'Room Service', 
       color: 'text-amber-600', 
       bg: 'bg-amber-500/10',
-      action: () => console.log('Room service'),
+      action: () => logger.debug('GuestDashboard', 'Room service'),
       available: true
     }
   ], []);

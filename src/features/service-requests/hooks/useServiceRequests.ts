@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { createServiceRequestsRepository } from '../api';
 import type { ServiceRequest, CreateRequestDTO, UpdateRequestDTO, RequestStatus, RequestType } from '../api';
+import { logger } from '../../../core/utils/logger';
 
 interface UseServiceRequestsReturn {
   requests: ServiceRequest[];
@@ -79,7 +80,7 @@ export function useServiceRequests(): UseServiceRequestsReturn {
       setCompletedOffset(COMPLETED_PAGE_SIZE);
       setHasMoreCompleted(data.filter(r => r.status === 'completed').length > COMPLETED_PAGE_SIZE);
       
-      console.log('✅ Requests loaded:', {
+      logger.info('ServiceRequests', 'Requests loaded', {
         active: active.length,
         completed: completed.length,
         hasMore: data.filter(r => r.status === 'completed').length > COMPLETED_PAGE_SIZE
@@ -111,14 +112,14 @@ export function useServiceRequests(): UseServiceRequestsReturn {
         setCompletedOffset(prev => prev + COMPLETED_PAGE_SIZE);
         setHasMoreCompleted(allCompleted.length > completedOffset + COMPLETED_PAGE_SIZE);
         
-        console.log('✅ Loaded more completed:', {
+        logger.info('ServiceRequests', 'Loaded more completed', {
           newCount: nextBatch.length,
           totalNow: completedOffset + nextBatch.length,
           hasMore: allCompleted.length > completedOffset + COMPLETED_PAGE_SIZE
         });
       }
     } catch (err) {
-      console.error('❌ Load more error:', err);
+      logger.error('ServiceRequests', 'Load more error', { error: err });
     }
   };
 
@@ -143,7 +144,7 @@ export function useServiceRequests(): UseServiceRequestsReturn {
   // ✅ NUEVO: Take request with race condition fix
   const takeRequest = async (id: string, staffId: string, staffName: string): Promise<ServiceRequest> => {
     try {
-      console.log('📝 Taking request:', id);
+      logger.info('ServiceRequests', 'Taking request', { id });
       
       // ✅ FIX: Verificar que no esté asignado antes de actualizar
       const current = requests.find(r => r.id === id);
@@ -159,7 +160,7 @@ export function useServiceRequests(): UseServiceRequestsReturn {
       });
       
       setRequests(prev => prev.map(r => r.id === id ? updated : r));
-      console.log('✅ Request taken successfully');
+      logger.info('ServiceRequests', 'Request taken successfully');
       return updated;
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to take request';

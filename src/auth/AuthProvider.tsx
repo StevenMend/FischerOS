@@ -5,6 +5,7 @@ import { useAuthStore } from '../lib/stores/useAuthStore';
 import { UserSession, AuthSession, UserRole } from '../types';
 import { SITE_CONFIG } from '../config/site';
 import { supabase } from '../lib/api/supabase';
+import { logger } from '../core/utils/logger';
 
 interface AuthContextType {
   session: AuthSession | null;
@@ -69,7 +70,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const warningTime = sessionTimeout - 10 * 60 * 1000;
     
     const timeout = setTimeout(() => {
-      console.warn(`Session expires in 10 minutes for ${role}`);
+      logger.warn('Auth', `Session expires in 10 minutes for ${role}`);
     }, warningTime);
     return () => clearTimeout(timeout);
   }, [session]);
@@ -84,18 +85,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
       throw new Error(`Invalid department: ${department}`);
     }
     
-    console.log('🔐 [AuthProvider] Authenticating staff:', { staffId, department });
+    logger.info('Auth', 'Authenticating staff', { staffId, department });
     await authenticateStaff(staffId, department, password, property);
     
     // Get current session
     const { data: { session: currentSession }, error: sessionError } = await supabase.auth.getSession();
     
     if (sessionError || !currentSession?.user) {
-      console.error('❌ [AuthProvider] No session after authentication:', sessionError);
+      logger.error('Auth', 'No session after authentication', sessionError);
       throw new Error('Failed to establish session');
     }
 
-    console.log('✅ [AuthProvider] Session established, fetching staff data for user:', currentSession.user.id);
+    logger.info('Auth', 'Session established, fetching staff data for user', currentSession.user.id);
 
     // Fetch staff details including restaurant info
     const { data: staffData, error: staffError } = await supabase
@@ -117,16 +118,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
       .single();
 
     if (staffError) {
-      console.error('❌ [AuthProvider] Error fetching staff data:', staffError);
+      logger.error('Auth', 'Error fetching staff data', staffError);
       throw new Error('Failed to load staff information');
     }
 
     if (!staffData) {
-      console.error('❌ [AuthProvider] No staff data found for user:', currentSession.user.id);
+      logger.error('Auth', 'No staff data found for user', currentSession.user.id);
       throw new Error('Staff record not found');
     }
 
-    console.log('✅ [AuthProvider] Staff data loaded:', {
+    logger.info('Auth', 'Staff data loaded', {
       name: staffData.name,
       department: staffData.department,
       restaurant_id: staffData.restaurant_id,
@@ -134,7 +135,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     });
 
     // SMART ROUTING BASED ON DEPARTMENT (normalized, case-insensitive)
-    console.log('🔀 [AuthProvider] Determining route for department:', staffData.department);
+    logger.debug('Auth', 'Determining route for department', staffData.department);
     const deptLower = staffData.department.toLowerCase();
     
     // Food & Beverage / Restaurants
@@ -142,59 +143,59 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const restaurantSlug = staffData.restaurants?.slug;
       
       if (!restaurantSlug) {
-        console.error('❌ [AuthProvider] Restaurant staff missing restaurant slug');
+        logger.error('Auth', 'Restaurant staff missing restaurant slug');
         throw new Error('Restaurant assignment incomplete');
       }
       
-      console.log(`🍽️ [AuthProvider] Redirecting to restaurant dashboard: /staff/restaurant/${restaurantSlug}`);
+      logger.info('Auth', `Redirecting to restaurant dashboard: /staff/restaurant/${restaurantSlug}`);
       navigate(`/staff/restaurant/${restaurantSlug}`);
       return;
     } 
     // Housekeeping
     else if (deptLower === 'housekeeping') {
-      console.log('🧹 [AuthProvider] Redirecting to housekeeping dashboard');
+      logger.info('Auth', 'Redirecting to housekeeping dashboard');
       navigate('/staff/housekeeping');
       return;
     }
     // Maintenance
     else if (deptLower === 'maintenance') {
-      console.log('🔧 [AuthProvider] Redirecting to maintenance dashboard');
+      logger.info('Auth', 'Redirecting to maintenance dashboard');
       navigate('/staff/maintenance');
       return;
     }
     // Concierge
     else if (deptLower === 'concierge') {
-      console.log('🔔 [AuthProvider] Redirecting to concierge dashboard');
+      logger.info('Auth', 'Redirecting to concierge dashboard');
       navigate('/staff/concierge');
       return;
     }
     // Spa
     else if (deptLower === 'spa') {
-      console.log('💆 [AuthProvider] Redirecting to spa dashboard');
+      logger.info('Auth', 'Redirecting to spa dashboard');
       navigate('/staff/spa');
       return;
     }
     // Tours & Activities
     else if (deptLower.includes('tour') || deptLower.includes('activities')) {
-      console.log('🏄 [AuthProvider] Redirecting to tours dashboard');
+      logger.info('Auth', 'Redirecting to tours dashboard');
       navigate('/staff/tours');
       return;
     }
     // Transportation
     else if (deptLower.includes('transport')) {
-      console.log('🚗 [AuthProvider] Redirecting to transportation dashboard');
+      logger.info('Auth', 'Redirecting to transportation dashboard');
       navigate('/staff/transportation');
       return;
     }
     // Front Desk
     else if (deptLower.includes('front') || deptLower.includes('desk')) {
-      console.log('🏨 [AuthProvider] Redirecting to front desk dashboard');
+      logger.info('Auth', 'Redirecting to front desk dashboard');
       navigate('/staff/console'); // Front desk usa console genérico por ahora
       return;
     }
     else {
       // Fallback to generic console
-      console.warn('⚠️ [AuthProvider] Unknown department:', staffData.department, '- redirecting to generic console');
+      logger.warn('Auth', 'Unknown department - redirecting to generic console', staffData.department);
       navigate('/staff/console');
       return;
     }

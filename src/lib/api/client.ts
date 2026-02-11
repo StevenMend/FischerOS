@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosError } from 'axios';
+import { logger } from '../../core/utils/logger';
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -11,8 +12,7 @@ class ApiClient {
       ? `${SUPABASE_URL}/rest/v1`
       : 'http://localhost:3000';
 
-    console.log('🔗 API Client initialized with baseURL:', baseURL);
-    console.log('🔑 Supabase Key present:', !!SUPABASE_KEY);
+    logger.info('API', 'API Client initialized', { baseURL, supabaseKeyPresent: !!SUPABASE_KEY });
 
     this.client = axios.create({
       baseURL,
@@ -26,25 +26,24 @@ class ApiClient {
 
     this.client.interceptors.request.use(
       (config) => {
-        console.log(`🌐 API Request: ${config.method?.toUpperCase()} ${config.url}`);
+        logger.debug('API', `Request: ${config.method?.toUpperCase()} ${config.url}`);
         return config;
       },
       (error) => {
-        console.error('❌ Request Error:', error);
+        logger.error('API', 'Request Error', error);
         return Promise.reject(error);
       }
     );
 
     this.client.interceptors.response.use(
       (response) => {
-        console.log(`✅ API Response: ${response.config.url}`, response.status);
+        logger.debug('API', `Response: ${response.config.url}`, { status: response.status });
         return response;
       },
       (error: AxiosError) => {
-        console.error(`❌ API Error [${error.config?.url}]:`, error.message);
+        logger.error('API', `Error [${error.config?.url}]: ${error.message}`);
         if (error.response) {
-          console.error('📋 Response data:', error.response.data);
-          console.error('📋 Response status:', error.response.status);
+          logger.error('API', 'Response details', { data: error.response.data, status: error.response.status });
         }
         return Promise.reject(error);
       }

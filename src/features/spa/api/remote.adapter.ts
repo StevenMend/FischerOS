@@ -9,6 +9,7 @@ import type {
   SpaFilters,
   SpaAppointmentFilters,
 } from '../types';
+import { logger } from '../../../core/utils/logger';
 
 export class SupabaseSpaAdapter implements SpaPort {
   // ============================================
@@ -194,7 +195,7 @@ export class SupabaseSpaAdapter implements SpaPort {
   }
 
   async createAppointment(dto: CreateSpaAppointmentDTO): Promise<SpaAppointment> {
-    console.log('🌐 RemoteSpaAdapter.createAppointment()', dto);
+    logger.info('Spa', 'RemoteSpaAdapter.createAppointment()', dto);
     
     // Get authenticated user and guest info
     const userId = await AuthService.getCurrentUserId();
@@ -239,11 +240,11 @@ export class SupabaseSpaAdapter implements SpaPort {
       .single();
 
     if (error) {
-      console.error('❌ Error creating appointment:', error);
+      logger.error('Spa', 'Error creating appointment', { error });
       throw error;
     }
     
-    console.log('✅ Appointment created:', data);
+    logger.info('Spa', 'Appointment created', { data });
     return data;
   }
 

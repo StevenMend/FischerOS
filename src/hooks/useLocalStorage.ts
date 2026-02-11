@@ -1,5 +1,6 @@
 // src/hooks/useLocalStorage.ts
 import { useState, useEffect } from 'react';
+import { logger } from '../core/utils/logger';
 
 /**
  * Hook for managing localStorage with React state
@@ -10,7 +11,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
       const item = window.localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
-      console.error('Error reading localStorage:', error);
+      logger.error('LocalStorage', 'Error reading localStorage', error);
       return initialValue;
     }
   });
@@ -21,7 +22,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
       setStoredValue(valueToStore);
       window.localStorage.setItem(key, JSON.stringify(valueToStore));
     } catch (error) {
-      console.error('Error setting localStorage:', error);
+      logger.error('LocalStorage', 'Error setting localStorage', error);
     }
   };
 

@@ -1,3 +1,5 @@
+import { logger } from '../../core/utils/logger';
+
 class RealtimeAPI {
   private ws: WebSocket | null = null;
   private reconnectAttempts = 0;
@@ -8,7 +10,7 @@ class RealtimeAPI {
     return new Promise((resolve, reject) => {
       const wsUrl = `${import.meta.env.VITE_WS_URL || 'ws://localhost:3001'}/ws?userId=${userId}&userType=${userType}&token=${authToken}`;
       
-      console.log('DEV: WebSocket connection simulated');
+      logger.debug('Realtime', 'WebSocket connection simulated');
       resolve();
     });
   }
@@ -32,7 +34,7 @@ class RealtimeAPI {
   }
 
   emit(eventType: string, data: any, target?: string[]) {
-    console.log('DEV: WebSocket emit:', { eventType, data, target });
+    logger.debug('Realtime', 'WebSocket emit', { eventType, data, target });
   }
 
   disconnect() {

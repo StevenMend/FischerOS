@@ -1,6 +1,7 @@
 // src/features/service-requests/components/RatingModal.tsx
 import React, { useState } from 'react';
 import { X, Star, Send } from 'lucide-react';
+import { logger } from '../../../core/utils/logger';
 
 interface ServiceRequest {
   id: string;
@@ -31,7 +32,7 @@ export default function RatingModal({ request, isOpen, onClose, onSubmit }: Rati
 
     try {
       setSubmitting(true);
-      console.log('⭐ Submitting rating:', { rating, feedback });
+      logger.info('ServiceRequests', 'Submitting rating', { rating, feedback });
       await onSubmit(rating, feedback);
       
       // Reset
@@ -39,7 +40,7 @@ export default function RatingModal({ request, isOpen, onClose, onSubmit }: Rati
       setFeedback('');
       onClose();
     } catch (error) {
-      console.error('❌ Failed to submit rating:', error);
+      logger.error('ServiceRequests', 'Failed to submit rating', { error });
       alert('Failed to submit rating. Please try again.');
     } finally {
       setSubmitting(false);

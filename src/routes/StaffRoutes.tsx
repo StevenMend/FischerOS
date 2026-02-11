@@ -2,6 +2,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ROUTE_PATHS } from '../config/routes';
+import { logger } from '../core/utils/logger';
 import StaffGuard from '../auth/guards/StaffGuard';
 import StaffLayout from '../components/layout/StaffLayout';
 import StaffConsole from '../pages/staff/StaffConsole';
@@ -23,7 +24,7 @@ import TransportationDashboard from '../pages/staff/transportation/Transportatio
 import ConciergeDashboard from '../pages/staff/concierge/ConciergeDashboard';
 
 export function StaffRoutes() {
-  console.log('🔥 StaffRoutes executing');
+  logger.debug('Router', 'StaffRoutes executing');
   
   return (
     <Routes>

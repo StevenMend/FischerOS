@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Flower2, Crown, Heart, Clock, Star } from 'lucide-react';
 import { useTreatments, useCreateAppointment } from '../queries';
 import type { SpaTreatment } from '../types';
+import { logger } from '../../../core/utils/logger';
 
 interface SpaPageProps {
   onBack?: () => void;
@@ -60,7 +61,7 @@ export default function SpaPage({ onBack }: SpaPageProps = {}) {
         specialRequests: ''
       });
     } catch (error) {
-      console.error('❌ Booking failed:', error);
+      logger.error('Spa', 'Booking failed', { error });
     }
   };
 

@@ -372,9 +372,10 @@ import GuestRequestCard from '../components/GuestRequestCard';
 import RatingModal from '../components/RatingModal';
 import { REQUEST_TYPES } from '../hooks/useServiceRequests';
 import type { CreateRequestDTO, RequestType } from '../api/types';
+import { logger } from '../../../core/utils/logger';
 
 export default function RequestsPage() {
-  console.log('📋 RequestsPage render - REFACTORED with React Query');
+  logger.debug('ServiceRequests', 'RequestsPage render - REFACTORED with React Query');
   
   const session = useAuthStore((state) => state.session);
   const userId = session?.user?.id || '';
@@ -410,7 +411,7 @@ export default function RequestsPage() {
   };
 
   const handleOpenRating = (request: any) => {
-    console.log('⭐ Opening rating modal for:', request.id);
+    logger.debug('ServiceRequests', 'Opening rating modal for request', { requestId: request.id });
     setSelectedRequestForRating(request);
     setRatingModalOpen(true);
   };
@@ -445,12 +446,12 @@ export default function RequestsPage() {
       });
       setShowNewRequestModal(false);
     } catch (error) {
-      console.error('❌ Failed to create request:', error);
+      logger.error('ServiceRequests', 'Failed to create request', { error });
     }
   };
 
   const handleQuickRequest = (type: RequestType) => {
-    console.log('⚡ Quick request:', type);
+    logger.debug('ServiceRequests', 'Quick request', { type });
     setNewRequest({
       type,
       priority: 'medium',

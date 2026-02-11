@@ -1,5 +1,6 @@
 // lib/services/department.service.ts
 import { supabase } from '../api/supabase';
+import { logger } from '../../core/utils/logger';
 
 // Department code mapping
 const DEPARTMENT_CODES: Record<string, string> = {
@@ -33,7 +34,7 @@ export class DepartmentService {
       .single();
 
     if (error) {
-      console.error(`❌ Error fetching department for code ${code}:`, error);
+      logger.error('DepartmentService', `Error fetching department for code ${code}`, error);
       return null;
     }
 
@@ -61,7 +62,7 @@ export class DepartmentService {
       .single();
 
     if (error) {
-      console.error(`❌ Error fetching department info:`, error);
+      logger.error('DepartmentService', 'Error fetching department info', error);
       return null;
     }
 
@@ -78,7 +79,7 @@ export class DepartmentService {
       .order('name');
 
     if (error) {
-      console.error('❌ Error fetching departments:', error);
+      logger.error('DepartmentService', 'Error fetching departments', error);
       return [];
     }
 
