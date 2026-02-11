@@ -50,7 +50,7 @@
 
 //           <div className="relative">
 //             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary via-primary-dark to-primary bg-clip-text text-transparent mb-4 tracking-tight leading-tight">
-//               Tamarindo Diriá
+//               Resort Name
 //             </h1>
 //             <div className="absolute -inset-2 bg-gradient-to-r from-accent/10 via-transparent to-primary/10 blur-2xl opacity-30 -z-10"></div>
 //           </div>

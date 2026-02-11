@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Utensils, Waves, Flower2, Crown, Sparkles } from 'lucide-react';
+import { SITE_CONFIG } from '../../config/site';
 
 export default function GuestLanding() {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ export default function GuestLanding() {
               </div>
               <div>
                 <h1 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">
-                  Tamarindo Diriá
+                  {SITE_CONFIG.shortName}
                 </h1>
                 <p className="text-xs sm:text-sm text-gray-600">Beach Resort • Costa Rica</p>
               </div>

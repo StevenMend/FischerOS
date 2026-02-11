@@ -1,9 +1,10 @@
 // src/lib/utils/constants.ts
+import { SITE_CONFIG } from '../../config/site';
 /**
  * Application-wide constants
  */
 
-export const APP_NAME = 'Diria Guest App';
+export const APP_NAME = SITE_CONFIG.shortName;
 export const APP_VERSION = '1.0.0';
 
 // API

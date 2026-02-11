@@ -1,6 +1,7 @@
 // src/hooks/guest/useGuestDashboard.ts - VERSIÓN ORIGINAL QUE FUNCIONA
 import { useState, useMemo } from 'react';
 import { logger } from '../../core/utils/logger';
+import { SITE_CONFIG } from '../../config/site';
 import { 
   Sun, CloudRain, Wind, Calendar, Crown, Star, Gift, 
   Waves, Utensils, Flower, Car, Phone, MessageSquare, 
@@ -261,7 +262,7 @@ export const useGuestDashboard = () => {
       time: '5:00 PM',
       guests: 4,
       status: 'confirmed',
-      location: 'Tamarindo Beach',
+      location: 'Resort Beach',
       price: '$300',
       includes: ['Transportation', 'Drinks', 'Snacks'],
       cancellable: true

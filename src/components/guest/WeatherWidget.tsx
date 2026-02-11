@@ -1,6 +1,7 @@
 // src/components/guest/WeatherWidget.tsx - LUXURY RESORT COMPLETE VERSION
 import React from 'react';
 import { Sun, CloudRain, Wind, LucideIcon, Droplets, Eye, Thermometer } from 'lucide-react';
+import { SITE_CONFIG } from '../../config/site';
 
 interface WeatherForecastItem {
   time: string;
@@ -26,7 +27,7 @@ interface WeatherWidgetProps {
 }
 
 export default function WeatherWidget({ weatherData }: WeatherWidgetProps) {
-  // Default weather data with Tamarindo conditions
+  // Default weather data with local conditions
   const defaultWeatherData: WeatherData = {
     current: {
       temp: 28,
@@ -56,7 +57,7 @@ export default function WeatherWidget({ weatherData }: WeatherWidgetProps) {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h3 className="text-2xl font-bold text-foreground font-display mb-1">Tamarindo Weather</h3>
+            <h3 className="text-2xl font-bold text-foreground font-display mb-1">Local Weather</h3>
             <p className="text-foreground/70">Perfect for your beach day</p>
           </div>
           <div className="text-right">

@@ -9,7 +9,7 @@ export default function AdminAuthForm() {
   const navigate = useNavigate();
   const { loginAsAdmin, isLoading, error, clearError } = useAuth();
   
-  const defaultProperty = SITE_CONFIG?.properties?.[0] || 'Tamarindo Diriá Beach Resort';
+  const defaultProperty = SITE_CONFIG?.properties?.[0] || SITE_CONFIG.name;
   
   const [formData, setFormData] = useState({
     email: '',
@@ -130,7 +130,7 @@ export default function AdminAuthForm() {
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
-                placeholder="admin@tamarindodiria.com"
+                placeholder={SITE_CONFIG.contact.email}
                 className="w-full px-3 py-2.5 text-sm border-2 border-surface-dark rounded-xl focus:ring-2 focus:ring-accent focus:border-accent bg-white/50 text-foreground placeholder-foreground/50"
                 autoComplete="email"
               />

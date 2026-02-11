@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, User, Users, BarChart3, Eye, EyeOff, Clock, Shield, Building } from 'lucide-react';
+import { SITE_CONFIG } from '../config/site';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -17,7 +18,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
     department: 'Tours',
     adminEmail: '',
     adminPassword: '',
-    property: 'Tamarindo Diriá',
+    property: SITE_CONFIG.shortName,
     rememberMe: false
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -27,7 +28,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
   if (!isOpen) return null;
 
   const departments = ['Tours', 'Restaurants', 'Spa', 'Front Desk', 'Concierge'];
-  const properties = ['Tamarindo Diriá', 'Guanacaste Resort', 'Manuel Antonio'];
+  const properties = [...SITE_CONFIG.properties];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -217,7 +218,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
                       type="email"
                       value={formData.adminEmail}
                       onChange={(e) => setFormData({...formData, adminEmail: e.target.value})}
-                      placeholder="admin@tamarindodiria.com"
+                      placeholder={SITE_CONFIG.contact.email}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent input-premium"
                       required
                     />
@@ -319,7 +320,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
                   </label>
                   <input
                     type={loginType === 'admin' ? 'email' : 'text'}
-                    placeholder={loginType === 'staff' ? 'ANA001' : 'admin@tamarindodiria.com'}
+                    placeholder={loginType === 'staff' ? 'ANA001' : SITE_CONFIG.contact.email}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent input-premium"
                     required
                   />

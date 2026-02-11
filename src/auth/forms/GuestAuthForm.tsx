@@ -9,7 +9,7 @@ export default function GuestAuthForm() {
   const navigate = useNavigate();
   const { loginAsGuest, isLoading, error, clearError } = useAuth();
   
-  const defaultProperty = SITE_CONFIG?.properties?.[0] || 'Tamarindo Diriá Beach Resort';
+  const defaultProperty = SITE_CONFIG?.properties?.[0] || SITE_CONFIG.name;
   
   const [formData, setFormData] = useState({
     roomNumber: '',

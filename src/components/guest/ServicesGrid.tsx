@@ -1,6 +1,7 @@
 // src/components/guest/ServicesGrid.tsx - PRO DESIGN VERSION
 import React from 'react';
 import { LucideIcon, Waves, Utensils, Flower, Car, Sparkles, ChevronRight } from 'lucide-react';
+import { SITE_CONFIG } from '../../config/site';
 
 interface Service {
   title: string;
@@ -78,7 +79,7 @@ export default function ServicesGrid({ services, onNavigate }: ServicesGridProps
     <div className="mb-8">
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Services & Experiences</h2>
-        <p className="text-gray-600">Discover everything Tamarindo Diriá has to offer</p>
+        <p className="text-gray-600">Discover everything {SITE_CONFIG.shortName} has to offer</p>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-item">

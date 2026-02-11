@@ -126,7 +126,7 @@ export default function AdminAuth() {
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
-                placeholder="admin@tamarindodiria.com"
+                placeholder={SITE_CONFIG.contact.email}
                 className={THEME_VARIANTS.common.input.base}
                 autoComplete="email"
               />

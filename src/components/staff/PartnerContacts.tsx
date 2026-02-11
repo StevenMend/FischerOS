@@ -1,6 +1,7 @@
 // 4. src/components/staff/PartnerContacts.tsx
 import React from 'react';
 import { MessageSquare, Phone, Headphones } from 'lucide-react';
+import { SITE_CONFIG } from '../../config/site';
 
 interface Partner {
   name: string;
@@ -34,7 +35,7 @@ export default function PartnerContacts({ partners }: PartnerContactsProps) {
 
   const handlePartnerContact = (partner: Partner, method: 'whatsapp' | 'call') => {
     if (method === 'whatsapp') {
-      const message = encodeURIComponent(`Hola ${partner.name}, necesito coordinar una reserva desde Tamarindo Diriá. ¿Podrían confirmar disponibilidad?`);
+      const message = encodeURIComponent(`Hola ${partner.name}, necesito coordinar una reserva desde ${SITE_CONFIG.shortName}. ¿Podrían confirmar disponibilidad?`);
       window.open(`https://wa.me/${partner.phone.replace(/[^0-9]/g, '')}?text=${message}`, '_blank');
     } else {
       window.open(`tel:${partner.phone}`, '_self');

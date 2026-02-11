@@ -7,6 +7,7 @@ import {
   Home, UtensilsCrossed, MapPin, Flower2, MessageCircle, 
   LogOut, Bell, Menu, X, Phone, MessageSquare, Sparkles
 } from 'lucide-react';
+import { SITE_CONFIG } from '../../config/site';
 
 export default function GuestLayout() {
   const { user, logout } = useAuth();
@@ -53,7 +54,7 @@ export default function GuestLayout() {
             <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1 mr-2">
               <img 
                 src={LOGO_BASE64} 
-                alt="Tamarindo Diriá" 
+                alt={SITE_CONFIG.shortName} 
                 className="w-8 h-8 sm:w-10 sm:h-10 object-contain flex-shrink-0"
               />
               <div className="min-w-0 flex-1">
