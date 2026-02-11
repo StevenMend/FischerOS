@@ -42,31 +42,27 @@
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: rgb(var(--color-primary));
+    background: var(--color-primary);
   }
 }
 
-/* Design Tokens — Semantic color system (RGB triplets for Tailwind opacity support) */
+/* Design Tokens — Semantic color system */
 :root {
-  /* Primary - interactive, brand */
-  --color-primary: 74 144 164;         /* #4a90a4 */
-  --color-primary-light: 107 163 181;  /* #6ba3b5 */
-  --color-primary-dark: 58 114 133;    /* #3a7285 */
+  --color-primary: #4a90a4;
+  --color-primary-light: #6ba3b5;
+  --color-primary-dark: #3a7285;
 
-  /* Accent - highlights, premium */
-  --color-accent: 212 175 55;          /* #d4af37 */
-  --color-accent-light: 230 197 90;    /* #e6c55a */
-  --color-accent-dark: 184 148 31;     /* #b8941f */
+  --color-accent: #d4af37;
+  --color-accent-light: #e6c55a;
+  --color-accent-dark: #b8941f;
 
-  /* Surface - backgrounds, cards, borders */
-  --color-surface: 249 250 251;        /* #f9fafb */
-  --color-surface-light: 255 255 255;  /* #ffffff */
-  --color-surface-dark: 229 231 235;   /* #e5e7eb */
+  --color-surface: #f9fafb;
+  --color-surface-light: #ffffff;
+  --color-surface-dark: #e5e7eb;
 
-  /* Foreground - text */
-  --color-foreground: 139 115 85;      /* #8b7355 */
-  --color-foreground-light: 160 137 104; /* #a08968 */
-  --color-foreground-dark: 115 96 74;  /* #73604a */
+  --color-foreground: #8b7355;
+  --color-foreground-light: #a08968;
+  --color-foreground-dark: #73604a;
   
   /* Mobile-First Spacing Scale */
   --spacing-mobile-xs: 0.5rem;

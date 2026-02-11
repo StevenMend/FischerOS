@@ -143,10 +143,10 @@ export const THEME_VARIANTS = {
 
   // Brand colors (semantic tokens — values come from CSS custom properties)
   brand: {
-    primary: 'rgb(var(--color-primary))',
-    accent: 'rgb(var(--color-accent))',
-    surface: 'rgb(var(--color-surface))',
-    foreground: 'rgb(var(--color-foreground))',
+    primary: 'var(--color-primary)',
+    accent: 'var(--color-accent)',
+    surface: 'var(--color-surface)',
+    foreground: 'var(--color-foreground)',
     success: '#22c55e',
     warning: '#f59e0b',
     error: '#ef4444',

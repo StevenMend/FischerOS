@@ -1,15 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-
-// CSS variable color with opacity support (function pattern)
-function color(varName) {
-  return ({ opacityValue }) => {
-    if (opacityValue !== undefined) {
-      return `rgb(var(${varName}) / ${opacityValue})`
-    }
-    return `rgb(var(${varName}))`
-  }
-}
-
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -24,24 +13,24 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: color('--color-primary'),
-          light: color('--color-primary-light'),
-          dark: color('--color-primary-dark'),
+          DEFAULT: 'var(--color-primary)',
+          light: 'var(--color-primary-light)',
+          dark: 'var(--color-primary-dark)',
         },
         accent: {
-          DEFAULT: color('--color-accent'),
-          light: color('--color-accent-light'),
-          dark: color('--color-accent-dark'),
+          DEFAULT: 'var(--color-accent)',
+          light: 'var(--color-accent-light)',
+          dark: 'var(--color-accent-dark)',
         },
         surface: {
-          DEFAULT: color('--color-surface'),
-          light: color('--color-surface-light'),
-          dark: color('--color-surface-dark'),
+          DEFAULT: 'var(--color-surface)',
+          light: 'var(--color-surface-light)',
+          dark: 'var(--color-surface-dark)',
         },
         foreground: {
-          DEFAULT: color('--color-foreground'),
-          light: color('--color-foreground-light'),
-          dark: color('--color-foreground-dark'),
+          DEFAULT: 'var(--color-foreground)',
+          light: 'var(--color-foreground-light)',
+          dark: 'var(--color-foreground-dark)',
         },
       },
       fontFamily: {
