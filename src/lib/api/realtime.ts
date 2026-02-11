@@ -1,5 +1,3 @@
-import { CoordinationEvent, WebSocketMessage, LiveUpdate, BroadcastMessage } from '../../types';
-
 class RealtimeAPI {
   private ws: WebSocket | null = null;
   private reconnectAttempts = 0;

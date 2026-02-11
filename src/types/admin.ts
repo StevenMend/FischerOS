@@ -1,5 +1,5 @@
 // src/types/admin.ts
-import { BaseEntity, Priority } from './index';
+import { BaseEntity } from './index';
 
 export interface KPI extends BaseEntity {
   title: string;

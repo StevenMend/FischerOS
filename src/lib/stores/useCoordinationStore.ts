@@ -1,10 +1,9 @@
 // src/lib/stores/useCoordinationStore.ts - Simplified Version (No RealtimeAPI)
 import { create } from 'zustand';
-import { 
-  CoordinationEvent, 
-  LiveUpdate, 
-  BroadcastMessage,
-  WebSocketMessage 
+import {
+  CoordinationEvent,
+  LiveUpdate,
+  BroadcastMessage
 } from '../../types';
 // REMOVED: import { realtimeAPI } from "../api/realtime"; // This was causing crashes
 
