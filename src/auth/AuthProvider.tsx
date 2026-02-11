@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../lib/stores/useAuthStore';
 import { UserSession, AuthSession, UserRole } from '../types';
 import { SITE_CONFIG } from '../config/site';
+import { getDefaultRouteForRole, getStaffRouteForDepartment } from '../config/routes';
 import { supabase } from '../lib/api/supabase';
 import { logger } from '../core/utils/logger';
 
@@ -77,7 +78,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const loginAsGuest = async (roomNumber?: string, confirmationCode?: string, property: string = SITE_CONFIG.properties[0]) => {
     await authenticateGuest(roomNumber, confirmationCode, property);
-    navigate('/guest/dashboard');
+    navigate(getDefaultRouteForRole('guest'));
   };
 
   const loginAsStaff = async (staffId: string, department: string, password: string, property: string = SITE_CONFIG.properties[0]) => {
@@ -134,76 +135,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
       restaurant_slug: staffData.restaurants?.slug
     });
 
-    // SMART ROUTING BASED ON DEPARTMENT (normalized, case-insensitive)
-    logger.debug('Auth', 'Determining route for department', staffData.department);
-    const deptLower = staffData.department.toLowerCase();
-    
-    // Food & Beverage / Restaurants
-    if ((deptLower.includes('food') || deptLower.includes('beverage') || deptLower === 'restaurants') && staffData.restaurant_id) {
-      const restaurantSlug = staffData.restaurants?.slug;
-      
-      if (!restaurantSlug) {
-        logger.error('Auth', 'Restaurant staff missing restaurant slug');
-        throw new Error('Restaurant assignment incomplete');
-      }
-      
-      logger.info('Auth', `Redirecting to restaurant dashboard: /staff/restaurant/${restaurantSlug}`);
-      navigate(`/staff/restaurant/${restaurantSlug}`);
-      return;
-    } 
-    // Housekeeping
-    else if (deptLower === 'housekeeping') {
-      logger.info('Auth', 'Redirecting to housekeeping dashboard');
-      navigate('/staff/housekeeping');
-      return;
-    }
-    // Maintenance
-    else if (deptLower === 'maintenance') {
-      logger.info('Auth', 'Redirecting to maintenance dashboard');
-      navigate('/staff/maintenance');
-      return;
-    }
-    // Concierge
-    else if (deptLower === 'concierge') {
-      logger.info('Auth', 'Redirecting to concierge dashboard');
-      navigate('/staff/concierge');
-      return;
-    }
-    // Spa
-    else if (deptLower === 'spa') {
-      logger.info('Auth', 'Redirecting to spa dashboard');
-      navigate('/staff/spa');
-      return;
-    }
-    // Tours & Activities
-    else if (deptLower.includes('tour') || deptLower.includes('activities')) {
-      logger.info('Auth', 'Redirecting to tours dashboard');
-      navigate('/staff/tours');
-      return;
-    }
-    // Transportation
-    else if (deptLower.includes('transport')) {
-      logger.info('Auth', 'Redirecting to transportation dashboard');
-      navigate('/staff/transportation');
-      return;
-    }
-    // Front Desk
-    else if (deptLower.includes('front') || deptLower.includes('desk')) {
-      logger.info('Auth', 'Redirecting to front desk dashboard');
-      navigate('/staff/console'); // Front desk usa console genérico por ahora
-      return;
-    }
-    else {
-      // Fallback to generic console
-      logger.warn('Auth', 'Unknown department - redirecting to generic console', staffData.department);
-      navigate('/staff/console');
-      return;
-    }
+    // Route to department-specific dashboard (logic centralized in config/routes.ts)
+    const route = getStaffRouteForDepartment(
+      staffData.department,
+      staffData.restaurants?.slug
+    );
+    logger.info('Auth', `Redirecting staff to ${route}`);
+    navigate(route);
   };
 
   const loginAsAdmin = async (email: string, password: string, property: string = SITE_CONFIG.properties[0]) => {
     await authenticateAdmin(email, password, property);
-    navigate('/admin/dashboard');
+    navigate(getDefaultRouteForRole('admin'));
   };
 
   const logout = async () => {

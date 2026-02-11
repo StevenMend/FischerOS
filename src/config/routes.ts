@@ -276,3 +276,49 @@ export const getSessionTimeoutForRole = (role: UserRole): number => {
 export const getPermissionsForRole = (role: UserRole) => {
   return ROUTE_CONFIG[role].permissions;
 };
+
+// ========== STAFF DEPARTMENT ROUTING ==========
+
+/** Department → base route mapping for staff post-login redirect */
+const STAFF_DEPARTMENT_ROUTES: Record<string, string> = {
+  'food & beverage': '/staff/restaurant',
+  'restaurants': '/staff/restaurant',
+  'housekeeping': '/staff/housekeeping',
+  'maintenance': '/staff/maintenance',
+  'concierge': '/staff/concierge',
+  'spa': '/staff/spa',
+  'tours & activities': '/staff/tours',
+  'transportation': '/staff/transportation',
+  'front desk': '/staff/console',
+};
+
+/**
+ * Resolve the post-login route for a staff member based on department.
+ * Restaurant staff get routed to their specific restaurant dashboard.
+ */
+export function getStaffRouteForDepartment(
+  department: string,
+  restaurantSlug?: string | null
+): string {
+  const deptLower = department.toLowerCase();
+
+  // Exact match
+  const exact = STAFF_DEPARTMENT_ROUTES[deptLower];
+  if (exact) {
+    if (exact === '/staff/restaurant' && restaurantSlug) {
+      return `/staff/restaurant/${restaurantSlug}`;
+    }
+    return exact === '/staff/restaurant' ? ROUTE_PATHS.staff.console : exact;
+  }
+
+  // Fuzzy match for variant naming
+  if (deptLower.includes('food') || deptLower.includes('beverage')) {
+    return restaurantSlug ? `/staff/restaurant/${restaurantSlug}` : ROUTE_PATHS.staff.console;
+  }
+  if (deptLower.includes('tour') || deptLower.includes('activities')) return '/staff/tours';
+  if (deptLower.includes('transport')) return '/staff/transportation';
+  if (deptLower.includes('front') || deptLower.includes('desk')) return ROUTE_PATHS.staff.console;
+
+  // Fallback
+  return ROUTE_PATHS.staff.console;
+}
