@@ -4,6 +4,7 @@
 
 import { useState, useMemo } from 'react';
 import { useAuth } from '../../../hooks/useAuth';
+import { logger } from '../../../core/utils/logger';
 import {
   useRestaurants as useRestaurantsQuery,
   useCreateReservation,
@@ -99,13 +100,13 @@ export const useRestaurants = () => {
   
   // ========== MODAL HANDLERS ==========
   const handleReservation = (restaurant: Restaurant) => {
-    console.log('🍽️ Opening reservation modal for:', restaurant.name);
+    logger.debug('Restaurants', 'Opening reservation modal', restaurant.name);
     setSelectedRestaurant(restaurant);
     setShowModal(true);
   };
   
   const closeModal = () => {
-    console.log('❌ Closing reservation modal');
+    logger.debug('Restaurants', 'Closing reservation modal');
     setShowModal(false);
     setSelectedRestaurant(null);
     resetReservationData();
@@ -149,7 +150,7 @@ export const useRestaurants = () => {
       special_requests: reservationData.specialRequests || undefined,
     };
     
-    console.log('📝 Submitting reservation:', dto);
+    logger.info('Restaurants', 'Submitting reservation', dto);
     
     await createReservationMutation.mutateAsync(dto);
     

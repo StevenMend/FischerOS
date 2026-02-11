@@ -1,5 +1,6 @@
 import { supabase } from '../../../lib/api/supabase';
 import { AuthService, GuestService, PropertyService } from '../../../lib/services';
+import { logger } from '../../../core/utils/logger';
 import { ToursPort } from './port';
 import {
   Tour,
@@ -15,7 +16,7 @@ import {
 export class RemoteToursAdapter implements ToursPort {
   
   async getAll(filters?: TourFilters): Promise<Tour[]> {
-    console.log('🌐 RemoteToursAdapter.getAll() - Fetching from Supabase', filters);
+    logger.info('ToursAdapter', 'getAll - Fetching from Supabase', filters);
     
     let query = supabase
       .from('tours')
@@ -47,16 +48,16 @@ export class RemoteToursAdapter implements ToursPort {
     const { data, error } = await query;
     
     if (error) {
-      console.error('❌ Error fetching tours:', error);
+      logger.error('ToursAdapter', 'Error fetching tours', error);
       throw new Error(`Failed to fetch tours: ${error.message}`);
     }
     
-    console.log(`✅ Loaded ${data.length} tours from Supabase`);
+    logger.info('ToursAdapter', `Loaded ${data.length} tours from Supabase`);
     return data as Tour[];
   }
   
   async getById(idOrSlug: string): Promise<Tour> {
-    console.log('🔍 RemoteToursAdapter.getById():', idOrSlug);
+    logger.info('ToursAdapter', 'getById', idOrSlug);
     
     let query = supabase
       .from('tours')
@@ -74,16 +75,16 @@ export class RemoteToursAdapter implements ToursPort {
     const { data, error } = await query.single();
     
     if (error) {
-      console.error('❌ Error fetching tour:', error);
+      logger.error('ToursAdapter', 'Error fetching tour', error);
       throw new Error(`Tour not found: ${idOrSlug}`);
     }
     
-    console.log('✅ Tour loaded:', data.name);
+    logger.info('ToursAdapter', 'Tour loaded', data.name);
     return data as Tour;
   }
   
   async getByCategory(category: string): Promise<Tour[]> {
-    console.log('📂 RemoteToursAdapter.getByCategory():', category);
+    logger.info('ToursAdapter', 'getByCategory', category);
     
     const { data, error } = await supabase
       .from('tours')
@@ -93,16 +94,16 @@ export class RemoteToursAdapter implements ToursPort {
       .order('rating', { ascending: false });
     
     if (error) {
-      console.error('❌ Error fetching tours by category:', error);
+      logger.error('ToursAdapter', 'Error fetching tours by category', error);
       throw new Error(`Failed to fetch tours: ${error.message}`);
     }
     
-    console.log(`✅ Loaded ${data.length} tours in category: ${category}`);
+    logger.info('ToursAdapter', `Loaded ${data.length} tours in category: ${category}`);
     return data as Tour[];
   }
   
   async getFeatured(): Promise<Tour[]> {
-    console.log('⭐ RemoteToursAdapter.getFeatured()');
+    logger.info('ToursAdapter', 'getFeatured');
     
     const { data, error } = await supabase
       .from('tours')
@@ -113,16 +114,16 @@ export class RemoteToursAdapter implements ToursPort {
       .limit(6);
     
     if (error) {
-      console.error('❌ Error fetching featured tours:', error);
+      logger.error('ToursAdapter', 'Error fetching featured tours', error);
       throw new Error(`Failed to fetch featured tours: ${error.message}`);
     }
     
-    console.log(`✅ Loaded ${data.length} featured tours`);
+    logger.info('ToursAdapter', `Loaded ${data.length} featured tours`);
     return data as Tour[];
   }
   
   async createBooking(dto: CreateTourBookingDTO): Promise<TourBooking> {
-    console.log('🌐 RemoteToursAdapter.createBooking()', dto);
+    logger.info('ToursAdapter', 'createBooking', dto);
     
     const userId = await AuthService.getCurrentUserId();
     const guestInfo = await GuestService.getGuestInfo(userId);
@@ -171,16 +172,16 @@ export class RemoteToursAdapter implements ToursPort {
       .single();
     
     if (error) {
-      console.error('❌ Error creating booking:', error);
+      logger.error('ToursAdapter', 'Error creating booking', error);
       throw new Error(`Failed to create booking: ${error.message}`);
     }
     
-    console.log('✅ Booking created successfully:', data.id);
+    logger.info('ToursAdapter', 'Booking created successfully', data.id);
     return data as TourBooking;
   }
   
   async getBookingsByGuest(guestId: string): Promise<TourBooking[]> {
-    console.log('📋 RemoteToursAdapter.getBookingsByGuest():', guestId);
+    logger.info('ToursAdapter', 'getBookingsByGuest', guestId);
     
     const { data, error } = await supabase
       .from('tour_bookings')
@@ -193,16 +194,16 @@ export class RemoteToursAdapter implements ToursPort {
       .order('created_at', { ascending: false });
     
     if (error) {
-      console.error('❌ Error fetching bookings:', error);
+      logger.error('ToursAdapter', 'Error fetching bookings', error);
       throw new Error(`Failed to fetch bookings: ${error.message}`);
     }
     
-    console.log(`✅ Loaded ${data.length} bookings for guest`);
+    logger.info('ToursAdapter', `Loaded ${data.length} bookings for guest`);
     return data as TourBooking[];
   }
   
   async getBookingById(id: string): Promise<TourBooking> {
-    console.log('🔍 RemoteToursAdapter.getBookingById():', id);
+    logger.info('ToursAdapter', 'getBookingById', id);
     
     const { data, error } = await supabase
       .from('tour_bookings')
@@ -214,11 +215,11 @@ export class RemoteToursAdapter implements ToursPort {
       .single();
     
     if (error) {
-      console.error('❌ Error fetching booking:', error);
+      logger.error('ToursAdapter', 'Error fetching booking', error);
       throw new Error(`Booking not found: ${id}`);
     }
     
-    console.log('✅ Booking loaded:', data.id);
+    logger.info('ToursAdapter', 'Booking loaded', data.id);
     return data as TourBooking;
   }
   
@@ -226,7 +227,7 @@ export class RemoteToursAdapter implements ToursPort {
     id: string,
     dto: UpdateBookingStatusDTO
   ): Promise<TourBooking> {
-    console.log('🔄 RemoteToursAdapter.updateBookingStatus():', id, dto);
+    logger.info('ToursAdapter', 'updateBookingStatus', { id, dto });
     
     const updateData: any = {
       status: dto.status,
@@ -253,16 +254,16 @@ export class RemoteToursAdapter implements ToursPort {
       .single();
     
     if (error) {
-      console.error('❌ Error updating booking status:', error);
+      logger.error('ToursAdapter', 'Error updating booking status', error);
       throw new Error(`Failed to update booking: ${error.message}`);
     }
     
-    console.log('✅ Booking status updated:', data.status);
+    logger.info('ToursAdapter', 'Booking status updated', data.status);
     return data as TourBooking;
   }
   
   async cancelBooking(id: string, reason?: string): Promise<TourBooking> {
-    console.log('❌ RemoteToursAdapter.cancelBooking():', id, reason);
+    logger.info('ToursAdapter', 'cancelBooking', { id, reason });
     
     return this.updateBookingStatus(id, {
       status: 'cancelled',
@@ -271,7 +272,7 @@ export class RemoteToursAdapter implements ToursPort {
   }
   
   async getBookingStats(tourId?: string): Promise<TourBookingStats> {
-    console.log('📊 RemoteToursAdapter.getBookingStats()', tourId);
+    logger.info('ToursAdapter', 'getBookingStats', tourId);
     
     let query = supabase.from('tour_bookings').select('status, total_price');
     
@@ -282,7 +283,7 @@ export class RemoteToursAdapter implements ToursPort {
     const { data, error } = await query;
     
     if (error) {
-      console.error('❌ Error fetching booking stats:', error);
+      logger.error('ToursAdapter', 'Error fetching booking stats', error);
       throw new Error(`Failed to fetch stats: ${error.message}`);
     }
     
@@ -297,17 +298,17 @@ export class RemoteToursAdapter implements ToursPort {
         .reduce((sum, b) => sum + (b.total_price || 0), 0),
     };
     
-    console.log('✅ Booking stats calculated:', stats);
+    logger.info('ToursAdapter', 'Booking stats calculated', stats);
     return stats;
   }
   
   async getByName(name: string): Promise<Tour> {
-    console.warn('⚠️ getByName is deprecated, use getById with slug');
+    logger.warn('ToursAdapter', 'getByName is deprecated, use getById with slug');
     return this.getById(name);
   }
   
   async createLegacyBooking(request: BookingRequest): Promise<Booking> {
-    console.warn('⚠️ createLegacyBooking is deprecated, use createBooking');
+    logger.warn('ToursAdapter', 'createLegacyBooking is deprecated, use createBooking');
     
     const tours = await this.getAll();
     const tour = tours.find(t => t.name === request.tour || t.slug === request.tour);

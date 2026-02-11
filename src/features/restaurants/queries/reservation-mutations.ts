@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { restaurantsApi } from '../api';
 import { reservationKeys } from './keys';
 import { toast } from '../../../lib/services/toast.service';
+import { logger } from '../../../core/utils/logger';
 import type {
   CreateRestaurantReservationDTO,
   UpdateReservationStatusDTO,
@@ -33,7 +34,7 @@ export const useCreateReservation = () => {
     },
     
     onError: (error: Error) => {
-      console.error('Error creating reservation:', error);
+      logger.error('Restaurants', 'Error creating reservation', error);
       toast.error(`Failed to create reservation: ${error.message}`);
     },
   });
@@ -68,7 +69,7 @@ export const useUpdateReservationStatus = () => {
     },
     
     onError: (error: Error) => {
-      console.error('Error updating reservation:', error);
+      logger.error('Restaurants', 'Error updating reservation', error);
       toast.error(`Failed to update reservation: ${error.message}`);
     },
   });
@@ -103,7 +104,7 @@ export const useCancelReservation = () => {
     },
     
     onError: (error: Error) => {
-      console.error('Error cancelling reservation:', error);
+      logger.error('Restaurants', 'Error cancelling reservation', error);
       toast.error(`Failed to cancel reservation: ${error.message}`);
     },
   });

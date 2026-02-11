@@ -295,7 +295,7 @@ async function fetchRestaurantReservations(restaurantId: string): Promise<Restau
 
   if (error) throw error;
 
-  console.log('✅ Fetched reservations:', data?.length || 0);
+  logger.info('RestaurantStaff', 'Fetched reservations', data?.length || 0);
   return data || [];
 }
 
@@ -303,7 +303,7 @@ async function updateReservationStatus(
   reservationId: string, 
   updates: UpdateReservationStatusDTO
 ): Promise<RestaurantReservation> {
-  console.log('📝 Updating reservation status:', { reservationId, updates });
+  logger.info('RestaurantStaff', 'Updating reservation status', { reservationId, updates });
 
   const payload: any = {
     status: updates.status,
@@ -334,7 +334,7 @@ async function updateReservationStatus(
 
   if (error) throw error;
 
-  console.log('✅ Reservation updated:', data);
+  logger.info('RestaurantStaff', 'Reservation updated', data);
   return data;
 }
 
@@ -393,13 +393,13 @@ export const useRestaurantStaff = (
           restaurant_name: staffData.restaurants?.name || null,
         });
 
-        console.log('✅ Staff info loaded:', { 
-          name: staffData.name, 
+        logger.info('RestaurantStaff', 'Staff info loaded', {
+          name: staffData.name,
           restaurant: staffData.restaurants?.name,
           slug: staffData.restaurants?.slug,
         });
       } catch (err: any) {
-        console.error('❌ Error fetching staff info:', err);
+        logger.error('RestaurantStaff', 'Error fetching staff info', err);
       }
     };
 
@@ -410,7 +410,7 @@ export const useRestaurantStaff = (
   // Priority: paramRestaurantId > staffInfo.restaurant_id
   const activeRestaurantId = paramRestaurantId || staffInfo?.restaurant_id || null;
 
-  console.log('🎯 Active Restaurant ID:', {
+  logger.debug('RestaurantStaff', 'Active Restaurant ID', {
     param: paramRestaurantId,
     staff: staffInfo?.restaurant_id,
     active: activeRestaurantId,
@@ -442,7 +442,7 @@ export const useRestaurantStaff = (
       ToastService.success('Updated successfully');
     },
     onError: (error: any) => {
-      console.error('❌ Update failed:', error);
+      logger.error('RestaurantStaff', 'Update failed', error);
       ToastService.error('Update failed', error.message);
     },
   });

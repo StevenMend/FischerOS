@@ -4,6 +4,7 @@ import { Navigate } from 'react-router-dom';
 import { supabase } from '../../../../lib/api/supabase';
 import { useAuthStore } from '../../../../lib/stores/useAuthStore';
 import { Utensils, AlertTriangle } from 'lucide-react';
+import { logger } from '../../../../core/utils/logger';
 
 interface StaffRestaurantInfo {
   restaurant_id: string | null;
@@ -35,7 +36,7 @@ export default function RestaurantRedirect() {
       }
 
       try {
-        console.log('🔍 Fetching restaurant assignment for staff:', session.user.id);
+        logger.info('RestaurantRedirect', 'Fetching restaurant assignment', session.user.id);
 
         const { data: staffData, error: staffError } = await supabase
           .from('staff')
@@ -64,7 +65,7 @@ export default function RestaurantRedirect() {
           restaurant_name: staffData.restaurants.name,
         });
 
-        console.log('✅ Staff restaurant found:', {
+        logger.info('RestaurantRedirect', 'Staff restaurant found', {
           id: staffData.restaurant_id,
           slug: staffData.restaurants.slug,
           name: staffData.restaurants.name,
@@ -72,7 +73,7 @@ export default function RestaurantRedirect() {
 
         setLoading(false);
       } catch (err: any) {
-        console.error('❌ Error fetching staff restaurant:', err);
+        logger.error('RestaurantRedirect', 'Error fetching staff restaurant', err);
         setError(err.message || 'Failed to load restaurant assignment');
         setLoading(false);
       }
@@ -140,7 +141,7 @@ export default function RestaurantRedirect() {
 
   // Success - Redirect to Restaurant Dashboard
   if (staffInfo?.restaurant_slug) {
-    console.log(`🎯 Redirecting to: /staff/restaurant/${staffInfo.restaurant_slug}`);
+    logger.info('RestaurantRedirect', `Redirecting to /staff/restaurant/${staffInfo.restaurant_slug}`);
     return <Navigate to={`/staff/restaurant/${staffInfo.restaurant_slug}`} replace />;
   }
 

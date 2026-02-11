@@ -6,6 +6,7 @@
 import { supabase } from '../../../lib/api/supabase';
 import { AuthService, GuestService, PropertyService } from '../../../lib/services';
 import { RestaurantsPort } from './port';
+import { logger } from '../../../core/utils/logger';
 import {
   Restaurant,
   RestaurantReservation,
@@ -22,7 +23,7 @@ export class RemoteRestaurantsAdapter implements RestaurantsPort {
   // ========== RESTAURANTS CATALOG ==========
   
   async getAll(filters?: RestaurantFilters): Promise<Restaurant[]> {
-    console.log('🌐 RemoteRestaurantsAdapter.getAll() - Fetching from Supabase', filters);
+    logger.info('RestaurantsAdapter', 'getAll - Fetching from Supabase', filters);
     
     let query = supabase
       .from('restaurants')
@@ -50,16 +51,16 @@ export class RemoteRestaurantsAdapter implements RestaurantsPort {
     const { data, error } = await query;
     
     if (error) {
-      console.error('❌ Error fetching restaurants:', error);
+      logger.error('RestaurantsAdapter', 'Error fetching restaurants', error);
       throw new Error(`Failed to fetch restaurants: ${error.message}`);
     }
     
-    console.log(`✅ Loaded ${data.length} restaurants from Supabase`);
+    logger.info('RestaurantsAdapter', `Loaded ${data.length} restaurants from Supabase`);
     return data as Restaurant[];
   }
   
   async getById(idOrSlug: string): Promise<Restaurant> {
-    console.log('🔍 RemoteRestaurantsAdapter.getById():', idOrSlug);
+    logger.info('RestaurantsAdapter', 'getById - Fetching restaurant', idOrSlug);
     
     let query = supabase
       .from('restaurants')
@@ -77,16 +78,16 @@ export class RemoteRestaurantsAdapter implements RestaurantsPort {
     const { data, error } = await query.single();
     
     if (error) {
-      console.error('❌ Error fetching restaurant:', error);
+      logger.error('RestaurantsAdapter', 'Error fetching restaurant', error);
       throw new Error(`Restaurant not found: ${idOrSlug}`);
     }
     
-    console.log('✅ Restaurant loaded:', data.name);
+    logger.info('RestaurantsAdapter', 'Restaurant loaded', data.name);
     return data as Restaurant;
   }
   
   async getByCuisine(cuisine: string): Promise<Restaurant[]> {
-    console.log('📂 RemoteRestaurantsAdapter.getByCuisine():', cuisine);
+    logger.info('RestaurantsAdapter', 'getByCuisine - Fetching restaurants', cuisine);
     
     const { data, error } = await supabase
       .from('restaurants')
@@ -96,16 +97,16 @@ export class RemoteRestaurantsAdapter implements RestaurantsPort {
       .order('rating', { ascending: false });
     
     if (error) {
-      console.error('❌ Error fetching restaurants by cuisine:', error);
+      logger.error('RestaurantsAdapter', 'Error fetching restaurants by cuisine', error);
       throw new Error(`Failed to fetch restaurants: ${error.message}`);
     }
     
-    console.log(`✅ Loaded ${data.length} restaurants in cuisine: ${cuisine}`);
+    logger.info('RestaurantsAdapter', `Loaded ${data.length} restaurants in cuisine: ${cuisine}`);
     return data as Restaurant[];
   }
   
   async getFeatured(): Promise<Restaurant[]> {
-    console.log('⭐ RemoteRestaurantsAdapter.getFeatured()');
+    logger.info('RestaurantsAdapter', 'getFeatured - Fetching featured restaurants');
     
     const { data, error } = await supabase
       .from('restaurants')
@@ -116,18 +117,18 @@ export class RemoteRestaurantsAdapter implements RestaurantsPort {
       .limit(6);
     
     if (error) {
-      console.error('❌ Error fetching featured restaurants:', error);
+      logger.error('RestaurantsAdapter', 'Error fetching featured restaurants', error);
       throw new Error(`Failed to fetch featured restaurants: ${error.message}`);
     }
     
-    console.log(`✅ Loaded ${data.length} featured restaurants`);
+    logger.info('RestaurantsAdapter', `Loaded ${data.length} featured restaurants`);
     return data as Restaurant[];
   }
   
   // ========== RESERVATIONS ==========
   
   async createReservation(dto: CreateRestaurantReservationDTO): Promise<RestaurantReservation> {
-    console.log('🌐 RemoteRestaurantsAdapter.createReservation()', dto);
+    logger.info('RestaurantsAdapter', 'createReservation - Creating reservation', dto);
     
     const userId = await AuthService.getCurrentUserId();
     const guestInfo = await GuestService.getGuestInfo(userId);
@@ -159,16 +160,16 @@ export class RemoteRestaurantsAdapter implements RestaurantsPort {
       .single();
     
     if (error) {
-      console.error('❌ Error creating reservation:', error);
+      logger.error('RestaurantsAdapter', 'Error creating reservation', error);
       throw new Error(`Failed to create reservation: ${error.message}`);
     }
     
-    console.log('✅ Reservation created successfully:', data.id);
+    logger.info('RestaurantsAdapter', 'Reservation created successfully', data.id);
     return data as RestaurantReservation;
   }
   
   async getReservationsByGuest(guestId: string): Promise<RestaurantReservation[]> {
-    console.log('📋 RemoteRestaurantsAdapter.getReservationsByGuest():', guestId);
+    logger.info('RestaurantsAdapter', 'getReservationsByGuest - Fetching reservations', guestId);
     
     const { data, error } = await supabase
       .from('restaurant_reservations')
@@ -181,16 +182,16 @@ export class RemoteRestaurantsAdapter implements RestaurantsPort {
       .order('created_at', { ascending: false });
     
     if (error) {
-      console.error('❌ Error fetching reservations:', error);
+      logger.error('RestaurantsAdapter', 'Error fetching reservations', error);
       throw new Error(`Failed to fetch reservations: ${error.message}`);
     }
     
-    console.log(`✅ Loaded ${data.length} reservations for guest`);
+    logger.info('RestaurantsAdapter', `Loaded ${data.length} reservations for guest`);
     return data as RestaurantReservation[];
   }
   
   async getReservationById(id: string): Promise<RestaurantReservation> {
-    console.log('🔍 RemoteRestaurantsAdapter.getReservationById():', id);
+    logger.info('RestaurantsAdapter', 'getReservationById - Fetching reservation', id);
     
     const { data, error } = await supabase
       .from('restaurant_reservations')
@@ -202,11 +203,11 @@ export class RemoteRestaurantsAdapter implements RestaurantsPort {
       .single();
     
     if (error) {
-      console.error('❌ Error fetching reservation:', error);
+      logger.error('RestaurantsAdapter', 'Error fetching reservation', error);
       throw new Error(`Reservation not found: ${id}`);
     }
     
-    console.log('✅ Reservation loaded:', data.id);
+    logger.info('RestaurantsAdapter', 'Reservation loaded', data.id);
     return data as RestaurantReservation;
   }
   
@@ -214,7 +215,7 @@ export class RemoteRestaurantsAdapter implements RestaurantsPort {
     id: string,
     dto: UpdateReservationStatusDTO
   ): Promise<RestaurantReservation> {
-    console.log('🔄 RemoteRestaurantsAdapter.updateReservationStatus():', id, dto);
+    logger.info('RestaurantsAdapter', 'updateReservationStatus - Updating reservation', { id, dto });
     
     const updateData: any = {
       status: dto.status,
@@ -247,16 +248,16 @@ export class RemoteRestaurantsAdapter implements RestaurantsPort {
       .single();
     
     if (error) {
-      console.error('❌ Error updating reservation status:', error);
+      logger.error('RestaurantsAdapter', 'Error updating reservation status', error);
       throw new Error(`Failed to update reservation: ${error.message}`);
     }
     
-    console.log('✅ Reservation status updated:', data.status);
+    logger.info('RestaurantsAdapter', 'Reservation status updated', data.status);
     return data as RestaurantReservation;
   }
   
   async cancelReservation(id: string, reason?: string): Promise<RestaurantReservation> {
-    console.log('❌ RemoteRestaurantsAdapter.cancelReservation():', id, reason);
+    logger.info('RestaurantsAdapter', 'cancelReservation - Cancelling reservation', { id, reason });
     
     return this.updateReservationStatus(id, {
       status: 'cancelled',
@@ -267,7 +268,7 @@ export class RemoteRestaurantsAdapter implements RestaurantsPort {
   // ========== STATS ==========
   
   async getReservationStats(restaurantId?: string): Promise<RestaurantReservationStats> {
-    console.log('📊 RemoteRestaurantsAdapter.getReservationStats()', restaurantId);
+    logger.info('RestaurantsAdapter', 'getReservationStats - Fetching stats', restaurantId);
     
     let query = supabase.from('restaurant_reservations').select('status');
     
@@ -278,7 +279,7 @@ export class RemoteRestaurantsAdapter implements RestaurantsPort {
     const { data, error } = await query;
     
     if (error) {
-      console.error('❌ Error fetching reservation stats:', error);
+      logger.error('RestaurantsAdapter', 'Error fetching reservation stats', error);
       throw new Error(`Failed to fetch stats: ${error.message}`);
     }
     
@@ -292,19 +293,19 @@ export class RemoteRestaurantsAdapter implements RestaurantsPort {
       no_show: data.filter(r => r.status === 'no_show').length,
     };
     
-    console.log('✅ Reservation stats calculated:', stats);
+    logger.info('RestaurantsAdapter', 'Reservation stats calculated', stats);
     return stats;
   }
   
   // ========== LEGACY COMPATIBILITY ==========
   
   async getByName(name: string): Promise<Restaurant> {
-    console.warn('⚠️ getByName is deprecated, use getById with slug');
+    logger.warn('RestaurantsAdapter', 'getByName is deprecated, use getById with slug');
     return this.getById(name);
   }
   
   async createLegacyReservation(request: ReservationRequest): Promise<Reservation> {
-    console.warn('⚠️ createLegacyReservation is deprecated, use createReservation');
+    logger.warn('RestaurantsAdapter', 'createLegacyReservation is deprecated, use createReservation');
     
     const restaurants = await this.getAll();
     const restaurant = restaurants.find(r => r.name === request.restaurant || r.slug === request.restaurant);

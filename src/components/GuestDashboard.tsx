@@ -148,6 +148,7 @@ import RestaurantsPage from "../features/restaurants/pages/RestaurantsPage";
 import KPIGrid from './guest/KPIGrid';
 import LoyaltyBanner from './guest/LoyaltyBanner';
 import BottomNavigation from './guest/BottomNavigation';
+import { logger } from '../core/utils/logger';
 
 interface GuestDashboardProps {
   currentPage: string;
@@ -158,7 +159,7 @@ export default function GuestDashboard({ currentPage, onNavigate }: GuestDashboa
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
   const dashboardData = useGuestDashboard();
 
-  console.log('🎯 GuestDashboard render:', { currentPage });
+  logger.debug('GuestDashboard', 'render', { currentPage });
 
   const heroSlides = [
     {
@@ -195,12 +196,12 @@ export default function GuestDashboard({ currentPage, onNavigate }: GuestDashboa
   }, []);
 
   if (currentPage === 'tours') {
-    console.log('✅ Rendering ToursPage from features/');
+    logger.debug('GuestDashboard', 'Rendering ToursPage');
     return <ToursPage onBack={() => onNavigate('dashboard')} />;
   }
 
   if (currentPage === 'restaurants') {
-    console.log('✅ Rendering RestaurantsPage from features/');
+    logger.debug('GuestDashboard', 'Rendering RestaurantsPage');
     return <RestaurantsPage onBack={() => onNavigate('dashboard')} />;
   }
 

@@ -1,6 +1,7 @@
 // src/components/staff/RequestCard.tsx - PRO VERSION WITH REAL DB DATA
 import React from 'react';
 import { Timer, Crown, Zap, AlertTriangle, User, MapPin, Clock } from 'lucide-react';
+import { logger } from '../../core/utils/logger';
 
 interface ServiceRequest {
   id: string;
@@ -79,7 +80,7 @@ const getPriorityConfig = (priority: string) => {
 };
 
 export default function RequestCard({ requests, onTakeRequest }: RequestCardProps) {
-  console.log('🎴 RequestCard render:', { count: requests.length });
+  logger.debug('RequestCard', 'render', { count: requests.length });
 
   if (requests.length === 0) {
     return (
@@ -108,11 +109,11 @@ export default function RequestCard({ requests, onTakeRequest }: RequestCardProp
         const Icon = config.icon;
         const elapsed = calculateElapsedTime(request.created_at);
         
-        console.log('🎴 Rendering request card:', { 
-          id: request.id, 
+        logger.debug('RequestCard', 'Rendering card', {
+          id: request.id,
           title: request.title,
           priority: request.priority,
-          elapsed 
+          elapsed
         });
         
         return (
@@ -170,7 +171,7 @@ export default function RequestCard({ requests, onTakeRequest }: RequestCardProp
             {/* Action Button */}
             <button 
               onClick={() => {
-                console.log('🎯 Taking request:', request.id);
+                logger.debug('RequestCard', 'Taking request', request.id);
                 onTakeRequest(request.id);
               }}
               className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-2.5 sm:py-3 rounded-xl font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]"

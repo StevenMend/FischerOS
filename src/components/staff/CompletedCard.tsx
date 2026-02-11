@@ -1,6 +1,7 @@
 // src/components/staff/CompletedCard.tsx - PRO VERSION WITH REAL DB DATA
 import React from 'react';
 import { Star, User, MapPin, Clock, CheckCircle } from 'lucide-react';
+import { logger } from '../../core/utils/logger';
 
 interface ServiceRequest {
   id: string;
@@ -39,7 +40,7 @@ const calculateDuration = (createdAt: string, completedAt: string | null): strin
 };
 
 export default function CompletedCard({ items, onCollectSatisfaction }: CompletedCardProps) {
-  console.log('✅ CompletedCard render:', { count: items.length });
+  logger.debug('CompletedCard', 'render', { count: items.length });
 
   if (items.length === 0) {
     return (
@@ -66,11 +67,11 @@ export default function CompletedCard({ items, onCollectSatisfaction }: Complete
             })
           : 'N/A';
         
-        console.log('✅ Rendering completed card:', { 
-          id: item.id, 
+        logger.debug('CompletedCard', 'Rendering card', {
+          id: item.id,
           title: item.title,
           rating: item.rating,
-          hasfeedback: !!item.feedback 
+          hasFeedback: !!item.feedback
         });
         
         return (

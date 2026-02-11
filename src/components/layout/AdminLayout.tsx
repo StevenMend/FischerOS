@@ -5,12 +5,13 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useAuth } from '../../auth/AuthProvider';
 import { LogOut } from 'lucide-react';
+import { logger } from '../../core/utils/logger';
 
 // REMOVED children prop - using Outlet instead
 export default function AdminLayout() {
   const { user, logout } = useAuth();
 
-  console.log('🟡 AdminLayout rendering');
+  logger.debug('AdminLayout', 'rendering');
 
   return (
     <div className="min-h-screen bg-gray-50">

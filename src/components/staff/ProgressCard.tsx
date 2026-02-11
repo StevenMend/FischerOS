@@ -1,6 +1,7 @@
 // src/components/staff/ProgressCard.tsx - PRO VERSION WITH REAL DB DATA
 import React from 'react';
 import { Timer, User, MapPin, Clock, CheckCircle } from 'lucide-react';
+import { logger } from '../../core/utils/logger';
 
 interface ServiceRequest {
   id: string;
@@ -47,7 +48,7 @@ const getStatusBadge = (status: string) => {
 };
 
 export default function ProgressCard({ items, onUpdateStatus }: ProgressCardProps) {
-  console.log('🔄 ProgressCard render:', { count: items.length });
+  logger.debug('ProgressCard', 'render', { count: items.length });
 
   if (items.length === 0) {
     return (
@@ -67,11 +68,11 @@ export default function ProgressCard({ items, onUpdateStatus }: ProgressCardProp
         const elapsed = calculateElapsedTime(item.created_at);
         const statusBadge = getStatusBadge(item.status);
         
-        console.log('🔄 Rendering progress card:', { 
-          id: item.id, 
+        logger.debug('ProgressCard', 'Rendering card', {
+          id: item.id,
           title: item.title,
           status: item.status,
-          assignedTo: item.assigned_to_name 
+          assignedTo: item.assigned_to_name
         });
         
         return (
@@ -137,7 +138,7 @@ export default function ProgressCard({ items, onUpdateStatus }: ProgressCardProp
             <div className="grid grid-cols-2 gap-2">
               <button 
                 onClick={() => {
-                  console.log('▶️ Moving to in-progress:', item.id);
+                  logger.debug('ProgressCard', 'Moving to in-progress', item.id);
                   onUpdateStatus(item.id, 'in-progress');
                 }}
                 className="bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-semibold text-xs transition-all duration-300"
@@ -147,7 +148,7 @@ export default function ProgressCard({ items, onUpdateStatus }: ProgressCardProp
               
               <button 
                 onClick={() => {
-                  console.log('✅ Completing request:', item.id);
+                  logger.debug('ProgressCard', 'Completing request', item.id);
                   onUpdateStatus(item.id, 'completed');
                 }}
                 className="bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-semibold text-xs flex items-center justify-center space-x-1 transition-all duration-300"

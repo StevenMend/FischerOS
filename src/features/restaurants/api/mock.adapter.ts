@@ -1,6 +1,7 @@
 import { RestaurantsPort } from './port';
 import { Restaurant, ReservationRequest, Reservation } from './types';
 import restaurantsData from '../../../data/seed/restaurants/venues.json';
+import { logger } from '../../../core/utils/logger';
 
 /**
  * MockRestaurantsAdapter - Reads from local seed data
@@ -34,7 +35,7 @@ export class MockRestaurantsAdapter implements RestaurantsPort {
       createdAt: new Date().toISOString()
     };
 
-    console.log('✅ Mock Reservation Created:', reservation);
+    logger.info('RestaurantsAdapter', 'Mock Reservation Created', reservation);
     return reservation;
   }
 }

@@ -5,6 +5,7 @@ import SessionWarningModal from './shared/SessionWarningModal';
 import SessionExpiredModal from './shared/SessionExpiredModal';
 import { Toaster, toast } from 'sonner';
 import { SITE_CONFIG } from '../config/site';
+import { logger } from '../core/utils/logger';
 
 /**
  * Application Shell
@@ -19,21 +20,21 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Log startup in development
     if (SITE_CONFIG.environment === 'development') {
-      console.log('[App] Diria Guest App Started');
-      console.log('[App] Features:', SITE_CONFIG.features);
-      console.log('[App] Properties:', SITE_CONFIG.properties);
+      logger.info('App', 'Guest App Started');
+      logger.info('App', 'Features', SITE_CONFIG.features);
+      logger.info('App', 'Properties', SITE_CONFIG.properties);
     }
 
     // ✅ Online/Offline detection
     const handleOnline = () => {
-      console.log('[Network] Back online');
+      logger.info('Network', 'Back online');
       toast.success('Back Online', {
         description: 'Connection restored'
       });
     };
 
     const handleOffline = () => {
-      console.log('[Network] Offline mode');
+      logger.info('Network', 'Offline mode');
       toast.warning('Offline Mode', {
         description: 'Some features may be limited'
       });

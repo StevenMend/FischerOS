@@ -1,6 +1,7 @@
 import { ToursPort } from './port';
 import { Tour, BookingRequest, Booking } from './types';
 import toursData from '../../../data/seed/tours/activities.json';
+import { logger } from '../../../core/utils/logger';
 
 export class MockToursAdapter implements ToursPort {
   private tours: Tour[] = toursData as Tour[];
@@ -27,7 +28,7 @@ export class MockToursAdapter implements ToursPort {
       status: 'pending',
       createdAt: new Date().toISOString()
     };
-    console.log('✅ Mock Booking Created:', booking);
+    logger.info('ToursAdapter', 'Mock Booking Created', booking);
     return booking;
   }
 }
