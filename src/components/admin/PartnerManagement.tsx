@@ -40,7 +40,7 @@ export default function PartnerManagement({
       </div>
       <div className="relative">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold flex items-center bg-gradient-to-r from-[#236192] to-[#1a4a73] bg-clip-text text-transparent">
+          <h2 className="text-xl font-bold flex items-center bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
             <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mr-3 shadow-lg">
               <Target className="w-4 h-4 text-white" />
             </div>

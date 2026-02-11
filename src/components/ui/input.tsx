@@ -16,14 +16,14 @@ export const Input: React.FC<InputProps> = ({
   ...props 
 }) => {
   const variants = {
-    default: 'w-full px-4 py-3 border-2 border-diria-cream-dark rounded-lg focus:ring-2 focus:ring-diria-teal focus:border-diria-teal transition-all duration-200 input-premium',
-    resort: 'w-full px-4 py-3 border-2 border-diria-cream-dark rounded-lg focus:ring-2 focus:ring-diria-gold focus:border-diria-gold transition-all duration-200 input-premium bg-diria-cream-light'
+    default: 'w-full px-4 py-3 border-2 border-surface-dark rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200 input-premium',
+    resort: 'w-full px-4 py-3 border-2 border-surface-dark rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-200 input-premium bg-surface-light'
   };
 
   return (
     <div className="space-y-2">
       {label && (
-        <label className="block text-sm font-medium text-diria-brown-dark">
+        <label className="block text-sm font-medium text-foreground-dark">
           {label}
         </label>
       )}

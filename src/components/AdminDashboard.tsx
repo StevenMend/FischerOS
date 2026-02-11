@@ -22,7 +22,7 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50 relative overflow-hidden">
       {/* Header */}
-      <header className="relative z-10 bg-gradient-to-r from-[#236192] via-[#1a4a73] to-[#236192] text-white px-6 py-4 shadow-2xl border-b border-white/10">
+      <header className="relative z-10 bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-6 py-4 shadow-2xl border-b border-white/10">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <button onClick={onBack} className="p-2 hover:bg-white/10 rounded-lg">

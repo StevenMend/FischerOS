@@ -47,7 +47,7 @@ export const StaffModals: React.FC<StaffModalsProps> = ({
           <div className="bg-white rounded-xl shadow-2xl max-w-md w-full modal-content">
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-bold text-[#236192]">Shift Handover</h3>
+                <h3 className="text-lg font-bold text-primary">Shift Handover</h3>
                 <button onClick={onCloseShiftHandover} className="btn-premium">
                   <X className="w-5 h-5 text-gray-500" />
                 </button>
@@ -69,14 +69,14 @@ export const StaffModals: React.FC<StaffModalsProps> = ({
                 <textarea
                   value={handoverNotes}
                   onChange={(e) => onUpdateHandoverNotes(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#236192] focus:border-transparent input-premium"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent input-premium"
                   rows={3}
                   placeholder="Any special instructions or concerns..."
                 />
               </div>
               <button 
                 onClick={onSubmitHandover}
-                className="w-full bg-[#236192] text-white py-3 rounded-lg font-semibold hover:bg-[#236192]/90 transition-colors btn-premium ripple-effect"
+                className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors btn-premium ripple-effect"
               >
                 Complete Handover
               </button>
@@ -91,7 +91,7 @@ export const StaffModals: React.FC<StaffModalsProps> = ({
           <div className="bg-white rounded-xl shadow-2xl max-w-md w-full modal-content">
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-bold text-[#236192]">Collect Guest Satisfaction</h3>
+                <h3 className="text-lg font-bold text-primary">Collect Guest Satisfaction</h3>
                 <button onClick={onCloseSatisfactionModal} className="btn-premium">
                   <X className="w-5 h-5 text-gray-500" />
                 </button>
@@ -130,14 +130,14 @@ export const StaffModals: React.FC<StaffModalsProps> = ({
                 </label>
                 <textarea
                   placeholder="Tell us about your experience..."
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#236192] focus:border-transparent input-premium"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent input-premium"
                   rows={3}
                 />
               </div>
 
               <button 
                 onClick={() => onSubmitSatisfaction(5, "Sample feedback")}
-                className="w-full bg-[#236192] text-white py-3 rounded-lg font-semibold hover:bg-[#236192]/90 transition-colors btn-premium ripple-effect"
+                className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors btn-premium ripple-effect"
               >
                 Save Feedback
               </button>

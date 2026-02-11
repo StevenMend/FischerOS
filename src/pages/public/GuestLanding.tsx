@@ -21,9 +21,9 @@ export default function GuestLanding() {
             {/* Logo + Brand */}
             <div className="flex items-center space-x-3 sm:space-x-4">
               <div className="relative group">
-                <div className="absolute inset-0 bg-[#d4af37]/20 rounded-2xl sm:rounded-3xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
-                <div className="relative w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-xl hover:scale-105 transition-transform duration-300 border border-[#d4af37]/20">
-                  <span className="text-[#8b7355] font-bold text-lg sm:text-xl">TD</span>
+                <div className="absolute inset-0 bg-accent/20 rounded-2xl sm:rounded-3xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
+                <div className="relative w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-xl hover:scale-105 transition-transform duration-300 border border-accent/20">
+                  <span className="text-foreground font-bold text-lg sm:text-xl">TD</span>
                 </div>
               </div>
               <div>
@@ -51,13 +51,13 @@ export default function GuestLanding() {
         {/* Hero Section */}
         <div className="text-center mb-12 sm:mb-16 lg:mb-20">
           {/* Badge */}
-          <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-[#d4af37]/30 mb-4 sm:mb-6 lg:mb-8 shadow-md">
-            <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-[#d4af37]" />
+          <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-accent/30 mb-4 sm:mb-6 lg:mb-8 shadow-md">
+            <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-accent" />
             <span className="text-gray-700 font-medium text-xs sm:text-sm">Welcome to Paradise</span>
           </div>
           
           {/* Hero Title - with subtle shadow */}
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#8b7355] mb-4 sm:mb-6 lg:mb-8 leading-tight" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 sm:mb-6 lg:mb-8 leading-tight" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
             Experience<br className="sm:hidden" /> Luxury
           </h2>
           
@@ -69,11 +69,11 @@ export default function GuestLanding() {
           {/* CTA Button */}
           <button
             onClick={() => navigate('/auth/guest')}
-            className="group inline-flex items-center space-x-2 sm:space-x-3 bg-white text-[#8b7355] px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-2xl font-semibold text-sm sm:text-base lg:text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-[#d4af37]/30"
+            className="group inline-flex items-center space-x-2 sm:space-x-3 bg-white text-foreground px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-2xl font-semibold text-sm sm:text-base lg:text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-accent/30"
           >
-            <Crown className="w-5 h-5 sm:w-6 sm:h-6 text-[#d4af37]" />
+            <Crown className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
             <span>Access Guest Services</span>
-            <div className="w-2 h-2 bg-[#d4af37] rounded-full group-hover:animate-pulse"></div>
+            <div className="w-2 h-2 bg-accent rounded-full group-hover:animate-pulse"></div>
           </button>
         </div>
 
@@ -81,83 +81,83 @@ export default function GuestLanding() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16 lg:mb-20">
           
           {/* Tours Card */}
-          <div className="group bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-[#d4af37]/40 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#d4af37]/10 to-transparent rounded-bl-3xl"></div>
+          <div className="group bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-accent/40 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-accent/10 to-transparent rounded-bl-3xl"></div>
             <div className="relative z-10">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-md group-hover:scale-110 transition-transform duration-300 border border-[#d4af37]/20">
-                <Waves className="w-6 h-6 sm:w-7 sm:h-7 text-[#4a90a4]" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-md group-hover:scale-110 transition-transform duration-300 border border-accent/20">
+                <Waves className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-[#8b7355] mb-1 sm:mb-2" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>Tours & Adventures</h3>
+              <h3 className="text-base sm:text-lg font-bold text-foreground mb-1 sm:mb-2" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>Tours & Adventures</h3>
               <p className="text-xs sm:text-sm text-gray-600">60+ unique experiences</p>
             </div>
           </div>
 
           {/* Restaurants Card */}
-          <div className="group bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-[#d4af37]/40 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#d4af37]/10 to-transparent rounded-bl-3xl"></div>
+          <div className="group bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-accent/40 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-accent/10 to-transparent rounded-bl-3xl"></div>
             <div className="relative z-10">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-md group-hover:scale-110 transition-transform duration-300 border border-[#d4af37]/20">
-                <Utensils className="w-6 h-6 sm:w-7 sm:h-7 text-[#d4af37]" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-md group-hover:scale-110 transition-transform duration-300 border border-accent/20">
+                <Utensils className="w-6 h-6 sm:w-7 sm:h-7 text-accent" />
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-[#8b7355] mb-1 sm:mb-2" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>Restaurants</h3>
+              <h3 className="text-base sm:text-lg font-bold text-foreground mb-1 sm:mb-2" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>Restaurants</h3>
               <p className="text-xs sm:text-sm text-gray-600">8 world-class venues</p>
             </div>
           </div>
 
           {/* Spa Card */}
-          <div className="group bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-[#d4af37]/40 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#d4af37]/10 to-transparent rounded-bl-3xl"></div>
+          <div className="group bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-accent/40 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-accent/10 to-transparent rounded-bl-3xl"></div>
             <div className="relative z-10">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-md group-hover:scale-110 transition-transform duration-300 border border-[#d4af37]/20">
-                <Flower2 className="w-6 h-6 sm:w-7 sm:h-7 text-[#8b7355]" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-md group-hover:scale-110 transition-transform duration-300 border border-accent/20">
+                <Flower2 className="w-6 h-6 sm:w-7 sm:h-7 text-foreground" />
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-[#8b7355] mb-1 sm:mb-2" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>Spa & Wellness</h3>
+              <h3 className="text-base sm:text-lg font-bold text-foreground mb-1 sm:mb-2" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>Spa & Wellness</h3>
               <p className="text-xs sm:text-sm text-gray-600">Rejuvenation & relaxation</p>
             </div>
           </div>
 
           {/* Concierge Card */}
-          <div className="group bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-[#d4af37]/40 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#d4af37]/10 to-transparent rounded-bl-3xl"></div>
+          <div className="group bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-accent/40 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-accent/10 to-transparent rounded-bl-3xl"></div>
             <div className="relative z-10">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-md group-hover:scale-110 transition-transform duration-300 border border-[#d4af37]/20">
-                <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-[#d4af37]" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-md group-hover:scale-110 transition-transform duration-300 border border-accent/20">
+                <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-accent" />
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-[#8b7355] mb-1 sm:mb-2" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>Digital Concierge</h3>
+              <h3 className="text-base sm:text-lg font-bold text-foreground mb-1 sm:mb-2" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>Digital Concierge</h3>
               <p className="text-xs sm:text-sm text-gray-600">24/7 assistance</p>
             </div>
           </div>
         </div>
 
         {/* Stats Section */}
-        <div className="bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl border border-[#d4af37]/40 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#4a90a4] via-[#d4af37] to-[#8b7355]"></div>
+        <div className="bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl border border-accent/40 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-foreground"></div>
           
           <div className="text-center mb-6 sm:mb-8">
-            <h3 className="text-2xl sm:text-3xl font-bold text-[#8b7355] mb-2" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>Numbers That Matter</h3>
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>Numbers That Matter</h3>
             <p className="text-xs sm:text-sm text-gray-600">Excellence in every detail</p>
           </div>
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             <div className="text-center group">
-              <div className="text-3xl sm:text-4xl font-bold text-[#4a90a4] mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>300</div>
+              <div className="text-3xl sm:text-4xl font-bold text-primary mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>300</div>
               <div className="text-xs sm:text-sm text-gray-600 font-medium">Luxury Suites</div>
-              <div className="w-8 sm:w-12 h-0.5 bg-[#d4af37] rounded-full mx-auto mt-2"></div>
+              <div className="w-8 sm:w-12 h-0.5 bg-accent rounded-full mx-auto mt-2"></div>
             </div>
             <div className="text-center group">
-              <div className="text-3xl sm:text-4xl font-bold text-[#d4af37] mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>8</div>
+              <div className="text-3xl sm:text-4xl font-bold text-accent mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>8</div>
               <div className="text-xs sm:text-sm text-gray-600 font-medium">Restaurants</div>
-              <div className="w-8 sm:w-12 h-0.5 bg-[#d4af37] rounded-full mx-auto mt-2"></div>
+              <div className="w-8 sm:w-12 h-0.5 bg-accent rounded-full mx-auto mt-2"></div>
             </div>
             <div className="text-center group">
-              <div className="text-3xl sm:text-4xl font-bold text-[#8b7355] mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>60+</div>
+              <div className="text-3xl sm:text-4xl font-bold text-foreground mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>60+</div>
               <div className="text-xs sm:text-sm text-gray-600 font-medium">Adventures</div>
-              <div className="w-8 sm:w-12 h-0.5 bg-[#d4af37] rounded-full mx-auto mt-2"></div>
+              <div className="w-8 sm:w-12 h-0.5 bg-accent rounded-full mx-auto mt-2"></div>
             </div>
             <div className="text-center group">
-              <div className="text-3xl sm:text-4xl font-bold text-[#4a90a4] mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>24/7</div>
+              <div className="text-3xl sm:text-4xl font-bold text-primary mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>24/7</div>
               <div className="text-xs sm:text-sm text-gray-600 font-medium">Concierge</div>
-              <div className="w-8 sm:w-12 h-0.5 bg-[#d4af37] rounded-full mx-auto mt-2"></div>
+              <div className="w-8 sm:w-12 h-0.5 bg-accent rounded-full mx-auto mt-2"></div>
             </div>
           </div>
         </div>
@@ -165,7 +165,7 @@ export default function GuestLanding() {
         {/* Footer CTA */}
         <div className="text-center mt-8 sm:mt-12 lg:mt-16">
           <div className="inline-flex items-center space-x-2 text-gray-600">
-            <div className="w-2 h-2 bg-[#4a90a4] rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
             <span className="text-xs sm:text-sm font-medium">Ready to begin your paradise experience?</span>
           </div>
         </div>

@@ -43,8 +43,8 @@ export default function StaffHeader({
             
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-diria-teal to-diria-teal/80 rounded-2xl flex items-center justify-center shadow-md">
-                  <span className="text-diria-gold font-bold text-sm">TD</span>
+                <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-md">
+                  <span className="text-accent font-bold text-sm">TD</span>
                 </div>
                 <div className="hidden md:block">
                   <span className="text-sm text-gray-600 font-medium">{selectedDepartment}</span>
@@ -59,7 +59,7 @@ export default function StaffHeader({
               </div>
 
               <button className="relative w-11 h-11 bg-white border border-gray-200 rounded-2xl hover:shadow-md transition-all flex items-center justify-center group">
-                <Bell className="w-5 h-5 text-gray-600 group-hover:text-diria-teal transition-colors" />
+                <Bell className="w-5 h-5 text-gray-600 group-hover:text-primary transition-colors" />
                 {notificationCount > 0 && (
                   <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
                     <span className="text-xs font-bold text-white">{notificationCount}</span>
@@ -74,7 +74,7 @@ export default function StaffHeader({
                 {isMobileMenuOpen ? (
                   <X className="w-5 h-5 text-gray-700" />
                 ) : (
-                  <Menu className="w-5 h-5 text-gray-700 group-hover:text-diria-teal transition-colors" />
+                  <Menu className="w-5 h-5 text-gray-700 group-hover:text-primary transition-colors" />
                 )}
               </button>
             </div>
@@ -94,7 +94,7 @@ export default function StaffHeader({
             <div className="p-6 space-y-6">
               
               <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-200">
-                <div className="w-12 h-12 bg-gradient-to-br from-diria-teal to-diria-teal/80 rounded-2xl flex items-center justify-center shadow-md">
+                <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-md">
                   <span className="text-base font-bold text-white">{staffInitials}</span>
                 </div>
                 <div>
@@ -108,9 +108,9 @@ export default function StaffHeader({
                 <div className="space-y-2">
                   <button 
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-full flex items-center gap-3 px-4 py-3 bg-white border border-gray-200 text-gray-700 rounded-2xl font-semibold hover:shadow-md hover:border-diria-teal/40 transition-all text-sm"
+                    className="w-full flex items-center gap-3 px-4 py-3 bg-white border border-gray-200 text-gray-700 rounded-2xl font-semibold hover:shadow-md hover:border-primary/40 transition-all text-sm"
                   >
-                    <BarChart3 className="w-5 h-5 text-diria-teal" />
+                    <BarChart3 className="w-5 h-5 text-primary" />
                     <span>Today's Summary</span>
                   </button>
                 </div>
@@ -127,7 +127,7 @@ export default function StaffHeader({
                       }
                       setIsMobileMenuOpen(false);
                     }}
-                    className="w-full px-4 py-3 text-sm font-medium border border-gray-200 rounded-2xl focus:ring-2 focus:ring-diria-teal focus:border-diria-teal bg-white text-gray-700"
+                    className="w-full px-4 py-3 text-sm font-medium border border-gray-200 rounded-2xl focus:ring-2 focus:ring-primary focus:border-primary bg-white text-gray-700"
                   >
                     {departments.map(dept => (
                       <option key={dept} value={dept}>{dept}</option>

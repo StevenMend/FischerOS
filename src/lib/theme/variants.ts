@@ -141,12 +141,12 @@ export const THEME_VARIANTS = {
     }
   },
 
-  // Brand colors
+  // Brand colors (semantic tokens — values come from CSS custom properties)
   brand: {
-    primary: '#236192',
-    secondary: '#fca311',
-    accent: '#fff3b0',
-    background: '#fff9ec',
+    primary: 'rgb(var(--color-primary))',
+    accent: 'rgb(var(--color-accent))',
+    surface: 'rgb(var(--color-surface))',
+    foreground: 'rgb(var(--color-foreground))',
     success: '#22c55e',
     warning: '#f59e0b',
     error: '#ef4444',
@@ -156,12 +156,12 @@ export const THEME_VARIANTS = {
   // Common CSS Classes
   common: {
     button: {
-      primary: 'bg-[#fca311] text-white py-3 rounded-lg font-semibold hover:bg-[#fca311]/90 transition-colors shadow-sm',
-      secondary: 'bg-[#fff3b0] text-[#236192] hover:bg-[#fca311] hover:text-white',
+      primary: 'bg-accent text-white py-3 rounded-lg font-semibold hover:bg-accent/90 transition-colors shadow-sm',
+      secondary: 'bg-accent-light text-primary hover:bg-accent hover:text-white',
       filter: 'px-4 py-2 rounded-lg font-medium transition-all duration-300'
     },
     card: {
-      base: 'bg-[#fff9ec] rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300',
+      base: 'bg-surface rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300',
       overlay: 'absolute top-4 right-4'
     },
     modal: {
@@ -170,7 +170,7 @@ export const THEME_VARIANTS = {
       header: 'flex items-center justify-between p-6 border-b border-gray-200'
     },
     input: {
-      base: 'w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#236192] focus:border-transparent'
+      base: 'w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent'
     }
   }
 } as const;

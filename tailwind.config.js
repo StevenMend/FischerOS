@@ -1,4 +1,15 @@
 /** @type {import('tailwindcss').Config} */
+
+// CSS variable color with opacity support (function pattern)
+function color(varName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgb(var(${varName}) / ${opacityValue})`
+    }
+    return `rgb(var(${varName}))`
+  }
+}
+
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -12,27 +23,25 @@ export default {
     },
     extend: {
       colors: {
-        diria: {
-          cream: {
-            DEFAULT: '#f9fafb',  // Gray-50
-            light: '#ffffff',    // White
-            dark: '#e5e7eb',     // Gray-200
-          },
-          teal: {
-            DEFAULT: '#4a90a4',
-            light: '#6ba3b5',
-            dark: '#3a7285',
-          },
-          gold: {
-            DEFAULT: '#d4af37',
-            light: '#e6c55a',
-            dark: '#b8941f',
-          },
-          brown: {
-            DEFAULT: '#8b7355',
-            light: '#a08968',
-            dark: '#73604a',
-          },
+        primary: {
+          DEFAULT: color('--color-primary'),
+          light: color('--color-primary-light'),
+          dark: color('--color-primary-dark'),
+        },
+        accent: {
+          DEFAULT: color('--color-accent'),
+          light: color('--color-accent-light'),
+          dark: color('--color-accent-dark'),
+        },
+        surface: {
+          DEFAULT: color('--color-surface'),
+          light: color('--color-surface-light'),
+          dark: color('--color-surface-dark'),
+        },
+        foreground: {
+          DEFAULT: color('--color-foreground'),
+          light: color('--color-foreground-light'),
+          dark: color('--color-foreground-dark'),
         },
       },
       fontFamily: {
@@ -40,7 +49,7 @@ export default {
       },
       spacing: {
         'mobile-xs': '0.5rem',
-        'mobile-sm': '1rem', 
+        'mobile-sm': '1rem',
         'mobile-md': '1.5rem',
         'mobile-lg': '2rem',
         'mobile-xl': '3rem',

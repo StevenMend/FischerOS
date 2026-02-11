@@ -47,7 +47,7 @@ export default function SessionExpiredModal() {
 
         <button
           onClick={handleReturnToLanding}
-          className="w-full bg-[#236192] text-white py-3 rounded-lg font-semibold hover:bg-[#236192]/90 transition-colors flex items-center justify-center space-x-2"
+          className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors flex items-center justify-center space-x-2"
         >
           <LogOut className="w-4 h-4" />
           <span>Return to Login</span>

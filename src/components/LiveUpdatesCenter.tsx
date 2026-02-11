@@ -320,7 +320,7 @@ export default function LiveUpdatesCenter({ isOpen, onClose }: LiveUpdatesCenter
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-[#236192] text-white">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-primary text-white">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
               <Zap className="w-6 h-6" />
@@ -358,7 +358,7 @@ export default function LiveUpdatesCenter({ isOpen, onClose }: LiveUpdatesCenter
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-2">
-                    <Filter className="w-4 h-4 text-[#236192]" />
+                    <Filter className="w-4 h-4 text-primary" />
                     <select
                       value={filterType}
                       onChange={(e) => setFilterType(e.target.value)}
@@ -373,7 +373,7 @@ export default function LiveUpdatesCenter({ isOpen, onClose }: LiveUpdatesCenter
                   
                   <button
                     onClick={() => setShowBroadcast(!showBroadcast)}
-                    className="flex items-center space-x-2 px-3 py-1 bg-[#fca311] text-white rounded-lg hover:bg-[#fca311]/90 transition-colors text-sm"
+                    className="flex items-center space-x-2 px-3 py-1 bg-accent text-white rounded-lg hover:bg-accent/90 transition-colors text-sm"
                   >
                     <MessageSquare className="w-4 h-4" />
                     <span>Broadcast</span>
@@ -403,7 +403,7 @@ export default function LiveUpdatesCenter({ isOpen, onClose }: LiveUpdatesCenter
                     <button
                       onClick={handleBroadcast}
                       disabled={!broadcastMessage.trim()}
-                      className="px-4 py-2 bg-[#236192] text-white rounded-lg hover:bg-[#236192]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <Send className="w-4 h-4" />
                     </button>
@@ -426,7 +426,7 @@ export default function LiveUpdatesCenter({ isOpen, onClose }: LiveUpdatesCenter
                         }}
                         className={`px-2 py-1 rounded-full text-xs transition-colors ${
                           selectedDepartments.includes(dept)
-                            ? 'bg-[#236192] text-white'
+                            ? 'bg-primary text-white'
                             : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                         }`}
                       >
@@ -528,7 +528,7 @@ export default function LiveUpdatesCenter({ isOpen, onClose }: LiveUpdatesCenter
                   {communicationTemplates.slice(0, 3).map((template) => (
                     <button
                       key={template.id}
-                      className="w-full text-left p-3 bg-white rounded-lg border border-gray-200 hover:border-[#236192] transition-colors"
+                      className="w-full text-left p-3 bg-white rounded-lg border border-gray-200 hover:border-primary transition-colors"
                     >
                       <div className="font-medium text-sm text-gray-900 mb-1">{template.title}</div>
                       <div className="text-xs text-gray-600 truncate">{template.template}</div>
@@ -572,7 +572,7 @@ export default function LiveUpdatesCenter({ isOpen, onClose }: LiveUpdatesCenter
             <div className="bg-white rounded-xl shadow-2xl max-w-md w-full">
               <div className="p-6 border-b border-gray-200">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-bold text-[#236192]">Update Details</h3>
+                  <h3 className="text-lg font-bold text-primary">Update Details</h3>
                   <button onClick={() => setSelectedUpdate(null)}>
                     <X className="w-5 h-5 text-gray-500" />
                   </button>
@@ -606,7 +606,7 @@ export default function LiveUpdatesCenter({ isOpen, onClose }: LiveUpdatesCenter
                   >
                     Close
                   </button>
-                  <button className="flex-1 bg-[#236192] text-white py-3 rounded-lg font-semibold hover:bg-[#236192]/90 transition-colors">
+                  <button className="flex-1 bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
                     Take Action
                   </button>
                 </div>

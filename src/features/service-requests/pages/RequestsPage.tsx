@@ -137,10 +137,10 @@
 
 //   if (loading) {
 //     return (
-//       <div className="min-h-screen bg-gradient-to-br from-diria-cream-light via-diria-cream to-diria-cream-dark flex items-center justify-center">
+//       <div className="min-h-screen bg-gradient-to-br from-surface-light via-surface to-surface-dark flex items-center justify-center">
 //         <div className="text-center">
-//           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-diria-teal mx-auto mb-4"></div>
-//           <p className="text-diria-brown font-semibold">Loading your requests...</p>
+//           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+//           <p className="text-foreground font-semibold">Loading your requests...</p>
 //         </div>
 //       </div>
 //     );
@@ -148,7 +148,7 @@
 
 //   if (error) {
 //     return (
-//       <div className="min-h-screen bg-gradient-to-br from-diria-cream-light via-diria-cream to-diria-cream-dark flex items-center justify-center p-4">
+//       <div className="min-h-screen bg-gradient-to-br from-surface-light via-surface to-surface-dark flex items-center justify-center p-4">
 //         <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-6 max-w-md">
 //           <h3 className="text-red-800 font-bold text-xl mb-2">Error Loading Requests</h3>
 //           <p className="text-red-600 text-sm">{error}</p>
@@ -158,18 +158,18 @@
 //   }
 
 //   return (
-//     <div className="min-h-screen bg-gradient-to-br from-diria-cream-light via-diria-cream to-diria-cream-dark relative overflow-hidden p-4 sm:p-6 lg:p-8">
+//     <div className="min-h-screen bg-gradient-to-br from-surface-light via-surface to-surface-dark relative overflow-hidden p-4 sm:p-6 lg:p-8">
 //       {/* Background decorations */}
 //       <div className="absolute inset-0 opacity-10">
-//         <div className="absolute top-20 left-20 w-32 h-32 bg-diria-gold/20 rounded-full blur-3xl animate-pulse"></div>
-//         <div className="absolute bottom-20 right-20 w-40 h-40 bg-diria-brown/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+//         <div className="absolute top-20 left-20 w-32 h-32 bg-accent/20 rounded-full blur-3xl animate-pulse"></div>
+//         <div className="absolute bottom-20 right-20 w-40 h-40 bg-foreground/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
 //       </div>
 
 //       <div className="relative z-10 max-w-4xl mx-auto">
 //         {/* Header */}
 //         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-6">
 //           <div className="flex-1">
-//             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-diria-brown mb-1 sm:mb-2 flex items-center space-x-2">
+//             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-1 sm:mb-2 flex items-center space-x-2">
 //               <span>My Requests</span>
 //               {hasUnratedCompleted && (
 //                 <span className="bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs px-2 py-1 rounded-full animate-pulse flex items-center space-x-1">
@@ -178,14 +178,14 @@
 //                 </span>
 //               )}
 //             </h1>
-//             <p className="text-sm sm:text-base text-diria-brown/80">
+//             <p className="text-sm sm:text-base text-foreground/80">
 //               {allRequests.length} total • {activeRequests.length} active • {completedRequests.length} completed
 //             </p>
 //           </div>
           
 //           <button 
 //             onClick={() => setShowNewRequestModal(true)}
-//             className="w-full sm:w-auto bg-gradient-to-r from-diria-teal to-diria-teal/90 text-white px-6 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all flex items-center justify-center space-x-2"
+//             className="w-full sm:w-auto bg-gradient-to-r from-primary to-primary/90 text-white px-6 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all flex items-center justify-center space-x-2"
 //           >
 //             <Plus className="w-5 h-5" />
 //             <span>New Request</span>
@@ -194,13 +194,13 @@
 
 //         {/* Filter tabs */}
 //         <div className="flex items-center space-x-2 mb-6 overflow-x-auto pb-2">
-//           <Filter className="w-4 h-4 text-diria-brown flex-shrink-0" />
+//           <Filter className="w-4 h-4 text-foreground flex-shrink-0" />
 //           <button
 //             onClick={() => setSelectedFilter('all')}
 //             className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
 //               selectedFilter === 'all'
-//                 ? 'bg-diria-brown text-white shadow-md'
-//                 : 'bg-white text-diria-brown border border-diria-cream-dark'
+//                 ? 'bg-foreground text-white shadow-md'
+//                 : 'bg-white text-foreground border border-surface-dark'
 //             }`}
 //           >
 //             All ({allRequests.length})
@@ -209,8 +209,8 @@
 //             onClick={() => setSelectedFilter('active')}
 //             className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
 //               selectedFilter === 'active'
-//                 ? 'bg-diria-brown text-white shadow-md'
-//                 : 'bg-white text-diria-brown border border-diria-cream-dark'
+//                 ? 'bg-foreground text-white shadow-md'
+//                 : 'bg-white text-foreground border border-surface-dark'
 //             }`}
 //           >
 //             Active ({activeRequests.length})
@@ -219,8 +219,8 @@
 //             onClick={() => setSelectedFilter('completed')}
 //             className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
 //               selectedFilter === 'completed'
-//                 ? 'bg-diria-brown text-white shadow-md'
-//                 : 'bg-white text-diria-brown border border-diria-cream-dark'
+//                 ? 'bg-foreground text-white shadow-md'
+//                 : 'bg-white text-foreground border border-surface-dark'
 //             }`}
 //           >
 //             Completed ({completedRequests.length})
@@ -240,21 +240,21 @@
 //         </div>
 
 //         {displayedRequests.length === 0 && (
-//           <div className="text-center py-12 bg-white/50 backdrop-blur-sm rounded-2xl border border-diria-cream-dark">
-//             <p className="text-diria-brown/70 font-medium">No requests found</p>
-//             <p className="text-diria-brown/50 text-sm mt-1">Create your first request to get started</p>
+//           <div className="text-center py-12 bg-white/50 backdrop-blur-sm rounded-2xl border border-surface-dark">
+//             <p className="text-foreground/70 font-medium">No requests found</p>
+//             <p className="text-foreground/50 text-sm mt-1">Create your first request to get started</p>
 //           </div>
 //         )}
 
 //         {/* Quick requests section */}
-//         <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-6 border border-diria-cream-dark shadow-lg">
-//           <h2 className="text-xl font-bold text-diria-brown mb-4">Quick Requests</h2>
+//         <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-6 border border-surface-dark shadow-lg">
+//           <h2 className="text-xl font-bold text-foreground mb-4">Quick Requests</h2>
 //           <div className="grid grid-cols-2 gap-3">
 //             {['housekeeping', 'concierge', 'maintenance', 'dining'].map((type) => (
 //               <button 
 //                 key={type}
 //                 onClick={() => handleQuickRequest(type as RequestType)}
-//                 className="bg-white border-2 border-diria-cream-dark text-diria-brown p-4 rounded-xl font-semibold hover:shadow-md hover:border-diria-teal transition-all text-sm"
+//                 className="bg-white border-2 border-surface-dark text-foreground p-4 rounded-xl font-semibold hover:shadow-md hover:border-primary transition-all text-sm"
 //               >
 //                 {getTypeLabel(type as RequestType)}
 //               </button>
@@ -280,20 +280,20 @@
 //           <div className="bg-white rounded-3xl max-w-md w-full p-6 relative">
 //             <button
 //               onClick={() => setShowNewRequestModal(false)}
-//               className="absolute top-4 right-4 text-diria-brown/50 hover:text-diria-brown"
+//               className="absolute top-4 right-4 text-foreground/50 hover:text-foreground"
 //             >
 //               <X className="w-6 h-6" />
 //             </button>
 
-//             <h2 className="text-2xl font-bold text-diria-brown mb-6">New Request</h2>
+//             <h2 className="text-2xl font-bold text-foreground mb-6">New Request</h2>
 
 //             <div className="space-y-4">
 //               <div>
-//                 <label className="block text-sm font-medium text-diria-brown mb-2">Type</label>
+//                 <label className="block text-sm font-medium text-foreground mb-2">Type</label>
 //                 <select
 //                   value={newRequest.type}
 //                   onChange={(e) => setNewRequest({ ...newRequest, type: e.target.value as RequestType })}
-//                   className="w-full px-4 py-3 rounded-xl border border-diria-cream-dark focus:outline-none focus:ring-2 focus:ring-diria-teal"
+//                   className="w-full px-4 py-3 rounded-xl border border-surface-dark focus:outline-none focus:ring-2 focus:ring-primary"
 //                 >
 //                   {REQUEST_TYPES.map(type => (
 //                     <option key={type} value={type}>{getTypeLabel(type)}</option>
@@ -302,11 +302,11 @@
 //               </div>
 
 //               <div>
-//                 <label className="block text-sm font-medium text-diria-brown mb-2">Priority</label>
+//                 <label className="block text-sm font-medium text-foreground mb-2">Priority</label>
 //                 <select
 //                   value={newRequest.priority}
 //                   onChange={(e) => setNewRequest({ ...newRequest, priority: e.target.value as any })}
-//                   className="w-full px-4 py-3 rounded-xl border border-diria-cream-dark focus:outline-none focus:ring-2 focus:ring-diria-teal"
+//                   className="w-full px-4 py-3 rounded-xl border border-surface-dark focus:outline-none focus:ring-2 focus:ring-primary"
 //                 >
 //                   <option value="low">Low</option>
 //                   <option value="medium">Medium</option>
@@ -316,23 +316,23 @@
 //               </div>
 
 //               <div>
-//                 <label className="block text-sm font-medium text-diria-brown mb-2">Title</label>
+//                 <label className="block text-sm font-medium text-foreground mb-2">Title</label>
 //                 <input
 //                   type="text"
 //                   value={newRequest.title}
 //                   onChange={(e) => setNewRequest({ ...newRequest, title: e.target.value })}
-//                   className="w-full px-4 py-3 rounded-xl border border-diria-cream-dark focus:outline-none focus:ring-2 focus:ring-diria-teal"
+//                   className="w-full px-4 py-3 rounded-xl border border-surface-dark focus:outline-none focus:ring-2 focus:ring-primary"
 //                   placeholder="Brief description"
 //                 />
 //               </div>
 
 //               <div>
-//                 <label className="block text-sm font-medium text-diria-brown mb-2">Description</label>
+//                 <label className="block text-sm font-medium text-foreground mb-2">Description</label>
 //                 <textarea
 //                   value={newRequest.description}
 //                   onChange={(e) => setNewRequest({ ...newRequest, description: e.target.value })}
 //                   rows={4}
-//                   className="w-full px-4 py-3 rounded-xl border border-diria-cream-dark focus:outline-none focus:ring-2 focus:ring-diria-teal resize-none"
+//                   className="w-full px-4 py-3 rounded-xl border border-surface-dark focus:outline-none focus:ring-2 focus:ring-primary resize-none"
 //                   placeholder="Detailed description of your request..."
 //                 />
 //               </div>
@@ -340,7 +340,7 @@
 //               <button
 //                 onClick={handleSubmitRequest}
 //                 disabled={submittingRequest}
-//                 className="w-full bg-diria-teal text-white py-3 rounded-2xl font-semibold hover:bg-diria-teal/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+//                 className="w-full bg-primary text-white py-3 rounded-2xl font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
 //               >
 //                 {submittingRequest ? (
 //                   <>
@@ -469,10 +469,10 @@ export default function RequestsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-diria-cream-light via-diria-cream to-diria-cream-dark flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-surface-light via-surface to-surface-dark flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-diria-teal mx-auto mb-4"></div>
-          <p className="text-diria-brown font-semibold">Loading your requests...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-foreground font-semibold">Loading your requests...</p>
         </div>
       </div>
     );
@@ -480,7 +480,7 @@ export default function RequestsPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-diria-cream-light via-diria-cream to-diria-cream-dark flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-surface-light via-surface to-surface-dark flex items-center justify-center p-4">
         <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-6 max-w-md">
           <h3 className="text-red-800 font-bold text-xl mb-2">Error Loading Requests</h3>
           <p className="text-red-600 text-sm">{error}</p>
@@ -490,18 +490,18 @@ export default function RequestsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-diria-cream-light via-diria-cream to-diria-cream-dark relative overflow-hidden p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-surface-light via-surface to-surface-dark relative overflow-hidden p-4 sm:p-6 lg:p-8">
       {/* Background decorations */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-diria-gold/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-diria-brown/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 bg-accent/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-foreground/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-6">
           <div className="flex-1">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-diria-brown mb-1 sm:mb-2 flex items-center space-x-2">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-1 sm:mb-2 flex items-center space-x-2">
               <span>My Requests</span>
               {hasUnratedCompleted && (
                 <span className="bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs px-2 py-1 rounded-full animate-pulse flex items-center space-x-1">
@@ -510,14 +510,14 @@ export default function RequestsPage() {
                 </span>
               )}
             </h1>
-            <p className="text-sm sm:text-base text-diria-brown/80">
+            <p className="text-sm sm:text-base text-foreground/80">
               {allRequests.length} total • {activeRequests.length} active • {completedRequests.length} completed
             </p>
           </div>
           
           <button 
             onClick={() => setShowNewRequestModal(true)}
-            className="w-full sm:w-auto bg-gradient-to-r from-diria-teal to-diria-teal/90 text-white px-6 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all flex items-center justify-center space-x-2"
+            className="w-full sm:w-auto bg-gradient-to-r from-primary to-primary/90 text-white px-6 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all flex items-center justify-center space-x-2"
           >
             <Plus className="w-5 h-5" />
             <span>New Request</span>
@@ -526,13 +526,13 @@ export default function RequestsPage() {
 
         {/* Filter tabs */}
         <div className="flex items-center space-x-2 mb-6 overflow-x-auto pb-2">
-          <Filter className="w-4 h-4 text-diria-brown flex-shrink-0" />
+          <Filter className="w-4 h-4 text-foreground flex-shrink-0" />
           <button
             onClick={() => setSelectedFilter('all')}
             className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
               selectedFilter === 'all'
-                ? 'bg-diria-brown text-white shadow-md'
-                : 'bg-white text-diria-brown border border-diria-cream-dark'
+                ? 'bg-foreground text-white shadow-md'
+                : 'bg-white text-foreground border border-surface-dark'
             }`}
           >
             All ({allRequests.length})
@@ -541,8 +541,8 @@ export default function RequestsPage() {
             onClick={() => setSelectedFilter('active')}
             className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
               selectedFilter === 'active'
-                ? 'bg-diria-brown text-white shadow-md'
-                : 'bg-white text-diria-brown border border-diria-cream-dark'
+                ? 'bg-foreground text-white shadow-md'
+                : 'bg-white text-foreground border border-surface-dark'
             }`}
           >
             Active ({activeRequests.length})
@@ -551,8 +551,8 @@ export default function RequestsPage() {
             onClick={() => setSelectedFilter('completed')}
             className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
               selectedFilter === 'completed'
-                ? 'bg-diria-brown text-white shadow-md'
-                : 'bg-white text-diria-brown border border-diria-cream-dark'
+                ? 'bg-foreground text-white shadow-md'
+                : 'bg-white text-foreground border border-surface-dark'
             }`}
           >
             Completed ({completedRequests.length})
@@ -571,21 +571,21 @@ export default function RequestsPage() {
         </div>
 
         {displayedRequests.length === 0 && (
-          <div className="text-center py-12 bg-white/50 backdrop-blur-sm rounded-2xl border border-diria-cream-dark">
-            <p className="text-diria-brown/70 font-medium">No requests found</p>
-            <p className="text-diria-brown/50 text-sm mt-1">Create your first request to get started</p>
+          <div className="text-center py-12 bg-white/50 backdrop-blur-sm rounded-2xl border border-surface-dark">
+            <p className="text-foreground/70 font-medium">No requests found</p>
+            <p className="text-foreground/50 text-sm mt-1">Create your first request to get started</p>
           </div>
         )}
 
         {/* Quick requests section */}
-        <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-6 border border-diria-cream-dark shadow-lg">
-          <h2 className="text-xl font-bold text-diria-brown mb-4">Quick Requests</h2>
+        <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-6 border border-surface-dark shadow-lg">
+          <h2 className="text-xl font-bold text-foreground mb-4">Quick Requests</h2>
           <div className="grid grid-cols-2 gap-3">
             {['housekeeping', 'concierge', 'maintenance', 'dining'].map((type) => (
               <button 
                 key={type}
                 onClick={() => handleQuickRequest(type as RequestType)}
-                className="bg-white border-2 border-diria-cream-dark text-diria-brown p-4 rounded-xl font-semibold hover:shadow-md hover:border-diria-teal transition-all text-sm"
+                className="bg-white border-2 border-surface-dark text-foreground p-4 rounded-xl font-semibold hover:shadow-md hover:border-primary transition-all text-sm"
               >
                 {getTypeLabel(type as RequestType)}
               </button>
@@ -611,20 +611,20 @@ export default function RequestsPage() {
           <div className="bg-white rounded-3xl max-w-md w-full p-6 relative">
             <button
               onClick={() => setShowNewRequestModal(false)}
-              className="absolute top-4 right-4 text-diria-brown/50 hover:text-diria-brown"
+              className="absolute top-4 right-4 text-foreground/50 hover:text-foreground"
             >
               <X className="w-6 h-6" />
             </button>
 
-            <h2 className="text-2xl font-bold text-diria-brown mb-6">New Request</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-6">New Request</h2>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-diria-brown mb-2">Type</label>
+                <label className="block text-sm font-medium text-foreground mb-2">Type</label>
                 <select
                   value={newRequest.type}
                   onChange={(e) => setNewRequest({ ...newRequest, type: e.target.value as RequestType })}
-                  className="w-full px-4 py-3 rounded-xl border border-diria-cream-dark focus:outline-none focus:ring-2 focus:ring-diria-teal"
+                  className="w-full px-4 py-3 rounded-xl border border-surface-dark focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   {REQUEST_TYPES.map(type => (
                     <option key={type} value={type}>{getTypeLabel(type)}</option>
@@ -633,11 +633,11 @@ export default function RequestsPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-diria-brown mb-2">Priority</label>
+                <label className="block text-sm font-medium text-foreground mb-2">Priority</label>
                 <select
                   value={newRequest.priority}
                   onChange={(e) => setNewRequest({ ...newRequest, priority: e.target.value as any })}
-                  className="w-full px-4 py-3 rounded-xl border border-diria-cream-dark focus:outline-none focus:ring-2 focus:ring-diria-teal"
+                  className="w-full px-4 py-3 rounded-xl border border-surface-dark focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="low">Low</option>
                   <option value="medium">Medium</option>
@@ -647,23 +647,23 @@ export default function RequestsPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-diria-brown mb-2">Title</label>
+                <label className="block text-sm font-medium text-foreground mb-2">Title</label>
                 <input
                   type="text"
                   value={newRequest.title}
                   onChange={(e) => setNewRequest({ ...newRequest, title: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-diria-cream-dark focus:outline-none focus:ring-2 focus:ring-diria-teal"
+                  className="w-full px-4 py-3 rounded-xl border border-surface-dark focus:outline-none focus:ring-2 focus:ring-primary"
                   placeholder="Brief description"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-diria-brown mb-2">Description</label>
+                <label className="block text-sm font-medium text-foreground mb-2">Description</label>
                 <textarea
                   value={newRequest.description}
                   onChange={(e) => setNewRequest({ ...newRequest, description: e.target.value })}
                   rows={4}
-                  className="w-full px-4 py-3 rounded-xl border border-diria-cream-dark focus:outline-none focus:ring-2 focus:ring-diria-teal resize-none"
+                  className="w-full px-4 py-3 rounded-xl border border-surface-dark focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                   placeholder="Detailed description of your request..."
                 />
               </div>
@@ -671,7 +671,7 @@ export default function RequestsPage() {
               <button
                 onClick={handleSubmitRequest}
                 disabled={createMutation.isPending}
-                className="w-full bg-diria-teal text-white py-3 rounded-2xl font-semibold hover:bg-diria-teal/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="w-full bg-primary text-white py-3 rounded-2xl font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
                 {createMutation.isPending ? (
                   <>

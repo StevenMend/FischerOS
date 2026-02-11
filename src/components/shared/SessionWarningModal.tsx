@@ -71,7 +71,7 @@ export default function SessionWarningModal() {
           <button
             onClick={handleExtendSession}
             disabled={isLoading}
-            className="flex-1 bg-[#236192] text-white py-3 rounded-lg font-semibold hover:bg-[#236192]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex-1 bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? (
               <div className="flex items-center justify-center space-x-2">

@@ -14,7 +14,7 @@ export default function AdminLayout() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-gradient-to-r from-[#fca311] to-[#e8940f] text-white p-4">
+      <header className="bg-gradient-to-r from-accent to-accent-dark text-white p-4">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">

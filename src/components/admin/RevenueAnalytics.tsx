@@ -35,7 +35,7 @@ export default function RevenueAnalytics({
       
       <div className="relative">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold bg-gradient-to-r from-[#236192] to-[#1a4a73] bg-clip-text text-transparent flex items-center">
+          <h2 className="text-xl font-bold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent flex items-center">
             <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mr-3 shadow-lg group-hover:scale-110 transition-transform duration-300">
               <BarChart3 className="w-4 h-4 text-white" />
             </div>

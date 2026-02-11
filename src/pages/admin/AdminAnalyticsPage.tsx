@@ -5,7 +5,7 @@
 //   return (
 //     <div className="p-8 space-y-6">
 //       <div className="flex items-center justify-between">
-//         <h1 className="text-3xl font-bold text-[#fca311]">Executive Analytics</h1>
+//         <h1 className="text-3xl font-bold text-accent">Executive Analytics</h1>
 //         <div className="flex items-center space-x-2 text-sm text-gray-600">
 //           <Activity className="w-4 h-4" />
 //           <span>Live Data</span>
@@ -15,7 +15,7 @@
 //       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 //         <div className="bg-white rounded-xl p-6 border border-gray-200">
 //           <div className="flex items-center space-x-3 mb-4">
-//             <TrendingUp className="w-8 h-8 text-[#fca311]" />
+//             <TrendingUp className="w-8 h-8 text-accent" />
 //             <h3 className="text-lg font-semibold text-gray-900">Revenue Analytics</h3>
 //           </div>
 //           <p className="text-gray-600">Comprehensive revenue analysis coming soon...</p>
@@ -23,7 +23,7 @@
 
 //         <div className="bg-white rounded-xl p-6 border border-gray-200">
 //           <div className="flex items-center space-x-3 mb-4">
-//             <BarChart3 className="w-8 h-8 text-[#236192]" />
+//             <BarChart3 className="w-8 h-8 text-primary" />
 //             <h3 className="text-lg font-semibold text-gray-900">Performance Metrics</h3>
 //           </div>
 //           <p className="text-gray-600">Staff and operational metrics coming soon...</p>
@@ -64,7 +64,7 @@ export default function AdminAnalyticsPage() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#fca311] mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto mb-4"></div>
           <p className="text-gray-600">Loading analytics...</p>
         </div>
       </div>
@@ -87,7 +87,7 @@ export default function AdminAnalyticsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-[#fca311]">Executive Analytics</h1>
+          <h1 className="text-3xl font-bold text-accent">Executive Analytics</h1>
           <div className="flex items-center space-x-2 text-sm text-green-600 mt-1">
             <Activity className="w-4 h-4" />
             <span className="font-medium">Live Data</span>
@@ -98,7 +98,7 @@ export default function AdminAnalyticsPage() {
         <select
           value={timeframe}
           onChange={(e) => setTimeframe(e.target.value as any)}
-          className="px-4 py-2 border-2 border-gray-200 rounded-xl font-medium text-gray-700 focus:ring-2 focus:ring-[#fca311] focus:border-[#fca311]"
+          className="px-4 py-2 border-2 border-gray-200 rounded-xl font-medium text-gray-700 focus:ring-2 focus:ring-accent focus:border-accent"
         >
           <option value="today">Today</option>
           <option value="week">This Week</option>
@@ -155,7 +155,7 @@ export default function AdminAnalyticsPage() {
       {/* Department Performance */}
       <div className="bg-white rounded-xl p-6 border border-gray-200">
         <div className="flex items-center space-x-3 mb-6">
-          <BarChart3 className="w-8 h-8 text-[#236192]" />
+          <BarChart3 className="w-8 h-8 text-primary" />
           <h3 className="text-xl font-semibold text-gray-900">Department Performance</h3>
         </div>
         
@@ -173,7 +173,7 @@ export default function AdminAnalyticsPage() {
       {/* Staff Performance */}
       <div className="bg-white rounded-xl p-6 border border-gray-200">
         <div className="flex items-center space-x-3 mb-6">
-          <Users className="w-8 h-8 text-[#fca311]" />
+          <Users className="w-8 h-8 text-accent" />
           <h3 className="text-xl font-semibold text-gray-900">Top Performers</h3>
         </div>
         
@@ -245,7 +245,7 @@ function DepartmentRow({ dept }: DepartmentRowProps) {
         )}
       </div>
       <div className="text-right">
-        <div className="text-2xl font-bold text-[#236192]">{completionRate}%</div>
+        <div className="text-2xl font-bold text-primary">{completionRate}%</div>
         <p className="text-xs text-gray-500">completion</p>
       </div>
     </div>
@@ -268,7 +268,7 @@ function StaffRow({ staff }: StaffRowProps) {
           {staff.requests_completed} completed
         </div>
         {staff.avg_rating && (
-          <p className="text-sm text-[#fca311]">
+          <p className="text-sm text-accent">
             ⭐ {staff.avg_rating.toFixed(1)} avg
           </p>
         )}

@@ -91,16 +91,16 @@ export const SITE_CONFIG = {
     transportation: true
   },
   
-  // Official Colors (from tamarindodiria.com)
+  // Brand colors (defaults — override via CSS custom properties per tenant)
   colors: {
-    primary: '#4a90a4',     // Diria Teal
-    primaryDark: '#3a7285', 
-    accent: '#d4af37',      // Diria Gold
+    primary: '#4a90a4',
+    primaryDark: '#3a7285',
+    accent: '#d4af37',
     accentDark: '#b8941f',
-    cream: '#f5e6d3',       // Diria Cream
-    brown: '#8b7355',       // Diria Brown
+    surface: '#f9fafb',
+    foreground: '#8b7355',
     success: '#10b981',
-    warning: '#f59e0b', 
+    warning: '#f59e0b',
     error: '#ef4444',
     info: '#3b82f6'
   },

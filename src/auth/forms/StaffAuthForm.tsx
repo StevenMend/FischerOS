@@ -65,39 +65,39 @@ export default function StaffAuthForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-diria-cream-light via-diria-cream to-diria-cream-dark relative overflow-hidden flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-surface-light via-surface to-surface-dark relative overflow-hidden flex items-center justify-center p-4">
       
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-diria-teal/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-diria-brown/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-foreground/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
       <div className="relative z-10 w-full max-w-md">
         {/* Back Button */}
         <button
           onClick={() => navigate('/portal')}
-          className="mb-4 flex items-center space-x-2 text-diria-brown hover:text-diria-teal transition-colors"
+          className="mb-4 flex items-center space-x-2 text-foreground hover:text-primary transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span className="text-sm font-medium">Back to Portal</span>
         </button>
 
         {/* Main Form Container */}
-        <div className="bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-lg border border-diria-cream-dark overflow-hidden">
+        <div className="bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-lg border border-surface-dark overflow-hidden">
           
           {/* Header - COMPACT */}
-          <div className="p-5 sm:p-6 text-center border-b border-diria-cream-dark">
-            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white border-2 border-diria-cream-dark rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-sm">
-              <Users className="w-7 h-7 sm:w-8 sm:h-8 text-diria-teal" />
+          <div className="p-5 sm:p-6 text-center border-b border-surface-dark">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white border-2 border-surface-dark rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-sm">
+              <Users className="w-7 h-7 sm:w-8 sm:h-8 text-primary" />
             </div>
             
-            <h1 className="text-2xl sm:text-3xl font-bold text-diria-brown mb-2">Staff Console</h1>
-            <p className="text-sm sm:text-base text-diria-brown/80 mb-3">Acceso operacional - Coordinación eficiente</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">Staff Console</h1>
+            <p className="text-sm sm:text-base text-foreground/80 mb-3">Acceso operacional - Coordinación eficiente</p>
             
-            <div className="inline-flex items-center space-x-2 bg-diria-teal/10 px-3 py-1.5 rounded-full border border-diria-teal/20 text-xs sm:text-sm">
-              <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-diria-teal" />
-              <span className="text-diria-teal font-medium">
+            <div className="inline-flex items-center space-x-2 bg-primary/10 px-3 py-1.5 rounded-full border border-primary/20 text-xs sm:text-sm">
+              <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
+              <span className="text-primary font-medium">
                 Sesión de <strong>8h</strong> - Coordinación departamental
               </span>
             </div>
@@ -108,14 +108,14 @@ export default function StaffAuthForm() {
             
             {/* Property Selection */}
             <div>
-              <label className="flex items-center space-x-1.5 text-sm font-medium text-diria-brown mb-1.5">
-                <Building2 className="w-4 h-4 text-diria-teal" />
+              <label className="flex items-center space-x-1.5 text-sm font-medium text-foreground mb-1.5">
+                <Building2 className="w-4 h-4 text-primary" />
                 <span>Propiedad</span>
               </label>
               <select
                 value={formData.property}
                 onChange={(e) => handleInputChange('property', e.target.value)}
-                className="w-full px-3 py-2.5 text-sm border-2 border-diria-cream-dark rounded-xl focus:ring-2 focus:ring-diria-teal focus:border-diria-teal bg-white/50 text-diria-brown"
+                className="w-full px-3 py-2.5 text-sm border-2 border-surface-dark rounded-xl focus:ring-2 focus:ring-primary focus:border-primary bg-white/50 text-foreground"
               >
                 {(SITE_CONFIG?.properties || [defaultProperty]).map(property => (
                   <option key={property} value={property}>{property}</option>
@@ -125,8 +125,8 @@ export default function StaffAuthForm() {
 
             {/* Staff ID */}
             <div>
-              <label className="flex items-center space-x-1.5 text-sm font-medium text-diria-brown mb-1.5">
-                <Users className="w-4 h-4 text-diria-teal" />
+              <label className="flex items-center space-x-1.5 text-sm font-medium text-foreground mb-1.5">
+                <Users className="w-4 h-4 text-primary" />
                 <span>Staff ID</span>
               </label>
               <input
@@ -134,24 +134,24 @@ export default function StaffAuthForm() {
                 value={formData.staffId}
                 onChange={(e) => handleInputChange('staffId', e.target.value)}
                 placeholder="STF001, EMP123, etc."
-                className="w-full px-3 py-2.5 text-sm border-2 border-diria-cream-dark rounded-xl focus:ring-2 focus:ring-diria-teal focus:border-diria-teal bg-white/50 text-diria-brown placeholder-diria-brown/50"
+                className="w-full px-3 py-2.5 text-sm border-2 border-surface-dark rounded-xl focus:ring-2 focus:ring-primary focus:border-primary bg-white/50 text-foreground placeholder-foreground/50"
                 autoComplete="username"
               />
-              <p className="text-xs text-diria-brown/70 mt-1">
+              <p className="text-xs text-foreground/70 mt-1">
                 Tu identificador único de empleado
               </p>
             </div>
 
             {/* Department - FIXED WITH CORRECT DB NAMES */}
             <div>
-              <label className="flex items-center space-x-1.5 text-sm font-medium text-diria-brown mb-1.5">
-                <Zap className="w-4 h-4 text-diria-teal" />
+              <label className="flex items-center space-x-1.5 text-sm font-medium text-foreground mb-1.5">
+                <Zap className="w-4 h-4 text-primary" />
                 <span>Departamento</span>
               </label>
               <select
                 value={formData.department}
                 onChange={(e) => handleInputChange('department', e.target.value)}
-                className="w-full px-3 py-2.5 text-sm border-2 border-diria-cream-dark rounded-xl focus:ring-2 focus:ring-diria-teal focus:border-diria-teal bg-white/50 text-diria-brown"
+                className="w-full px-3 py-2.5 text-sm border-2 border-surface-dark rounded-xl focus:ring-2 focus:ring-primary focus:border-primary bg-white/50 text-foreground"
               >
                 <option value="">Selecciona tu departamento</option>
                 <option value="Concierge">Concierge</option>
@@ -164,14 +164,14 @@ export default function StaffAuthForm() {
                 <option value="Tours & Activities">Tours & Activities</option>
                 <option value="Transportation">Transportation</option>
               </select>
-              <p className="text-xs text-diria-brown/70 mt-1">
+              <p className="text-xs text-foreground/70 mt-1">
                 Tu departamento de trabajo actual
               </p>
             </div>
 
             {/* Password */}
             <div>
-              <label className="block text-sm font-medium text-diria-brown mb-1.5">
+              <label className="block text-sm font-medium text-foreground mb-1.5">
                 Contraseña Staff
               </label>
               <div className="relative">
@@ -180,18 +180,18 @@ export default function StaffAuthForm() {
                   value={formData.password}
                   onChange={(e) => handleInputChange('password', e.target.value)}
                   placeholder="••••••••"
-                  className="w-full px-3 py-2.5 text-sm border-2 border-diria-cream-dark rounded-xl focus:ring-2 focus:ring-diria-teal focus:border-diria-teal bg-white/50 text-diria-brown placeholder-diria-brown/50 pr-12"
+                  className="w-full px-3 py-2.5 text-sm border-2 border-surface-dark rounded-xl focus:ring-2 focus:ring-primary focus:border-primary bg-white/50 text-foreground placeholder-foreground/50 pr-12"
                   autoComplete="current-password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-diria-brown/50 hover:text-diria-brown transition-colors"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-foreground/50 hover:text-foreground transition-colors"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
-              <p className="text-xs text-diria-brown/70 mt-1">
+              <p className="text-xs text-foreground/70 mt-1">
                 Contraseña asignada por tu supervisor
               </p>
             </div>
@@ -222,24 +222,24 @@ export default function StaffAuthForm() {
             )}
 
             {/* Access Info - COMPACT */}
-            <div className="p-3 bg-diria-cream/50 border-2 border-diria-cream-dark rounded-xl">
-              <p className="text-xs text-diria-brown font-medium mb-2">Acceso operacional incluye:</p>
+            <div className="p-3 bg-surface/50 border-2 border-surface-dark rounded-xl">
+              <p className="text-xs text-foreground font-medium mb-2">Acceso operacional incluye:</p>
               <div className="space-y-1.5">
                 <div className="flex items-center space-x-2">
-                  <div className="w-1.5 h-1.5 bg-diria-teal rounded-full flex-shrink-0"></div>
-                  <span className="text-xs text-diria-brown">Console 3 columnas (Pending → Progress → Completed)</span>
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0"></div>
+                  <span className="text-xs text-foreground">Console 3 columnas (Pending → Progress → Completed)</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <div className="w-1.5 h-1.5 bg-diria-teal rounded-full flex-shrink-0"></div>
-                  <span className="text-xs text-diria-brown">Coordinación con partners en tiempo real</span>
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0"></div>
+                  <span className="text-xs text-foreground">Coordinación con partners en tiempo real</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <div className="w-1.5 h-1.5 bg-diria-teal rounded-full flex-shrink-0"></div>
-                  <span className="text-xs text-diria-brown">Métricas departamentales y performance</span>
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0"></div>
+                  <span className="text-xs text-foreground">Métricas departamentales y performance</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <div className="w-1.5 h-1.5 bg-diria-teal rounded-full flex-shrink-0"></div>
-                  <span className="text-xs text-diria-brown">Broadcasts y escalaciones</span>
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0"></div>
+                  <span className="text-xs text-foreground">Broadcasts y escalaciones</span>
                 </div>
               </div>
             </div>
@@ -249,18 +249,18 @@ export default function StaffAuthForm() {
               <button
                 type="button"
                 onClick={() => navigate('/portal')}
-                className="flex-1 bg-white border-2 border-diria-cream-dark text-diria-brown py-2.5 rounded-xl font-semibold text-sm hover:shadow-md transition-all duration-300"
+                className="flex-1 bg-white border-2 border-surface-dark text-foreground py-2.5 rounded-xl font-semibold text-sm hover:shadow-md transition-all duration-300"
               >
                 Cancelar
               </button>
               <button
                 type="submit"
                 disabled={isLoading}
-                className="flex-1 bg-white border-2 border-diria-cream-dark text-diria-brown py-2.5 rounded-xl font-semibold text-sm hover:shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 bg-white border-2 border-surface-dark text-foreground py-2.5 rounded-xl font-semibold text-sm hover:shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <div className="flex items-center justify-center space-x-2">
-                    <div className="w-4 h-4 border-2 border-diria-brown/30 border-t-diria-brown rounded-full animate-spin"></div>
+                    <div className="w-4 h-4 border-2 border-foreground/30 border-t-foreground rounded-full animate-spin"></div>
                     <span>Conectando...</span>
                   </div>
                 ) : (
@@ -270,8 +270,8 @@ export default function StaffAuthForm() {
             </div>
 
             {/* Help Text */}
-            <div className="pt-3 border-t border-diria-cream-dark text-center">
-              <p className="text-xs text-diria-brown/70">
+            <div className="pt-3 border-t border-surface-dark text-center">
+              <p className="text-xs text-foreground/70">
                 ¿Problemas de acceso? Contacta a tu supervisor de turno
               </p>
             </div>

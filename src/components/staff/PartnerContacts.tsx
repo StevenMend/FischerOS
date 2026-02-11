@@ -43,7 +43,7 @@ export default function PartnerContacts({ partners }: PartnerContactsProps) {
 
   return (
     <div>
-      <h3 className="text-lg font-bold bg-gradient-to-r from-[#236192] to-[#1a4a73] bg-clip-text text-transparent mb-4 flex items-center">
+      <h3 className="text-lg font-bold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent mb-4 flex items-center">
         <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mr-3 shadow-sm animate-float-subtle">
           <Headphones className="w-4 h-4 text-white" />
         </div>
@@ -70,7 +70,7 @@ export default function PartnerContacts({ partners }: PartnerContactsProps) {
               </button>
               <button 
                 onClick={() => handlePartnerContact(partner, 'call')}
-                className="group/btn p-2 bg-gradient-to-r from-[#236192] to-[#1a4a73] text-white rounded-lg hover:shadow-lg hover:scale-110 transition-all duration-300 shadow-sm btn-premium ripple-effect"
+                className="group/btn p-2 bg-gradient-to-r from-primary to-primary-dark text-white rounded-lg hover:shadow-lg hover:scale-110 transition-all duration-300 shadow-sm btn-premium ripple-effect"
                 title="Call"
               >
                 <Phone className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />

@@ -66,14 +66,14 @@
 //     <div className="min-h-screen relative">
 //       {/* Background Elements */}
 //       <div className="absolute inset-0 opacity-10 pointer-events-none">
-//         <div className="absolute top-20 left-20 w-32 h-32 bg-diria-gold/20 rounded-full blur-3xl animate-pulse"></div>
-//         <div className="absolute bottom-20 right-20 w-40 h-40 bg-diria-brown/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+//         <div className="absolute top-20 left-20 w-32 h-32 bg-accent/20 rounded-full blur-3xl animate-pulse"></div>
+//         <div className="absolute bottom-20 right-20 w-40 h-40 bg-foreground/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
 //       </div>
 
 //       <div className="relative z-10 px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-6 max-w-7xl mx-auto">
         
 //         {/* Hero Carousel - MOBILE OPTIMIZED */}
-//         <div className="bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-lg border border-diria-cream-dark mb-4 sm:mb-6 md:mb-8 overflow-hidden">
+//         <div className="bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-lg border border-surface-dark mb-4 sm:mb-6 md:mb-8 overflow-hidden">
 //           <div className="relative h-48 sm:h-56 md:h-64 lg:h-80">
 //             <div 
 //               className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out"
@@ -96,7 +96,7 @@
 //                   <div className="text-base sm:text-lg md:text-xl font-bold">{currentSlide.price}</div>
 //                   <button 
 //                     onClick={currentSlide.action}
-//                     className="bg-white border-2 border-white text-diria-brown px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl font-semibold flex items-center space-x-2 transition-all duration-300 hover:scale-105 text-sm"
+//                     className="bg-white border-2 border-white text-foreground px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl font-semibold flex items-center space-x-2 transition-all duration-300 hover:scale-105 text-sm"
 //                   >
 //                     <span>Book Now</span>
 //                     <ArrowRight className="w-4 h-4" />
@@ -211,13 +211,13 @@ export default function GuestDashboard({ currentPage, onNavigate }: GuestDashboa
   return (
     <div className="min-h-screen relative">
       <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-diria-gold/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-diria-brown/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 bg-accent/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-foreground/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
       <div className="relative z-10 px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-6 max-w-7xl mx-auto">
         
-        <div className="bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-lg border border-diria-cream-dark mb-4 sm:mb-6 md:mb-8 overflow-hidden">
+        <div className="bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-lg border border-surface-dark mb-4 sm:mb-6 md:mb-8 overflow-hidden">
           <div className="relative h-48 sm:h-56 md:h-64 lg:h-80">
             <div 
               className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out"
@@ -240,7 +240,7 @@ export default function GuestDashboard({ currentPage, onNavigate }: GuestDashboa
                   <div className="text-base sm:text-lg md:text-xl font-bold">{currentSlide.price}</div>
                   <button 
                     onClick={currentSlide.action}
-                    className="bg-white border-2 border-white text-diria-brown px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl font-semibold flex items-center space-x-2 transition-all duration-300 hover:scale-105 text-sm"
+                    className="bg-white border-2 border-white text-foreground px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl font-semibold flex items-center space-x-2 transition-all duration-300 hover:scale-105 text-sm"
                   >
                     <span>Book Now</span>
                     <ArrowRight className="w-4 h-4" />

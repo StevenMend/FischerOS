@@ -31,7 +31,7 @@ export default function PartnerModal({ partner, onClose }: PartnerModalProps) {
       <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl max-w-lg w-full border border-white/50">
         <div className="p-6 border-b border-white/30">
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-bold bg-gradient-to-r from-[#236192] to-[#1a4a73] bg-clip-text text-transparent">
+            <h3 className="text-xl font-bold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
               Partner Performance
             </h3>
             <button 
@@ -120,7 +120,7 @@ export default function PartnerModal({ partner, onClose }: PartnerModalProps) {
           
           <button 
             onClick={onClose}
-            className="w-full bg-gradient-to-r from-[#236192] to-[#1a4a73] text-white py-3 rounded-xl font-bold hover:shadow-lg transition-all duration-300 hover:scale-105"
+            className="w-full bg-gradient-to-r from-primary to-primary-dark text-white py-3 rounded-xl font-bold hover:shadow-lg transition-all duration-300 hover:scale-105"
           >
             Close
           </button>

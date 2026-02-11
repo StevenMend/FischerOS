@@ -44,9 +44,9 @@ export default function GuestLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-diria-cream-light via-diria-cream to-diria-cream-dark">
+    <div className="min-h-screen bg-gradient-to-br from-surface-light via-surface to-surface-dark">
       {/* Sticky Header - MOBILE OPTIMIZED */}
-      <header className="sticky-header bg-white/95 backdrop-blur-xl border-b border-diria-cream-dark shadow-sm safe-top z-50">
+      <header className="sticky-header bg-white/95 backdrop-blur-xl border-b border-surface-dark shadow-sm safe-top z-50">
         <div className="px-3 sm:px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="flex items-center justify-between py-2.5 sm:py-3">
             {/* Logo + Welcome */}
@@ -57,15 +57,15 @@ export default function GuestLayout() {
                 className="w-8 h-8 sm:w-10 sm:h-10 object-contain flex-shrink-0"
               />
               <div className="min-w-0 flex-1">
-                <span className="text-[10px] sm:text-xs text-diria-brown/70 block leading-tight">Welcome Back,</span>
-                <span className="font-bold text-diria-brown text-xs sm:text-sm block truncate leading-tight">{user?.name}</span>
+                <span className="text-[10px] sm:text-xs text-foreground/70 block leading-tight">Welcome Back,</span>
+                <span className="font-bold text-foreground text-xs sm:text-sm block truncate leading-tight">{user?.name}</span>
               </div>
             </div>
 
             {/* Actions - COMPACT */}
             <div className="flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0">
-              <button className="relative w-9 h-9 sm:w-10 sm:h-10 bg-white border-2 border-diria-cream-dark rounded-xl sm:rounded-2xl hover:shadow-md transition-all duration-300 flex items-center justify-center">
-                <Bell className="w-4 h-4 sm:w-5 sm:h-5 text-diria-teal" />
+              <button className="relative w-9 h-9 sm:w-10 sm:h-10 bg-white border-2 border-surface-dark rounded-xl sm:rounded-2xl hover:shadow-md transition-all duration-300 flex items-center justify-center">
+                <Bell className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                 {unreadUpdatesCount > 0 && (
                   <div className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-red-500 rounded-full flex items-center justify-center">
                     <span className="text-[10px] sm:text-xs font-bold text-white">{unreadUpdatesCount}</span>
@@ -75,12 +75,12 @@ export default function GuestLayout() {
 
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="w-9 h-9 sm:w-10 sm:h-10 bg-white border-2 border-diria-cream-dark rounded-xl sm:rounded-2xl hover:shadow-md transition-all duration-300 flex items-center justify-center"
+                className="w-9 h-9 sm:w-10 sm:h-10 bg-white border-2 border-surface-dark rounded-xl sm:rounded-2xl hover:shadow-md transition-all duration-300 flex items-center justify-center"
               >
                 {isMobileMenuOpen ? (
-                  <X className="w-4 h-4 sm:w-5 sm:h-5 text-diria-brown" />
+                  <X className="w-4 h-4 sm:w-5 sm:h-5 text-foreground" />
                 ) : (
-                  <Menu className="w-4 h-4 sm:w-5 sm:h-5 text-diria-brown" />
+                  <Menu className="w-4 h-4 sm:w-5 sm:h-5 text-foreground" />
                 )}
               </button>
             </div>
@@ -89,7 +89,7 @@ export default function GuestLayout() {
       </header>
 
       {/* Revenue Navigation - MOBILE SCROLL */}
-      <nav className="sticky top-[52px] sm:top-[64px] bg-white/95 backdrop-blur-xl border-b border-diria-cream-dark z-40">
+      <nav className="sticky top-[52px] sm:top-[64px] bg-white/95 backdrop-blur-xl border-b border-surface-dark z-40">
         <div className="w-full overflow-x-auto scrollbar-hidden">
           <div className="px-2 sm:px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
             <div className="flex justify-start md:justify-center items-center gap-1 sm:gap-1.5 md:gap-3 py-1.5 sm:py-2 min-w-max md:min-w-0">
@@ -106,8 +106,8 @@ export default function GuestLayout() {
                     }}
                     className={`flex items-center space-x-1 sm:space-x-1.5 md:space-x-2 px-2.5 sm:px-3 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-xl md:rounded-2xl font-medium transition-all duration-300 whitespace-nowrap border-2 flex-shrink-0 ${
                       isActive
-                        ? 'bg-diria-teal/10 text-diria-teal border-diria-teal/20 shadow-sm'
-                        : 'bg-white text-diria-brown/70 border-diria-cream-dark hover:text-diria-brown hover:border-diria-teal/40 hover:shadow-sm'
+                        ? 'bg-primary/10 text-primary border-primary/20 shadow-sm'
+                        : 'bg-white text-foreground/70 border-surface-dark hover:text-foreground hover:border-primary/40 hover:shadow-sm'
                     }`}
                   >
                     <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0" />
@@ -129,29 +129,29 @@ export default function GuestLayout() {
             style={{ top: '52px' }}
           />
           
-          <div className="fixed top-[52px] sm:top-[64px] left-0 right-0 bg-white/98 backdrop-blur-xl border-b border-diria-cream-dark z-[46] shadow-2xl modal-content">
+          <div className="fixed top-[52px] sm:top-[64px] left-0 right-0 bg-white/98 backdrop-blur-xl border-b border-surface-dark z-[46] shadow-2xl modal-content">
             <div className="px-3 sm:px-4 md:px-6 py-4 sm:py-6 space-y-2 sm:space-y-3 max-h-[80vh] overflow-y-auto">
               <button className="w-full h-12 sm:h-14 bg-white border-2 border-red-200 text-red-600 rounded-xl sm:rounded-2xl font-semibold hover:shadow-md transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>Emergency</span>
               </button>
               
-              <button className="w-full h-12 sm:h-14 bg-white border-2 border-diria-cream-dark text-diria-brown rounded-xl sm:rounded-2xl font-semibold hover:shadow-md transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base">
-                <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-diria-teal" />
+              <button className="w-full h-12 sm:h-14 bg-white border-2 border-surface-dark text-foreground rounded-xl sm:rounded-2xl font-semibold hover:shadow-md transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base">
+                <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                 <span>Front Desk</span>
               </button>
 
-              <button className="w-full h-12 sm:h-14 bg-white border-2 border-diria-cream-dark text-diria-brown rounded-xl sm:rounded-2xl font-semibold hover:shadow-md transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base">
-                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-diria-gold" />
+              <button className="w-full h-12 sm:h-14 bg-white border-2 border-surface-dark text-foreground rounded-xl sm:rounded-2xl font-semibold hover:shadow-md transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base">
+                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-accent" />
                 <span>AI Concierge</span>
               </button>
 
-              <div className="border-t border-diria-cream-dark my-3 sm:my-4"></div>
+              <div className="border-t border-surface-dark my-3 sm:my-4"></div>
 
-              <div className="flex items-center justify-between p-3 sm:p-4 bg-diria-cream/30 rounded-xl sm:rounded-2xl">
+              <div className="flex items-center justify-between p-3 sm:p-4 bg-surface/30 rounded-xl sm:rounded-2xl">
                 <div>
-                  <p className="font-medium text-diria-brown text-sm sm:text-base">{user?.name}</p>
-                  <p className="text-xs sm:text-sm text-diria-brown/70">{getUserContext()}</p>
+                  <p className="font-medium text-foreground text-sm sm:text-base">{user?.name}</p>
+                  <p className="text-xs sm:text-sm text-foreground/70">{getUserContext()}</p>
                 </div>
                 <button
                   onClick={logout}

@@ -14,9 +14,9 @@ export const Card: React.FC<CardProps> = ({
   className 
 }) => {
   const variants = {
-    base: 'bg-white rounded-xl shadow-sm border border-diria-cream-dark overflow-hidden',
-    resort: 'bg-diria-cream-light rounded-xl shadow-sm border border-diria-cream-dark overflow-hidden',
-    interactive: 'bg-white rounded-xl shadow-sm border border-diria-cream-dark overflow-hidden hover:shadow-xl transition-all duration-300 card-interactive'
+    base: 'bg-white rounded-xl shadow-sm border border-surface-dark overflow-hidden',
+    resort: 'bg-surface-light rounded-xl shadow-sm border border-surface-dark overflow-hidden',
+    interactive: 'bg-white rounded-xl shadow-sm border border-surface-dark overflow-hidden hover:shadow-xl transition-all duration-300 card-interactive'
   };
 
   return (
@@ -32,7 +32,7 @@ interface CardHeaderProps {
 }
 
 export const CardHeader: React.FC<CardHeaderProps> = ({ children, className }) => (
-  <div className={cn('p-6 border-b border-diria-cream-dark bg-gradient-to-r from-diria-cream-light to-white', className)}>
+  <div className={cn('p-6 border-b border-surface-dark bg-gradient-to-r from-surface-light to-white', className)}>
     {children}
   </div>
 );
