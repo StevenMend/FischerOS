@@ -4,14 +4,15 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from '../auth/AuthProvider';
 import { ErrorBoundary } from '../components/shared/ErrorBoundary';
 import AppShell from '../components/AppShell';
-import { PlaceholderPage } from './MarketingRoutes';
 import { TenantRoutes } from './TenantRoutes';
 import { GuestRoutes } from './GuestRoutes';
 import { StaffRoutes } from './StaffRoutes';
 import { AdminRoutes } from './AdminRoutes';
 
-// Marketing page components
-import GuestLanding from '../pages/public/GuestLanding';
+// Marketing page components (FischerOS)
+import LandingPage from '../pages/marketing/LandingPage';
+import PricingPage from '../pages/marketing/PricingPage';
+import DemoPage from '../pages/marketing/DemoPage';
 import StaffPortal from '../pages/public/StaffPortal';
 import GuestAuthForm from '../auth/forms/GuestAuthForm';
 import StaffAuthForm from '../auth/forms/StaffAuthForm';
@@ -43,10 +44,10 @@ export function AppRouter() {
           <AppShell>
             <Routes>
               {/* MUNDO 1 — Marketing / FischerOS (explicit paths beat /:slug) */}
-              <Route path="/" element={<GuestLanding />} />
+              <Route path="/" element={<LandingPage />} />
               <Route path="/portal" element={<StaffPortal />} />
-              <Route path="/pricing" element={<PlaceholderPage title="Pricing" />} />
-              <Route path="/demo" element={<PlaceholderPage title="Demo" />} />
+              <Route path="/pricing" element={<PricingPage />} />
+              <Route path="/demo" element={<DemoPage />} />
               <Route path="/auth/guest" element={<GuestAuthForm />} />
               <Route path="/auth/staff" element={<StaffAuthForm />} />
               <Route path="/auth/admin" element={<AdminAuthForm />} />
