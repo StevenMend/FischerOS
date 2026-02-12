@@ -1,6 +1,6 @@
 // src/core/auth/usePostLoginRouter.ts — Post-login routing by role/department
-import { useNavigate } from 'react-router-dom';
-import { ROUTE_PATHS } from '../../config/routes';
+import { useNavigate, useParams } from 'react-router-dom';
+import { buildTenantPaths } from '../../config/routes';
 import { logger } from '../utils/logger';
 
 interface StaffProfile {
@@ -8,42 +8,52 @@ interface StaffProfile {
   restaurantSlug?: string | null;
 }
 
-/** Department (lowercase) → staff base route */
+/** Department (lowercase) → relative staff sub-path */
 const DEPARTMENT_ROUTE_MAP: Record<string, string> = {
-  'food & beverage':    '/staff/restaurant',
-  'restaurants':        '/staff/restaurant',
-  'housekeeping':       '/staff/housekeeping',
-  'maintenance':        '/staff/maintenance',
-  'concierge':          '/staff/concierge',
-  'spa':                '/staff/spa',
-  'tours & activities': '/staff/tours',
-  'transportation':     '/staff/transportation',
-  'front desk':         ROUTE_PATHS.staff.console,
+  'food & beverage':    'restaurant',
+  'restaurants':        'restaurant',
+  'housekeeping':       'housekeeping',
+  'maintenance':        'maintenance',
+  'concierge':          'concierge',
+  'spa':                'spa',
+  'tours & activities': 'tours',
+  'transportation':     'transportation',
+  'front desk':         'console',
 };
 
-export function usePostLoginRouter() {
+/**
+ * Returns route helpers that navigate within the current tenant (`:slug`).
+ *
+ * The slug is read from the URL when available.  For callers that are
+ * outside a tenant route (e.g. the marketing auth pages) a `slug`
+ * parameter can be passed explicitly.
+ */
+export function usePostLoginRouter(slugOverride?: string) {
   const navigate = useNavigate();
+  const params = useParams<{ slug: string }>();
+  const slug = slugOverride ?? params.slug ?? 'tamarindo-diria';
+
+  const paths = buildTenantPaths(slug);
 
   const routeGuest = () => {
-    navigate(ROUTE_PATHS.guest.dashboard);
+    navigate(paths.guest.dashboard);
   };
 
   const routeAdmin = () => {
-    navigate(ROUTE_PATHS.admin.dashboard);
+    navigate(paths.admin.dashboard);
   };
 
   const routeStaff = (profile: StaffProfile) => {
     const dept = profile.department.toLowerCase();
-    const base = DEPARTMENT_ROUTE_MAP[dept] ?? ROUTE_PATHS.staff.console;
+    const sub = DEPARTMENT_ROUTE_MAP[dept] ?? 'console';
 
-    // Restaurant staff with a known slug get their specific dashboard
     let route: string;
-    if (base === '/staff/restaurant' && profile.restaurantSlug) {
-      route = `/staff/restaurant/${profile.restaurantSlug}`;
-    } else if (base === '/staff/restaurant') {
-      route = ROUTE_PATHS.staff.console; // no slug → fallback
+    if (sub === 'restaurant' && profile.restaurantSlug) {
+      route = `${paths.staff.base}/restaurant/${profile.restaurantSlug}`;
+    } else if (sub === 'restaurant') {
+      route = paths.staff.console; // no slug → fallback
     } else {
-      route = base;
+      route = `${paths.staff.base}/${sub}`;
     }
 
     logger.info('PostLoginRouter', `Routing staff to ${route}`, { department: dept });

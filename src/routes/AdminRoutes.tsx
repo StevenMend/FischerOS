@@ -4,7 +4,6 @@
 // ========================================
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { ROUTE_PATHS } from '../config/routes';
 import { logger } from '../core/utils/logger';
 import AdminGuard from '../auth/guards/AdminGuard';
 import AdminLayout from '../components/layout/AdminLayout';
@@ -28,8 +27,8 @@ export function AdminRoutes() {
           <Route path="/staff" element={<StaffManagementPage />} />
           <Route path="/partners" element={<PartnerManagementPage />} />
           <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/" element={<Navigate to={ROUTE_PATHS.admin.dashboard} replace />} />
-          <Route path="*" element={<Navigate to={ROUTE_PATHS.admin.dashboard} replace />} />
+          <Route path="/" element={<Navigate to="dashboard" replace />} />
+          <Route path="*" element={<Navigate to="dashboard" replace />} />
         </Route>
       </Route>
     </Routes>

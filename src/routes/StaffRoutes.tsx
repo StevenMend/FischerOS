@@ -1,7 +1,6 @@
 // src/routes/StaffRoutes.tsx - WITH ALL DEPARTMENT ROUTES
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { ROUTE_PATHS } from '../config/routes';
 import { logger } from '../core/utils/logger';
 import StaffGuard from '../auth/guards/StaffGuard';
 import StaffLayout from '../components/layout/StaffLayout';
@@ -50,8 +49,8 @@ export function StaffRoutes() {
           <Route path="/transportation" element={<TransportationDashboard />} />
           
           {/* Default Routes */}
-          <Route path="/" element={<Navigate to={ROUTE_PATHS.staff.console} replace />} />
-          <Route path="*" element={<Navigate to={ROUTE_PATHS.staff.console} replace />} />
+          <Route path="/" element={<Navigate to="console" replace />} />
+          <Route path="*" element={<Navigate to="console" replace />} />
         </Route>
       </Route>
     </Routes>
