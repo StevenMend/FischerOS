@@ -1,8 +1,8 @@
 // src/routes/TenantRoutes.tsx — Validates :slug and wraps tenant children
 import React from 'react';
 import { useParams, Navigate, Outlet } from 'react-router-dom';
-import { SITE_CONFIG } from '../config/site';
 import { logger } from '../core/utils/logger';
+import { TenantProvider } from '../core/tenant/TenantProvider';
 
 /** Known property slugs derived from SITE_CONFIG (hardcoded for now). */
 const KNOWN_SLUGS = ['tamarindo-diria', 'guanacaste', 'manuel-antonio'] as const;
@@ -13,10 +13,12 @@ function isKnownSlug(value: string): value is PropertySlug {
 }
 
 /**
- * TenantRoutes reads :slug from the URL, validates it, and renders children.
+ * TenantRoutes reads :slug from the URL, validates it, and provides
+ * the TenantProvider context to all children.
+ *
  * If the slug is unknown the user is redirected to the marketing landing page.
  *
- * Mount this component at `/:slug/*` inside AppRouter.
+ * Mount this component at `/:slug` inside AppRouter.
  */
 export function TenantRoutes() {
   const { slug } = useParams<{ slug: string }>();
@@ -28,5 +30,9 @@ export function TenantRoutes() {
 
   logger.debug('TenantRoutes', `Tenant resolved: ${slug}`);
 
-  return <Outlet />;
+  return (
+    <TenantProvider>
+      <Outlet />
+    </TenantProvider>
+  );
 }
