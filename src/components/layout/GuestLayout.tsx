@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../auth/AuthProvider';
-import { NAV_CONFIG } from '../../config/routes';
-import { 
-  Home, UtensilsCrossed, MapPin, Flower2, MessageCircle, 
+import { useTenantNavigation } from '../../core/tenant/useTenantNavigation';
+import {
+  Home, UtensilsCrossed, MapPin, Flower2, MessageCircle,
   LogOut, Bell, Menu, X, Phone, MessageSquare, Sparkles
 } from 'lucide-react';
 import { SITE_CONFIG } from '../../config/site';
@@ -16,6 +16,7 @@ export default function GuestLayout() {
   
   const location = useLocation();
   const navigate = useNavigate();
+  const { guestPath } = useTenantNavigation();
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -29,11 +30,11 @@ export default function GuestLayout() {
   }, [isMobileMenuOpen]);
 
   const navItems = [
-    { path: '/guest/dashboard', label: 'Dashboard', icon: Home },
-    { path: '/guest/restaurants', label: 'Restaurants', icon: UtensilsCrossed },
-    { path: '/guest/tours', label: 'Tours', icon: MapPin },
-    { path: '/guest/spa', label: 'Spa', icon: Flower2 },
-    { path: '/guest/requests', label: 'My Requests', icon: MessageCircle }
+    { path: guestPath('dashboard'), label: 'Dashboard', icon: Home },
+    { path: guestPath('restaurants'), label: 'Restaurants', icon: UtensilsCrossed },
+    { path: guestPath('tours'), label: 'Tours', icon: MapPin },
+    { path: guestPath('spa'), label: 'Spa', icon: Flower2 },
+    { path: guestPath('requests'), label: 'My Requests', icon: MessageCircle }
   ];
 
   const LOGO_BASE64 = "data:image/webp;base64,UklGRnQEAABXRUJQVlA4WAoAAAAQAAAAIwAAIwAAQUxQSG4DAAARoDZt2+I0X9h1PZMEt5C6G7K1lNTdm0yoB7YWqYVgwWFgkVka3CcUq7sjr7u720f/LbvJGxETgKgXzWHGFqNITzbMiSMBgAARLbkg3NHda6t3ldy8ebOYAAiSBKghtM6FcZutsZvl2KUuiyKgJUACAAmAhJw215Pnayk457HH1QoCIMgoCACOmpYBb3t9ZcXlQHAYAAjqUEfXOlZRuqlY9lavcT+uJ8GIAEgQBNPGPOVeW61Dqc0LBjbvIghAhyA0NN4K9FTYXa3m8a09qnLUYQMAkgRBggSYNSkvk7x2o7Ql/oq8rnR/kABJAkRELpk80NA97TAVWTa5+ktdfidAQqshQEIEG8LjDfJlZ87L6pYmVRUaRiAglApCFD29NzE+O91YfHbs4W0zIPYfn63Rkin3rxNb3bv37/fv4Am3xban/iwg+ztGFwGg3qgKhOYAoL8lKEBmNICDJ+1n10USc32dsbiWIhJMTHnbAC4xZdRBDChGEiA0Cf4rYT+aU7KaggkigUapfaukYO5YIAFExB337riLVtRnxOfYhEmIRdm7dtlCyx4P+weTAICakslwMP7P0NNkSVo0XFBhFmddl9+7vnnq6Pj+KIo+nyk1fLBuNKNy5u1wfuVX3R89dOX2Jk/2v9wNQt/2MKge+KPuvXvKysEssSFkGfv2ZvjDt5+2l6YR+jSNT/bPzZizpMlp8LtFZ65RfropwZIxle8OZ0QSD2qbCLM8sN0cbFk3HlhoLqh2UoStFvdWPVLMDN8m1ILcdVZVCjhPNq274r4GrOxtqoynHjj13ygZOu532P1SkTNn1fk6uRWAMclAPQArvWlpUvf2IvVcRevaXTOb6/rPNVvm4v/SNOF8T/E481vzaHr9jeLzLybdz0U0BMi4W+Y7l07ucgVMFGOdG6wVw3UdURBaMjmkdAYD1XcIjtbYCs73WAUJEAD1QO6vGT20Q5UB9IfsNQP96dAlQZIAyJw7lU29dx7eJzhxpDZUfv+4IAASAEEQYO+iNyvVjokQwPCe7iu+6ctLEZEASAC7dv3cXKt0HgfoGxoduP1eRjwjRMmU92pcOxQVYH+/Z5PzgYlRUQfijmOTdOoWwFu2ZWulsNAhQZKghnQ/fHDvSS2A3NEX3/4YEoisAUiQYtnaNatMAGhMTk8R0CUIAlZQOCDgAAAAEAYAnQEqJAAkAD6RKqRSJaGlpZOQsBIJZGv+V7JAXR5uyYUP4x/mQGd7XT2dgUwE95vrxy8aE6PAAP7pC+5973LYp3vSXS4tbXAy1MkMqIzIl+sawdmEBklMNptGNDQpUUr/7AJG8A894cMRyrGeiTvQOjUYlMsN98sHST6dKbnVXoLuE3uVODjk+Zo/waSEKnfy+3ylI6urOWyBE3splQ4rA7LKVsVIAL9Uk1O55SVAEKUeS2SsZYZyg7EvTgyl+di5NDoCxgXsj5+P5r3YzL4r/Rz24VUI6ihoCHC/AAA=";

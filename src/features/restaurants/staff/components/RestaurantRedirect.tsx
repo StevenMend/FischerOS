@@ -1,10 +1,11 @@
 // src/features/restaurants/staff/components/RestaurantRedirect.tsx
 import React, { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { supabase } from '../../../../lib/api/supabase';
 import { useAuthStore } from '../../../../lib/stores/useAuthStore';
 import { Utensils, AlertTriangle } from 'lucide-react';
 import { logger } from '../../../../core/utils/logger';
+import { useTenantNavigation } from '../../../../core/tenant/useTenantNavigation';
 
 interface StaffRestaurantInfo {
   restaurant_id: string | null;
@@ -23,6 +24,7 @@ interface StaffRestaurantInfo {
  */
 export default function RestaurantRedirect() {
   const session = useAuthStore((state) => state.session);
+  const { staffPath } = useTenantNavigation();
   const [loading, setLoading] = useState(true);
   const [staffInfo, setStaffInfo] = useState<StaffRestaurantInfo | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -108,7 +110,7 @@ export default function RestaurantRedirect() {
             You are not assigned to any restaurant. Please contact your manager to get assigned to a restaurant.
           </p>
           <button
-            onClick={() => window.location.href = '/staff/console'}
+            onClick={() => window.location.href = staffPath('console')}
             className="w-full bg-amber-600 hover:bg-amber-700 text-white py-2.5 rounded-xl font-semibold transition-all"
           >
             Go to Staff Console
@@ -141,10 +143,10 @@ export default function RestaurantRedirect() {
 
   // Success - Redirect to Restaurant Dashboard
   if (staffInfo?.restaurant_slug) {
-    logger.info('RestaurantRedirect', `Redirecting to /staff/restaurant/${staffInfo.restaurant_slug}`);
-    return <Navigate to={`/staff/restaurant/${staffInfo.restaurant_slug}`} replace />;
+    logger.info('RestaurantRedirect', `Redirecting to ${staffPath(`restaurant/${staffInfo.restaurant_slug}`)}`);
+    return <Navigate to={staffPath(`restaurant/${staffInfo.restaurant_slug}`)} replace />;
   }
 
   // Fallback
-  return <Navigate to="/staff/console" replace />;
+  return <Navigate to={staffPath('console')} replace />;
 }
