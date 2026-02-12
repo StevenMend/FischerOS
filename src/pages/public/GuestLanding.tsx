@@ -24,14 +24,14 @@ export default function GuestLanding() {
               <div className="relative group">
                 <div className="absolute inset-0 bg-accent/20 rounded-2xl sm:rounded-3xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
                 <div className="relative w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-xl hover:scale-105 transition-transform duration-300 border border-accent/20">
-                  <span className="text-foreground font-bold text-lg sm:text-xl">TD</span>
+                  <span className="text-foreground font-bold text-lg sm:text-xl">{SITE_CONFIG.shortName.split(' ').map(w => w[0]).join('')}</span>
                 </div>
               </div>
               <div>
                 <h1 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">
                   {SITE_CONFIG.shortName}
                 </h1>
-                <p className="text-xs sm:text-sm text-gray-600">Beach Resort • Costa Rica</p>
+                <p className="text-xs sm:text-sm text-gray-600">{SITE_CONFIG.tagline}</p>
               </div>
             </div>
             
@@ -89,7 +89,7 @@ export default function GuestLanding() {
                 <Waves className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
               </div>
               <h3 className="text-base sm:text-lg font-bold text-foreground mb-1 sm:mb-2" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>Tours & Adventures</h3>
-              <p className="text-xs sm:text-sm text-gray-600">60+ unique experiences</p>
+              <p className="text-xs sm:text-sm text-gray-600">{SITE_CONFIG.stats.tourOptions} unique experiences</p>
             </div>
           </div>
 
@@ -101,7 +101,7 @@ export default function GuestLanding() {
                 <Utensils className="w-6 h-6 sm:w-7 sm:h-7 text-accent" />
               </div>
               <h3 className="text-base sm:text-lg font-bold text-foreground mb-1 sm:mb-2" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>Restaurants</h3>
-              <p className="text-xs sm:text-sm text-gray-600">8 world-class venues</p>
+              <p className="text-xs sm:text-sm text-gray-600">{SITE_CONFIG.stats.restaurantCount} world-class venues</p>
             </div>
           </div>
 
@@ -141,22 +141,22 @@ export default function GuestLanding() {
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             <div className="text-center group">
-              <div className="text-3xl sm:text-4xl font-bold text-primary mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>300</div>
+              <div className="text-3xl sm:text-4xl font-bold text-primary mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>{SITE_CONFIG.stats.totalRooms}</div>
               <div className="text-xs sm:text-sm text-gray-600 font-medium">Luxury Suites</div>
               <div className="w-8 sm:w-12 h-0.5 bg-accent rounded-full mx-auto mt-2"></div>
             </div>
             <div className="text-center group">
-              <div className="text-3xl sm:text-4xl font-bold text-accent mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>8</div>
+              <div className="text-3xl sm:text-4xl font-bold text-accent mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>{SITE_CONFIG.stats.restaurantCount}</div>
               <div className="text-xs sm:text-sm text-gray-600 font-medium">Restaurants</div>
               <div className="w-8 sm:w-12 h-0.5 bg-accent rounded-full mx-auto mt-2"></div>
             </div>
             <div className="text-center group">
-              <div className="text-3xl sm:text-4xl font-bold text-foreground mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>60+</div>
+              <div className="text-3xl sm:text-4xl font-bold text-foreground mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>{SITE_CONFIG.stats.tourOptions}</div>
               <div className="text-xs sm:text-sm text-gray-600 font-medium">Adventures</div>
               <div className="w-8 sm:w-12 h-0.5 bg-accent rounded-full mx-auto mt-2"></div>
             </div>
             <div className="text-center group">
-              <div className="text-3xl sm:text-4xl font-bold text-primary mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>24/7</div>
+              <div className="text-3xl sm:text-4xl font-bold text-primary mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>{SITE_CONFIG.stats.conciergeHours}</div>
               <div className="text-xs sm:text-sm text-gray-600 font-medium">Concierge</div>
               <div className="w-8 sm:w-12 h-0.5 bg-accent rounded-full mx-auto mt-2"></div>
             </div>

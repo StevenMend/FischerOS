@@ -74,7 +74,7 @@ export default function ConciergeDashboard() {
       departmentName="Concierge"
       departmentIcon={<Bell className="w-6 h-6 text-white" />}
       departmentColor="indigo"
-      staffName={user?.name || 'Ana Gutierrez'}
+      staffName={user?.name || 'Staff'}
       
       metrics={{
         pending: pendingRequests.length,

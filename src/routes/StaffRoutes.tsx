@@ -43,7 +43,7 @@ export function StaffRoutes() {
           
           {/* ========== DEPARTMENT ROUTES ========== */}
           <Route path="/spa" element={<SpaDashboard />} />
-          <Route path="/concierge/tours" element={<ToursDashboard />} />
+          <Route path="/tours" element={<ToursDashboard />} />
           <Route path="/concierge" element={<ConciergeDashboard />} />
           <Route path="/housekeeping" element={<HousekeepingDashboard />} />
           <Route path="/maintenance" element={<MaintenanceDashboard />} />

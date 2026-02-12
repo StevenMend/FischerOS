@@ -1,46 +1,4 @@
-// import React from 'react';
-// import { TrendingUp, BarChart3, PieChart, Activity } from 'lucide-react';
-
-// export default function AdminAnalyticsPage() {
-//   return (
-//     <div className="p-8 space-y-6">
-//       <div className="flex items-center justify-between">
-//         <h1 className="text-3xl font-bold text-accent">Executive Analytics</h1>
-//         <div className="flex items-center space-x-2 text-sm text-gray-600">
-//           <Activity className="w-4 h-4" />
-//           <span>Live Data</span>
-//         </div>
-//       </div>
-
-//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-//         <div className="bg-white rounded-xl p-6 border border-gray-200">
-//           <div className="flex items-center space-x-3 mb-4">
-//             <TrendingUp className="w-8 h-8 text-accent" />
-//             <h3 className="text-lg font-semibold text-gray-900">Revenue Analytics</h3>
-//           </div>
-//           <p className="text-gray-600">Comprehensive revenue analysis coming soon...</p>
-//         </div>
-
-//         <div className="bg-white rounded-xl p-6 border border-gray-200">
-//           <div className="flex items-center space-x-3 mb-4">
-//             <BarChart3 className="w-8 h-8 text-primary" />
-//             <h3 className="text-lg font-semibold text-gray-900">Performance Metrics</h3>
-//           </div>
-//           <p className="text-gray-600">Staff and operational metrics coming soon...</p>
-//         </div>
-
-//         <div className="bg-white rounded-xl p-6 border border-gray-200">
-//           <div className="flex items-center space-x-3 mb-4">
-//             <PieChart className="w-8 h-8 text-green-600" />
-//             <h3 className="text-lg font-semibold text-gray-900">Guest Satisfaction</h3>
-//           </div>
-//           <p className="text-gray-600">Satisfaction analytics coming soon...</p>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-// src/pages/admin/AdminAnalyticsPage.tsx - REAL METRICS
+// src/pages/admin/AdminAnalyticsPage.tsx
 import React from 'react';
 import { TrendingUp, BarChart3, PieChart, Activity, Users, Clock, CheckCircle, AlertTriangle } from 'lucide-react';
 import { useAdminMetrics } from '../../hooks/admin/useAdminMetrics';

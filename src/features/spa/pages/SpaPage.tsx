@@ -102,7 +102,7 @@ export default function SpaPage({ onBack }: SpaPageProps = {}) {
               <Flower2 className="w-8 h-8 text-foreground" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold text-foreground font-display mb-2">Garden Spa & Wellness</h1>
+              <h1 className="text-4xl font-bold text-foreground font-display mb-2">Spa & Wellness</h1>
               <p className="text-xl text-foreground/80">{filteredTreatments.length} treatments • Expert therapists • Premium experience</p>
             </div>
           </div>

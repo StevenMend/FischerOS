@@ -1,7 +1,8 @@
-// src/pages/public/StaffPortal.tsx - RESTORED
+// src/pages/public/StaffPortal.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Users, BarChart3, Activity, Shield, Crown } from 'lucide-react';
+import { SITE_CONFIG } from '../../config/site';
 
 export default function StaffPortal() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ export default function StaffPortal() {
               <div className="relative group">
                 <div className="absolute inset-0 bg-primary/20 rounded-2xl sm:rounded-3xl blur-lg group-hover:blur-xl transition-all"></div>
                 <div className="relative w-12 h-12 sm:w-16 sm:h-16 bg-white border-2 border-surface-dark rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-300">
-                  <span className="text-foreground font-bold text-lg sm:text-2xl">TD</span>
+                  <span className="text-foreground font-bold text-lg sm:text-2xl">{SITE_CONFIG.shortName.split(' ').map(w => w[0]).join('')}</span>
                 </div>
               </div>
               <div>
@@ -103,7 +104,7 @@ export default function StaffPortal() {
                 {/* Status Badge */}
                 <div className="inline-flex items-center space-x-2 bg-primary/10 backdrop-blur-sm px-3 py-1.5 rounded-full border border-primary/20">
                   <Activity className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
-                  <span className="text-xs sm:text-sm text-primary font-medium">12 Staff Online</span>
+                  <span className="text-xs sm:text-sm text-primary font-medium">Staff Access</span>
                 </div>
               </div>
             </div>

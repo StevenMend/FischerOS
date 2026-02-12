@@ -1,8 +1,10 @@
-// src/pages/guest/ProfilePage.tsx - MINIMAL LUXURY STYLE
+// src/pages/guest/ProfilePage.tsx
 import React from 'react';
 import { User, Crown, Star, Gift, Settings, Edit, Heart } from 'lucide-react';
+import { useAuth } from '../../auth/AuthProvider';
 
 export default function ProfilePage() {
+  const { user } = useAuth();
   return (
     <div className="min-h-screen bg-gradient-to-br from-surface-light via-surface to-surface-dark relative overflow-hidden p-8">
       {/* Background Elements */}
@@ -19,8 +21,8 @@ export default function ProfilePage() {
               <User className="w-10 h-10 text-foreground" />
             </div>
             <div className="flex-1">
-              <h1 className="text-3xl font-bold text-foreground font-display mb-2">Maria Rodriguez</h1>
-              <p className="text-foreground/80 mb-4">Gold Member • Room 304 • Check-out: Dec 28</p>
+              <h1 className="text-3xl font-bold text-foreground font-display mb-2">{user?.name || 'Guest'}</h1>
+              <p className="text-foreground/80 mb-4">Member{user?.room ? ` • Room ${user.room}` : ''}</p>
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
                   <Crown className="w-5 h-5 text-accent" />
