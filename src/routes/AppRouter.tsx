@@ -4,18 +4,25 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from '../auth/AuthProvider';
 import { ErrorBoundary } from '../components/shared/ErrorBoundary';
 import AppShell from '../components/AppShell';
-import { PublicRoutes } from './PublicRoutes';
+import { MarketingRoutes } from './MarketingRoutes';
+import { TenantRoutes } from './TenantRoutes';
 import { GuestRoutes } from './GuestRoutes';
 import { StaffRoutes } from './StaffRoutes';
 import { AdminRoutes } from './AdminRoutes';
-import { ROUTE_PATHS } from '../config/routes';
 
 /**
- * Application Router
- * Manages routing for all user types (public, guest, staff, admin)
- * 
- * Note: QueryClientProvider is in main.tsx
- * Note: CoordinationProvider removed (not used)
+ * Application Router — Two worlds:
+ *
+ * MUNDO 1 — FischerOS (marketing/product):
+ *   /            Landing
+ *   /pricing     Pricing
+ *   /demo        Demo
+ *   /auth/*      Auth portals
+ *
+ * MUNDO 2 — Hotel (tenant, white-label):
+ *   /:slug/guest/*   Guest experience
+ *   /:slug/staff/*   Staff dashboards
+ *   /:slug/admin/*   Admin console
  */
 export function AppRouter() {
   return (
@@ -24,11 +31,16 @@ export function AppRouter() {
         <AuthProvider>
           <AppShell>
             <Routes>
-              <Route path="/*" element={<PublicRoutes />} />
-              <Route path={`${ROUTE_PATHS.guest.base}/*`} element={<GuestRoutes />} />
-              <Route path={`${ROUTE_PATHS.staff.base}/*`} element={<StaffRoutes />} />
-              <Route path={`${ROUTE_PATHS.admin.base}/*`} element={<AdminRoutes />} />
-              <Route path="*" element={<Navigate to={ROUTE_PATHS.landing} replace />} />
+              {/* MUNDO 1 — Marketing / FischerOS */}
+              <Route path="/*" element={<MarketingRoutes />} />
+
+              {/* MUNDO 2 — Tenant (hotel) */}
+              <Route path="/:slug" element={<TenantRoutes />}>
+                <Route path="guest/*" element={<GuestRoutes />} />
+                <Route path="staff/*" element={<StaffRoutes />} />
+                <Route path="admin/*" element={<AdminRoutes />} />
+                <Route index element={<Navigate to="guest/dashboard" replace />} />
+              </Route>
             </Routes>
           </AppShell>
         </AuthProvider>
