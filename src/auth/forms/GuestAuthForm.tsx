@@ -67,13 +67,13 @@ export default function GuestAuthForm() {
       </div>
 
       <div className="relative z-10 w-full max-w-md">
-        {/* Back Button */}
+        {/* Back Button — goes back in browser history (guest arrived via QR) */}
         <button
-          onClick={() => navigate('/')}
+          onClick={() => navigate(-1)}
           className="mb-4 flex items-center space-x-2 text-foreground hover:text-primary transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span className="text-sm font-medium">Back to Home</span>
+          <span className="text-sm font-medium">Volver</span>
         </button>
 
         {/* Main Form Container */}
@@ -200,7 +200,7 @@ export default function GuestAuthForm() {
             <div className="flex space-x-3 pt-3">
               <button
                 type="button"
-                onClick={() => navigate('/')}
+                onClick={() => navigate(-1)}
                 className="flex-1 bg-white border-2 border-surface-dark text-foreground py-2.5 rounded-xl font-semibold text-sm hover:shadow-md transition-all duration-300"
               >
                 Cancelar

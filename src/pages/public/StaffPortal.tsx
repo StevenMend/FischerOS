@@ -42,12 +42,12 @@ export default function StaffPortal() {
               </div>
             </div>
             
-            {/* Guest Portal Link */}
-            <a 
-              href="/" 
+            {/* Guest Login Link */}
+            <a
+              href="/auth/guest"
               className="text-xs sm:text-sm text-foreground/70 hover:text-primary transition-colors font-medium px-3 py-2 rounded-xl hover:bg-white/50"
             >
-              Guest Portal
+              Guest Login
             </a>
           </div>
         </div>
