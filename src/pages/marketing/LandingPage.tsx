@@ -88,7 +88,7 @@ export default function LandingPage() {
               className="inline-flex items-center space-x-2 text-white font-semibold px-8 py-4 rounded-2xl text-base transition-all hover:opacity-90 shadow-lg"
               style={{ backgroundColor: navy }}
             >
-              <span>Get Started</span>
+              <span>Request a Demo</span>
               <ArrowRight className="w-5 h-5" />
             </button>
             <button
@@ -296,7 +296,7 @@ export default function LandingPage() {
                 className="w-full py-3 rounded-2xl font-semibold text-sm border border-gray-200 hover:bg-gray-50 transition-colors"
                 style={{ color: navy }}
               >
-                Get Started
+                Request a Demo
               </button>
             </div>
 
@@ -337,7 +337,7 @@ export default function LandingPage() {
                 className="w-full py-3 rounded-2xl font-semibold text-sm text-white transition-all hover:opacity-90"
                 style={{ backgroundColor: navy }}
               >
-                Get Started
+                Request a Demo
               </button>
             </div>
 

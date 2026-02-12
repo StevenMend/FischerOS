@@ -84,7 +84,7 @@ export default function PricingPage() {
                 className={`w-full py-3 rounded-2xl font-semibold text-sm transition-all ${tier.popular ? 'text-white hover:opacity-90' : 'border border-gray-200 hover:bg-gray-50'}`}
                 style={tier.popular ? { backgroundColor: navy } : { color: navy }}
               >
-                {tier.name === 'Enterprise' ? 'Contact Sales' : 'Get Started'}
+                {tier.name === 'Enterprise' ? 'Contact Sales' : 'Request a Demo'}
               </button>
             </div>
           ))}

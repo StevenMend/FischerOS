@@ -52,13 +52,13 @@ export default function DemoPage() {
             We&apos;ll walk you through the platform and answer all your questions.
           </p>
 
-          {/* Placeholder form area */}
+          {/* Placeholder — scheduling form TBD */}
           <div className="rounded-2xl border-2 border-dashed border-gray-200 p-8 mb-8" style={{ backgroundColor: bgWarm }}>
-            <p className="text-sm text-gray-400 font-medium">
-              Scheduling widget coming soon.
+            <p className="text-sm text-gray-500 font-medium">
+              Demo scheduling coming soon.
             </p>
             <p className="text-xs text-gray-400 mt-2">
-              In the meantime, reach out at <span className="font-semibold" style={{ color: navy }}>hello@fischeros.com</span>
+              We&apos;ll add a booking form here shortly.
             </p>
           </div>
 
