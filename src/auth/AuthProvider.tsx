@@ -1,11 +1,9 @@
-// src/auth/AuthProvider.tsx - FIXED: Department normalization
+// src/auth/AuthProvider.tsx — Auth context (session, login, logout, permissions)
 import React, { createContext, useContext, useEffect, ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../lib/stores/useAuthStore';
 import { UserSession, AuthSession, UserRole } from '../types';
 import { SITE_CONFIG } from '../config/site';
-import { getDefaultRouteForRole, getStaffRouteForDepartment } from '../config/routes';
-import { supabase } from '../lib/api/supabase';
+import { usePostLoginRouter } from '../core/auth/usePostLoginRouter';
 import { logger } from '../core/utils/logger';
 
 interface AuthContextType {
@@ -31,8 +29,8 @@ interface AuthProviderProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const navigate = useNavigate();
-  
+  const { routeGuest, routeAdmin, routeStaff } = usePostLoginRouter();
+
   const {
     session,
     isAuthenticated,
@@ -49,27 +47,25 @@ export function AuthProvider({ children }: AuthProviderProps) {
     refreshToken
   } = useAuthStore();
 
+  // Auto-refresh token before expiry
   useEffect(() => {
     if (!session) return;
     const tokenExpiresAt = new Date(session.expiresAt).getTime();
-    const now = new Date().getTime();
-    const timeUntilExpiry = tokenExpiresAt - now;
-    const refreshTime = Math.max(0, timeUntilExpiry - 5 * 60 * 1000);
-    
+    const refreshTime = Math.max(0, tokenExpiresAt - Date.now() - 5 * 60 * 1000);
+
     const timeout = setTimeout(() => {
-      refreshToken().catch(() => {
-        logout();
-      });
+      refreshToken().catch(() => { logout(); });
     }, refreshTime);
     return () => clearTimeout(timeout);
   }, [session, refreshToken]);
 
+  // Session expiry warning
   useEffect(() => {
     if (!session) return;
     const role = session.user.role;
     const sessionTimeout = SITE_CONFIG.sessionTimeouts[role];
     const warningTime = sessionTimeout - 10 * 60 * 1000;
-    
+
     const timeout = setTimeout(() => {
       logger.warn('Auth', `Session expires in 10 minutes for ${role}`);
     }, warningTime);
@@ -78,75 +74,27 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const loginAsGuest = async (roomNumber?: string, confirmationCode?: string, property: string = SITE_CONFIG.properties[0]) => {
     await authenticateGuest(roomNumber, confirmationCode, property);
-    navigate(getDefaultRouteForRole('guest'));
+    routeGuest();
   };
 
   const loginAsStaff = async (staffId: string, department: string, password: string, property: string = SITE_CONFIG.properties[0]) => {
     if (!SITE_CONFIG.departments.includes(department)) {
       throw new Error(`Invalid department: ${department}`);
     }
-    
-    logger.info('Auth', 'Authenticating staff', { staffId, department });
+
     await authenticateStaff(staffId, department, password, property);
-    
-    // Get current session
-    const { data: { session: currentSession }, error: sessionError } = await supabase.auth.getSession();
-    
-    if (sessionError || !currentSession?.user) {
-      logger.error('Auth', 'No session after authentication', sessionError);
-      throw new Error('Failed to establish session');
-    }
 
-    logger.info('Auth', 'Session established, fetching staff data for user', currentSession.user.id);
-
-    // Fetch staff details including restaurant info
-    const { data: staffData, error: staffError } = await supabase
-      .from('staff')
-      .select(`
-        id,
-        name,
-        email,
-        department,
-        department_id,
-        restaurant_id,
-        restaurants (
-          id,
-          slug,
-          name
-        )
-      `)
-      .eq('id', currentSession.user.id)
-      .single();
-
-    if (staffError) {
-      logger.error('Auth', 'Error fetching staff data', staffError);
-      throw new Error('Failed to load staff information');
-    }
-
-    if (!staffData) {
-      logger.error('Auth', 'No staff data found for user', currentSession.user.id);
-      throw new Error('Staff record not found');
-    }
-
-    logger.info('Auth', 'Staff data loaded', {
-      name: staffData.name,
-      department: staffData.department,
-      restaurant_id: staffData.restaurant_id,
-      restaurant_slug: staffData.restaurants?.slug
+    // Staff profile (department + restaurantSlug) is now in the session
+    const user = useAuthStore.getState().session?.user;
+    routeStaff({
+      department: user?.department || department,
+      restaurantSlug: user?.restaurantSlug,
     });
-
-    // Route to department-specific dashboard (logic centralized in config/routes.ts)
-    const route = getStaffRouteForDepartment(
-      staffData.department,
-      staffData.restaurants?.slug
-    );
-    logger.info('Auth', `Redirecting staff to ${route}`);
-    navigate(route);
   };
 
   const loginAsAdmin = async (email: string, password: string, property: string = SITE_CONFIG.properties[0]) => {
     await authenticateAdmin(email, password, property);
-    navigate(getDefaultRouteForRole('admin'));
+    routeAdmin();
   };
 
   const logout = async () => {

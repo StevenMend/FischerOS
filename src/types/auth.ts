@@ -37,6 +37,7 @@ export interface UserSession {
   name: string;
   role: UserRole;
   department?: string;
+  restaurantSlug?: string;
   room?: string;
   property: string;
   avatar?: string;
