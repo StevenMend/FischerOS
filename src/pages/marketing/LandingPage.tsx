@@ -8,12 +8,10 @@ import {
   Globe,
   Clock,
   Users,
-  ShieldCheck,
   Layers,
   ArrowRight,
   Check,
   MessageSquare,
-  Settings,
   Smartphone,
   ChevronRight,
 } from 'lucide-react';
@@ -49,21 +47,13 @@ export default function LandingPage() {
             <a href="#pricing" className="hover:text-gray-900 transition-colors">Pricing</a>
           </div>
 
-          <div className="flex items-center space-x-3">
-            <button
-              onClick={() => navigate('/portal')}
-              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors px-3 py-2"
-            >
-              Sign in
-            </button>
-            <button
-              onClick={() => navigate('/demo')}
-              className="text-sm font-semibold text-white px-5 py-2.5 rounded-2xl transition-all hover:opacity-90"
-              style={{ backgroundColor: navy }}
-            >
-              Book a Demo
-            </button>
-          </div>
+          <button
+            onClick={() => navigate('/demo')}
+            className="text-sm font-semibold text-white px-5 py-2.5 rounded-2xl transition-all hover:opacity-90"
+            style={{ backgroundColor: navy }}
+          >
+            Request a Demo
+          </button>
         </div>
       </nav>
 
@@ -438,8 +428,7 @@ export default function LandingPage() {
           <p className="text-xs text-gray-400">&copy; {new Date().getFullYear()} FischerOS. All rights reserved.</p>
           <div className="flex items-center space-x-6 text-sm text-gray-500">
             <a href="/pricing" className="hover:text-gray-700 transition-colors">Pricing</a>
-            <a href="/demo" className="hover:text-gray-700 transition-colors">Demo</a>
-            <a href="/portal" className="hover:text-gray-700 transition-colors">Sign in</a>
+            <a href="/demo" className="hover:text-gray-700 transition-colors">Request Demo</a>
           </div>
         </div>
       </footer>

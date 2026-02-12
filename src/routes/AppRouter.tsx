@@ -21,20 +21,22 @@ import AdminAuthForm from '../auth/forms/AdminAuthForm';
 /**
  * Application Router — Two worlds:
  *
- * MUNDO 1 — FischerOS (marketing/product):
- *   /            Landing
- *   /portal      Staff/Admin portal selector
- *   /pricing     Pricing
- *   /demo        Demo
- *   /auth/*      Auth portals
+ * MUNDO 1 — FischerOS marketing (sells the software):
+ *   /            FischerOS product landing (like visiting stripe.com)
+ *   /pricing     Pricing page
+ *   /demo        Demo request page
  *
- * MUNDO 2 — Hotel (tenant, white-label):
- *   /:slug/guest/*   Guest experience
+ * APP — Public entry points (used by hotel staff & guests):
+ *   /portal      Staff/Admin portal selector
+ *   /auth/*      Auth forms (guest, staff, admin)
+ *
+ * MUNDO 2 — Hotel product (tenant, white-label):
+ *   /:slug/guest/*   Guest experience (arrived via QR)
  *   /:slug/staff/*   Staff dashboards
  *   /:slug/admin/*   Admin console
  *
- * Marketing routes are declared as explicit paths so React Router
- * ranks them above the /:slug dynamic param.
+ * Explicit paths are declared first so React Router ranks them
+ * above the /:slug dynamic param.
  */
 export function AppRouter() {
   return (
@@ -43,11 +45,13 @@ export function AppRouter() {
         <AuthProvider>
           <AppShell>
             <Routes>
-              {/* MUNDO 1 — Marketing / FischerOS (explicit paths beat /:slug) */}
+              {/* MUNDO 1 — FischerOS marketing (sells the software) */}
               <Route path="/" element={<LandingPage />} />
-              <Route path="/portal" element={<StaffPortal />} />
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/demo" element={<DemoPage />} />
+
+              {/* APP — Public entry points (staff portal + auth) */}
+              <Route path="/portal" element={<StaffPortal />} />
               <Route path="/auth/guest" element={<GuestAuthForm />} />
               <Route path="/auth/staff" element={<StaffAuthForm />} />
               <Route path="/auth/admin" element={<AdminAuthForm />} />
