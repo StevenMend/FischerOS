@@ -3,6 +3,7 @@ import React from 'react';
 import { Bell } from 'lucide-react';
 import { DepartmentLayout } from '../../../components/staff/DepartmentLayout';
 import { useAuth } from '../../../auth/AuthProvider';
+import { logger } from '../../../core/utils/logger';
 import { useStaffRequests } from '../../../hooks/staff/useStaffRequests';
 import RequestCard from '../../../components/staff/RequestCard';
 import ProgressCard from '../../../components/staff/ProgressCard';
@@ -63,7 +64,7 @@ export default function ConciergeDashboard() {
       <CompletedCard
         key={request.id}
         items={[request]}
-        onCollectSatisfaction={(item) => console.log('Collect satisfaction:', item)}
+        onCollectSatisfaction={(item) => logger.debug('Concierge', 'Collect satisfaction', item)}
       />
     );
   };
@@ -73,7 +74,7 @@ export default function ConciergeDashboard() {
       departmentName="Concierge"
       departmentIcon={<Bell className="w-6 h-6 text-white" />}
       departmentColor="indigo"
-      staffName={user?.name || 'Ana Gutierrez'}
+      staffName={user?.name || 'Staff'}
       
       metrics={{
         pending: pendingRequests.length,

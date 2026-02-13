@@ -1,9 +1,11 @@
 // src/features/restaurants/staff/components/RestaurantRedirect.tsx
 import React, { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { supabase } from '../../../../lib/api/supabase';
 import { useAuthStore } from '../../../../lib/stores/useAuthStore';
 import { Utensils, AlertTriangle } from 'lucide-react';
+import { logger } from '../../../../core/utils/logger';
+import { useTenantNavigation } from '../../../../core/tenant/useTenantNavigation';
 
 interface StaffRestaurantInfo {
   restaurant_id: string | null;
@@ -22,6 +24,7 @@ interface StaffRestaurantInfo {
  */
 export default function RestaurantRedirect() {
   const session = useAuthStore((state) => state.session);
+  const { staffPath } = useTenantNavigation();
   const [loading, setLoading] = useState(true);
   const [staffInfo, setStaffInfo] = useState<StaffRestaurantInfo | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -35,7 +38,7 @@ export default function RestaurantRedirect() {
       }
 
       try {
-        console.log('🔍 Fetching restaurant assignment for staff:', session.user.id);
+        logger.info('RestaurantRedirect', 'Fetching restaurant assignment', session.user.id);
 
         const { data: staffData, error: staffError } = await supabase
           .from('staff')
@@ -64,7 +67,7 @@ export default function RestaurantRedirect() {
           restaurant_name: staffData.restaurants.name,
         });
 
-        console.log('✅ Staff restaurant found:', {
+        logger.info('RestaurantRedirect', 'Staff restaurant found', {
           id: staffData.restaurant_id,
           slug: staffData.restaurants.slug,
           name: staffData.restaurants.name,
@@ -72,7 +75,7 @@ export default function RestaurantRedirect() {
 
         setLoading(false);
       } catch (err: any) {
-        console.error('❌ Error fetching staff restaurant:', err);
+        logger.error('RestaurantRedirect', 'Error fetching staff restaurant', err);
         setError(err.message || 'Failed to load restaurant assignment');
         setLoading(false);
       }
@@ -107,7 +110,7 @@ export default function RestaurantRedirect() {
             You are not assigned to any restaurant. Please contact your manager to get assigned to a restaurant.
           </p>
           <button
-            onClick={() => window.location.href = '/staff/console'}
+            onClick={() => window.location.href = staffPath('console')}
             className="w-full bg-amber-600 hover:bg-amber-700 text-white py-2.5 rounded-xl font-semibold transition-all"
           >
             Go to Staff Console
@@ -140,10 +143,10 @@ export default function RestaurantRedirect() {
 
   // Success - Redirect to Restaurant Dashboard
   if (staffInfo?.restaurant_slug) {
-    console.log(`🎯 Redirecting to: /staff/restaurant/${staffInfo.restaurant_slug}`);
-    return <Navigate to={`/staff/restaurant/${staffInfo.restaurant_slug}`} replace />;
+    logger.info('RestaurantRedirect', `Redirecting to ${staffPath(`restaurant/${staffInfo.restaurant_slug}`)}`);
+    return <Navigate to={staffPath(`restaurant/${staffInfo.restaurant_slug}`)} replace />;
   }
 
   // Fallback
-  return <Navigate to="/staff/console" replace />;
+  return <Navigate to={staffPath('console')} replace />;
 }

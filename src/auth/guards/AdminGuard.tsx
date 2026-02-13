@@ -2,6 +2,7 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../AuthProvider';
 import { ROUTE_PATHS } from '../../config/routes';
+import { logger } from '../../core/utils/logger';
 
 const DEV_BYPASS = import.meta.env.VITE_DEV_BYPASS === 'true';
 
@@ -10,7 +11,7 @@ export default function AdminGuard() {
 
   // Dev bypass - skip ALL auth checks
   if (DEV_BYPASS) {
-    console.log('🔓 [DEV] AdminGuard BYPASSED');
+    logger.info('Auth', 'AdminGuard BYPASSED (dev mode)');
     return <Outlet />;
   }
 

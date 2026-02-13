@@ -246,12 +246,13 @@ import { ServiceRequestsPort } from './port';
 import { ServiceRequest, CreateRequestDTO, UpdateRequestDTO } from './types';
 import { supabase } from '../../../lib/api/supabase';
 import { AuthService, GuestService, DepartmentService, PropertyService } from '../../../lib/services';
+import { logger } from '../../../core/utils/logger';
 
 export class RemoteServiceRequestsAdapter implements ServiceRequestsPort {
   // ========== QUERIES ==========
-  
+
   async getAll(): Promise<ServiceRequest[]> {
-    console.log('🌐 [GUEST] Fetching ALL service_requests (use getByGuest instead)');
+    logger.debug('ServiceRequests', '[GUEST] Fetching ALL service_requests (use getByGuest instead)');
     
     const userId = await AuthService.getCurrentUserId();
 
@@ -262,11 +263,11 @@ export class RemoteServiceRequestsAdapter implements ServiceRequestsPort {
       .order('created_at', { ascending: false });
 
     if (error) {
-      console.error('❌ Error fetching requests:', error);
+      logger.error('ServiceRequests', 'Error fetching requests', { error });
       throw error;
     }
-    
-    console.log('✅ Fetched requests:', data?.length);
+
+    logger.info('ServiceRequests', 'Fetched requests', { count: data?.length });
     return data as ServiceRequest[];
   }
 
@@ -285,7 +286,7 @@ export class RemoteServiceRequestsAdapter implements ServiceRequestsPort {
   }
 
   async getByGuest(guestId: string): Promise<ServiceRequest[]> {
-    console.log('🌐 [GUEST] Fetching requests for guest:', guestId);
+    logger.debug('ServiceRequests', '[GUEST] Fetching requests for guest', { guestId });
     
     // Verify current user matches requested guest
     const currentUserId = await AuthService.getCurrentUserId();
@@ -303,11 +304,11 @@ export class RemoteServiceRequestsAdapter implements ServiceRequestsPort {
       .order('created_at', { ascending: false });
 
     if (error) {
-      console.error('❌ Error fetching guest requests:', error);
+      logger.error('ServiceRequests', 'Error fetching guest requests', { error });
       throw error;
     }
-    
-    console.log('✅ Fetched guest requests:', data?.length);
+
+    logger.info('ServiceRequests', 'Fetched guest requests', { count: data?.length });
     return data as ServiceRequest[];
   }
 
@@ -342,11 +343,11 @@ export class RemoteServiceRequestsAdapter implements ServiceRequestsPort {
       .single();
 
     if (error) {
-      console.error('❌ Error creating request:', error);
+      logger.error('ServiceRequests', 'Error creating request', { error });
       throw error;
     }
-    
-    console.log('✅ Request created:', data);
+
+    logger.info('ServiceRequests', 'Request created', { data });
     return data as ServiceRequest;
   }
 
@@ -376,7 +377,7 @@ export class RemoteServiceRequestsAdapter implements ServiceRequestsPort {
   }
 
   async rate(id: string, rating: number, feedback?: string): Promise<ServiceRequest> {
-    console.log('⭐ [GUEST] Rating request:', { id, rating, feedback });
+    logger.info('ServiceRequests', '[GUEST] Rating request', { id, rating, feedback });
     
     const userId = await AuthService.getCurrentUserId();
 
@@ -398,7 +399,7 @@ export class RemoteServiceRequestsAdapter implements ServiceRequestsPort {
       .single();
 
     if (error) {
-      console.error('❌ Error rating request:', error);
+      logger.error('ServiceRequests', 'Error rating request', { error });
       throw error;
     }
 
@@ -406,7 +407,7 @@ export class RemoteServiceRequestsAdapter implements ServiceRequestsPort {
       throw new Error('Request not found or not completed');
     }
 
-    console.log('✅ Rating submitted successfully');
+    logger.info('ServiceRequests', 'Rating submitted successfully');
     return data as ServiceRequest;
   }
 

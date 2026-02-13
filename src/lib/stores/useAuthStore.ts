@@ -3,6 +3,7 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { AuthSession, UserSession, UserRole } from '../../types';
 import { supabase, signOut } from '../api/supabase';
+import { logger } from '../../core/utils/logger';
 
 interface AuthState {
   session: AuthSession | null;
@@ -31,13 +32,13 @@ export const useAuthStore = create<AuthState>()(
       error: null,
 
       // Guest Authentication - FIXED: usar signInWithPassword
-      authenticateGuest: async (roomNumber = '', confirmationCode = '', property = 'Tamarindo Diriá') => {
+      authenticateGuest: async (roomNumber = '', confirmationCode = '', property = 'Default Property') => {
         set({ isLoading: true, error: null });
         
         try {
           // Password-based authentication for guests
           const { data, error } = await supabase.auth.signInWithPassword({
-            email: `guest-${roomNumber}@diria.local`,
+            email: `guest-${roomNumber}@hotel.local`,
             password: confirmationCode
           });
 
@@ -74,75 +75,74 @@ export const useAuthStore = create<AuthState>()(
       },
 
 
-      authenticateStaff: async (staffId, department, password, property = 'Tamarindo Diriá') => {
-  set({ isLoading: true, error: null });
-  
-  try {
-    console.log('🔐 [1] Attempting staff login:', { 
-      staffId, 
-      department,
-      passwordLength: password.length 
-    });
-    
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: staffId,
-      password: password,
-    });
+      authenticateStaff: async (staffId, department, password, property = 'Default Property') => {
+        set({ isLoading: true, error: null });
 
-    console.log('🔐 [2] Supabase response:', { 
-      hasData: !!data,
-      hasUser: !!data?.user,
-      hasSession: !!data?.session,
-      error: error ? {
-        message: error.message,
-        status: error.status,
-        name: error.name,
-        code: (error as any).code
-      } : null
-    });
+        try {
+          logger.debug('Auth', 'Attempting staff login', { staffId, department });
 
-    if (error) {
-      console.error('❌ [3] Full error object:', JSON.stringify(error, null, 2));
-      throw error;
-    }
+          const { data, error } = await supabase.auth.signInWithPassword({
+            email: staffId,
+            password: password,
+          });
 
-    console.log('✅ [4] Login successful, creating session...');
+          if (error) {
+            logger.error('Auth', 'Staff login failed', { message: error.message, status: error.status });
+            throw error;
+          }
 
-    const session: AuthSession = {
-      user: {
-        id: data.user?.id || '',
-        name: data.user?.user_metadata?.name || staffId,
-        role: 'staff',
-        department: department,
-        property: property,
+          logger.debug('Auth', 'Staff login successful, fetching staff profile');
+
+          // Fetch staff record (department, restaurant) in the login flow
+          const { data: staffData, error: staffError } = await supabase
+            .from('staff')
+            .select(`
+              id, name, department, department_id, restaurant_id,
+              restaurants ( id, slug, name )
+            `)
+            .eq('id', data.user!.id)
+            .single();
+
+          if (staffError) {
+            logger.error('Auth', 'Error fetching staff data', staffError);
+            throw new Error('Failed to load staff information');
+          }
+
+          const session: AuthSession = {
+            user: {
+              id: data.user?.id || '',
+              name: staffData?.name || data.user?.user_metadata?.name || staffId,
+              role: 'staff',
+              department: staffData?.department || department,
+              restaurantSlug: (staffData?.restaurants as { slug?: string } | null)?.slug,
+              property: property,
+            },
+            token: data.session?.access_token || '',
+            expiresAt: data.session?.expires_at
+              ? new Date(data.session.expires_at * 1000).toISOString()
+              : new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString(),
+            permissions: [
+              { resource: 'requests', actions: ['read', 'write'], scope: 'department' },
+              { resource: 'bookings', actions: ['read', 'write'], scope: 'department' },
+              { resource: 'guests', actions: ['read'], scope: 'department' }
+            ]
+          };
+
+          set({ session, isAuthenticated: true, isLoading: false });
+        } catch (error) {
+          logger.error('Auth', 'Staff auth failed', error);
+          set({
+            error: error instanceof Error ? error.message : 'Authentication failed',
+            isLoading: false
+          });
+          throw error;
+        }
       },
-      token: data.session?.access_token || '',
-      expiresAt: data.session?.expires_at
-        ? new Date(data.session.expires_at * 1000).toISOString()
-        : new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString(),
-      permissions: [
-        { resource: 'requests', actions: ['read', 'write'], scope: 'department' },
-        { resource: 'bookings', actions: ['read', 'write'], scope: 'department' },
-        { resource: 'guests', actions: ['read'], scope: 'department' }
-      ]
-    };
-    
-    set({ session, isAuthenticated: true, isLoading: false });
-    console.log('✅ [5] Session created successfully');
-  } catch (error) {
-    console.error('❌ [6] Catch block error:', error);
-    set({ 
-      error: error instanceof Error ? error.message : 'Authentication failed',
-      isLoading: false 
-    });
-    throw error;
-  }
-},
 
 
 
       // Admin Authentication
-      authenticateAdmin: async (email, password, property = 'Tamarindo Diriá') => {
+      authenticateAdmin: async (email, password, property = 'Default Property') => {
         set({ isLoading: true, error: null });
         
         try {
@@ -184,7 +184,7 @@ export const useAuthStore = create<AuthState>()(
         try {
           await signOut();
         } catch (error) {
-          console.error('Logout error:', error);
+          logger.error('Auth', 'Logout failed', error);
         }
         
         set({ 

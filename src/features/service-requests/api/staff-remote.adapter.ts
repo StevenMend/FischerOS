@@ -223,12 +223,13 @@ import { ServiceRequestsPort } from './port';
 import { ServiceRequest, CreateRequestDTO, UpdateRequestDTO } from './types';
 import { supabase } from '../../../lib/api/supabase';
 import { AuthService, DepartmentService, PropertyService } from '../../../lib/services';
+import { logger } from '../../../core/utils/logger';
 
 export class StaffRemoteServiceRequestsAdapter implements ServiceRequestsPort {
   // ========== QUERIES ==========
-  
+
   async getAll(): Promise<ServiceRequest[]> {
-    console.log('🌐 [STAFF] Fetching ALL service_requests (use getByDepartment instead)');
+    logger.debug('ServiceRequests', '[STAFF] Fetching ALL service_requests (use getByDepartment instead)');
     
     await AuthService.getCurrentUserId(); // Verify auth
 
@@ -238,11 +239,11 @@ export class StaffRemoteServiceRequestsAdapter implements ServiceRequestsPort {
       .order('created_at', { ascending: false });
 
     if (error) {
-      console.error('❌ Error fetching requests:', error);
+      logger.error('ServiceRequests', 'Error fetching requests', { error });
       throw error;
     }
-    
-    console.log('✅ [STAFF] Fetched ALL requests:', data?.length);
+
+    logger.info('ServiceRequests', '[STAFF] Fetched ALL requests', { count: data?.length });
     return data as ServiceRequest[];
   }
 
@@ -261,7 +262,7 @@ export class StaffRemoteServiceRequestsAdapter implements ServiceRequestsPort {
 
   async getByGuest(guestId: string): Promise<ServiceRequest[]> {
     // Staff can see guest requests
-    console.log('🌐 [STAFF] Fetching requests for guest:', guestId);
+    logger.debug('ServiceRequests', '[STAFF] Fetching requests for guest', { guestId });
     
     await AuthService.getCurrentUserId(); // Verify auth
 
@@ -275,16 +276,16 @@ export class StaffRemoteServiceRequestsAdapter implements ServiceRequestsPort {
       .order('created_at', { ascending: false });
 
     if (error) {
-      console.error('❌ Error fetching guest requests:', error);
+      logger.error('ServiceRequests', 'Error fetching guest requests', { error });
       throw error;
     }
-    
-    console.log('✅ Fetched guest requests:', data?.length);
+
+    logger.info('ServiceRequests', 'Fetched guest requests', { count: data?.length });
     return data as ServiceRequest[];
   }
 
   async getByDepartment(departmentId: string): Promise<ServiceRequest[]> {
-    console.log('🌐 [STAFF] Fetching requests for department:', departmentId);
+    logger.debug('ServiceRequests', '[STAFF] Fetching requests for department', { departmentId });
     
     await AuthService.getCurrentUserId(); // Verify auth
 
@@ -300,11 +301,11 @@ export class StaffRemoteServiceRequestsAdapter implements ServiceRequestsPort {
       .order('created_at', { ascending: false });
 
     if (error) {
-      console.error('❌ Error fetching department requests:', error);
+      logger.error('ServiceRequests', 'Error fetching department requests', { error });
       throw error;
     }
-    
-    console.log('✅ Fetched department requests:', data?.length);
+
+    logger.info('ServiceRequests', 'Fetched department requests', { count: data?.length });
     return data as ServiceRequest[];
   }
 
@@ -333,11 +334,11 @@ export class StaffRemoteServiceRequestsAdapter implements ServiceRequestsPort {
       .single();
 
     if (error) {
-      console.error('❌ Error creating request:', error);
+      logger.error('ServiceRequests', 'Error creating request', { error });
       throw error;
     }
-    
-    console.log('✅ Request created:', data);
+
+    logger.info('ServiceRequests', 'Request created', { data });
     return data as ServiceRequest;
   }
 
@@ -356,7 +357,7 @@ export class StaffRemoteServiceRequestsAdapter implements ServiceRequestsPort {
   }
 
   async updateStatus(id: string, status: string): Promise<ServiceRequest> {
-    console.log('📝 [STAFF] Updating request status:', { id, status });
+    logger.info('ServiceRequests', '[STAFF] Updating request status', { id, status });
     
     await AuthService.getCurrentUserId(); // Verify auth
 
@@ -379,16 +380,16 @@ export class StaffRemoteServiceRequestsAdapter implements ServiceRequestsPort {
       .single();
 
     if (error) {
-      console.error('❌ Error updating status:', error);
+      logger.error('ServiceRequests', 'Error updating status', { error });
       throw error;
     }
 
-    console.log('✅ Status updated successfully');
+    logger.info('ServiceRequests', 'Status updated successfully');
     return data as ServiceRequest;
   }
 
   async assignToStaff(id: string, staffId: string): Promise<ServiceRequest> {
-    console.log('👤 [STAFF] Assigning request to staff:', { id, staffId });
+    logger.info('ServiceRequests', '[STAFF] Assigning request to staff', { id, staffId });
     
     await AuthService.getCurrentUserId(); // Verify auth
 
@@ -418,7 +419,7 @@ export class StaffRemoteServiceRequestsAdapter implements ServiceRequestsPort {
       .single();
 
     if (error) {
-      console.error('❌ Error assigning request:', error);
+      logger.error('ServiceRequests', 'Error assigning request', { error });
       throw error;
     }
 
@@ -426,7 +427,7 @@ export class StaffRemoteServiceRequestsAdapter implements ServiceRequestsPort {
       throw new Error('Request already assigned to another staff member');
     }
 
-    console.log('✅ Request assigned successfully');
+    logger.info('ServiceRequests', 'Request assigned successfully');
     return data as ServiceRequest;
   }
 

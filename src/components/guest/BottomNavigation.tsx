@@ -23,7 +23,7 @@ export default function BottomNavigation({ currentPage, onNavigate }: BottomNavi
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-diria-cream-dark shadow-lg z-50">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-surface-dark shadow-lg z-50">
       <div className="flex items-center justify-around py-4 px-6 max-w-md mx-auto">
         {navigationItems.map((item, index) => (
           <button 
@@ -31,8 +31,8 @@ export default function BottomNavigation({ currentPage, onNavigate }: BottomNavi
             onClick={() => onNavigate(item.page)}
             className={`flex flex-col items-center space-y-2 p-3 rounded-2xl transition-all duration-300 ${
               item.active 
-                ? 'text-diria-teal' 
-                : 'text-diria-brown/60 hover:text-diria-teal'
+                ? 'text-primary' 
+                : 'text-foreground/60 hover:text-primary'
             }`}
           >
             <item.icon className={`w-6 h-6 transition-transform duration-300 ${item.active ? 'scale-110' : ''}`} />

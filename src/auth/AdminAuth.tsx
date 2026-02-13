@@ -67,7 +67,7 @@ export default function AdminAuth() {
         {/* Back Button */}
         <button
           onClick={() => navigate(ROUTE_PATHS.landing)}
-          className="mb-6 flex items-center space-x-2 text-[#236192] hover:text-[#1a4a73] transition-colors"
+          className="mb-6 flex items-center space-x-2 text-primary hover:text-primary-dark transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span className="text-sm font-medium">Back to Landing</span>
@@ -75,7 +75,7 @@ export default function AdminAuth() {
 
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100">
           {/* Header */}
-          <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-[#fca311] to-[#e8940f] text-white">
+          <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-accent to-accent-dark text-white">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
                 <BarChart3 className="w-5 h-5" />
@@ -126,7 +126,7 @@ export default function AdminAuth() {
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
-                placeholder="admin@tamarindodiria.com"
+                placeholder={SITE_CONFIG.contact.email}
                 className={THEME_VARIANTS.common.input.base}
                 autoComplete="email"
               />
@@ -222,7 +222,7 @@ export default function AdminAuth() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="flex-1 bg-gradient-to-r from-[#fca311] to-[#e8940f] text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 bg-gradient-to-r from-accent to-accent-dark text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <div className="flex items-center justify-center space-x-2">

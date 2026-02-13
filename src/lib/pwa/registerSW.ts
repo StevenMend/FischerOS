@@ -1,5 +1,6 @@
 // src/lib/pwa/registerSW.ts
 import { ToastService } from '../services/toast.service';
+import { logger } from '../../core/utils/logger';
 
 /**
  * Register Service Worker for PWA functionality
@@ -7,7 +8,7 @@ import { ToastService } from '../services/toast.service';
  */
 export const registerServiceWorker = () => {
   if (!('serviceWorker' in navigator)) {
-    console.warn('[PWA] Service Workers not supported');
+    logger.warn('PWA', 'Service Workers not supported');
     return;
   }
 
@@ -15,7 +16,7 @@ export const registerServiceWorker = () => {
     navigator.serviceWorker
       .register('/sw.js')
       .then((registration) => {
-        console.log('[PWA] Service Worker registered:', registration.scope);
+        logger.info('PWA', 'Service Worker registered', { scope: registration.scope });
 
         // Check for updates every 60 seconds
         setInterval(() => {
@@ -32,7 +33,7 @@ export const registerServiceWorker = () => {
                 newWorker.state === 'installed' && 
                 navigator.serviceWorker.controller
               ) {
-                console.log('[PWA] New version available');
+                logger.info('PWA', 'New version available');
                 
                 ToastService.info(
                   'Update Available',
@@ -44,7 +45,7 @@ export const registerServiceWorker = () => {
         });
       })
       .catch((error) => {
-        console.error('[PWA] Service Worker registration failed:', error);
+        logger.error('PWA', 'Service Worker registration failed', error);
       });
 
     // Reload on controller change
@@ -76,7 +77,7 @@ let deferredPrompt: any = null;
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  console.log('[PWA] Install prompt available');
+  logger.info('PWA', 'Install prompt available');
 });
 
 /**
@@ -85,14 +86,14 @@ window.addEventListener('beforeinstallprompt', (e) => {
  */
 export const promptPWAInstall = async (): Promise<boolean> => {
   if (!deferredPrompt) {
-    console.warn('[PWA] Install prompt not available');
+    logger.warn('PWA', 'Install prompt not available');
     return false;
   }
 
   deferredPrompt.prompt();
   const { outcome } = await deferredPrompt.userChoice;
   
-  console.log(`[PWA] User ${outcome} the install prompt`);
+  logger.info('PWA', `User ${outcome} the install prompt`);
   deferredPrompt = null;
   
   return outcome === 'accepted';

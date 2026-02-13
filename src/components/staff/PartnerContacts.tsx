@@ -1,6 +1,7 @@
 // 4. src/components/staff/PartnerContacts.tsx
 import React from 'react';
 import { MessageSquare, Phone, Headphones } from 'lucide-react';
+import { SITE_CONFIG } from '../../config/site';
 
 interface Partner {
   name: string;
@@ -34,7 +35,7 @@ export default function PartnerContacts({ partners }: PartnerContactsProps) {
 
   const handlePartnerContact = (partner: Partner, method: 'whatsapp' | 'call') => {
     if (method === 'whatsapp') {
-      const message = encodeURIComponent(`Hola ${partner.name}, necesito coordinar una reserva desde Tamarindo Diriá. ¿Podrían confirmar disponibilidad?`);
+      const message = encodeURIComponent(`Hola ${partner.name}, necesito coordinar una reserva desde ${SITE_CONFIG.shortName}. ¿Podrían confirmar disponibilidad?`);
       window.open(`https://wa.me/${partner.phone.replace(/[^0-9]/g, '')}?text=${message}`, '_blank');
     } else {
       window.open(`tel:${partner.phone}`, '_self');
@@ -43,7 +44,7 @@ export default function PartnerContacts({ partners }: PartnerContactsProps) {
 
   return (
     <div>
-      <h3 className="text-lg font-bold bg-gradient-to-r from-[#236192] to-[#1a4a73] bg-clip-text text-transparent mb-4 flex items-center">
+      <h3 className="text-lg font-bold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent mb-4 flex items-center">
         <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mr-3 shadow-sm animate-float-subtle">
           <Headphones className="w-4 h-4 text-white" />
         </div>
@@ -70,7 +71,7 @@ export default function PartnerContacts({ partners }: PartnerContactsProps) {
               </button>
               <button 
                 onClick={() => handlePartnerContact(partner, 'call')}
-                className="group/btn p-2 bg-gradient-to-r from-[#236192] to-[#1a4a73] text-white rounded-lg hover:shadow-lg hover:scale-110 transition-all duration-300 shadow-sm btn-premium ripple-effect"
+                className="group/btn p-2 bg-gradient-to-r from-primary to-primary-dark text-white rounded-lg hover:shadow-lg hover:scale-110 transition-all duration-300 shadow-sm btn-premium ripple-effect"
                 title="Call"
               >
                 <Phone className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { AlertTriangle, CheckCircle, Activity, TrendingUp } from 'lucide-react';
 import { useStaffRequests } from '../../hooks/staff/useStaffRequests';
+import { logger } from '../../core/utils/logger';
 import { useStaffModal } from '../../hooks/staff/useStaffModal';
 import { StaffModals } from '../../components/staff/StaffModals';
 import { ToastService } from '../../lib/services/toast.service';
@@ -13,8 +14,8 @@ import MetricsWidget from '../../components/staff/MetricsWidget';
 type TabType = 'pending' | 'progress' | 'completed';
 
 export default function StaffConsole() {
-  console.log('🏠 StaffConsole rendering');
-  
+  logger.debug('StaffConsole', 'Rendering');
+
   const [activeTab, setActiveTab] = useState<TabType>('pending');
   
   const {
@@ -45,7 +46,7 @@ export default function StaffConsole() {
     submitSatisfactionFeedback
   } = useStaffModal();
 
-  console.log('🏠 StaffConsole state:', {
+  logger.debug('StaffConsole', 'State', {
     pending: pendingRequests.length,
     inProgress: inProgressRequests.length,
     completed: completedRequests.length,
@@ -58,11 +59,11 @@ export default function StaffConsole() {
   // Handle take request
   const handleTakeRequest = async (requestId: string) => {
     try {
-      console.log('🎯 StaffConsole: Taking request:', requestId);
+      logger.debug('StaffConsole', 'Taking request', requestId);
       await takeRequest(requestId);
-      console.log('✅ Request taken:', requestId);
+      logger.info('StaffConsole', 'Request taken', requestId);
     } catch (error) {
-      console.error('❌ Failed to take request:', error);
+      logger.error('StaffConsole', 'Failed to take request', error);
       ToastService.error('Request Error', 'Failed to take request');
     }
   };
@@ -70,17 +71,17 @@ export default function StaffConsole() {
   // Handle update status
   const handleUpdateStatus = async (requestId: string, newStatus: string) => {
     try {
-      console.log('📝 StaffConsole: Updating status:', { requestId, newStatus });
+      logger.debug('StaffConsole', 'Updating status', { requestId, newStatus });
       await updateStatus(requestId, newStatus);
-      console.log('✅ Status updated:', requestId, newStatus);
+      logger.info('StaffConsole', 'Status updated', { requestId, newStatus });
     } catch (error) {
-      console.error('❌ Failed to update status:', error);
+      logger.error('StaffConsole', 'Failed to update status', error);
       ToastService.error('Request Error', 'Failed to take request');
     }
   };
 
   if (loading) {
-    console.log('⏳ StaffConsole: Loading...');
+    logger.debug('StaffConsole', 'Loading...');
     return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
         <div className="text-center">
@@ -93,7 +94,7 @@ export default function StaffConsole() {
   }
 
   if (error) {
-    console.error('❌ StaffConsole: Error state:', error);
+    logger.error('StaffConsole', 'Error state', error);
     return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-red-50 to-orange-50">
         <div className="bg-white border-2 border-red-200 rounded-2xl p-8 max-w-md shadow-xl">
@@ -136,7 +137,7 @@ export default function StaffConsole() {
           <div className="flex gap-2">
             <button
               onClick={() => {
-                console.log('📱 Switching to pending tab');
+                logger.debug('StaffConsole', 'Switching to pending tab');
                 setActiveTab('pending');
               }}
               className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-xs transition-all ${
@@ -156,7 +157,7 @@ export default function StaffConsole() {
 
             <button
               onClick={() => {
-                console.log('📱 Switching to progress tab');
+                logger.debug('StaffConsole', 'Switching to progress tab');
                 setActiveTab('progress');
               }}
               className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-xs transition-all ${
@@ -176,7 +177,7 @@ export default function StaffConsole() {
 
             <button
               onClick={() => {
-                console.log('📱 Switching to completed tab');
+                logger.debug('StaffConsole', 'Switching to completed tab');
                 setActiveTab('completed');
               }}
               className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-xs transition-all ${
@@ -230,7 +231,7 @@ export default function StaffConsole() {
               {hasMoreCompleted && (
                 <button
                   onClick={() => {
-                    console.log('📄 Loading more completed (mobile)');
+                    logger.debug('StaffConsole', 'Loading more completed (mobile)');
                     loadMoreCompleted();
                   }}
                   className="w-full mt-4 py-3 px-4 bg-white border-2 border-green-200 rounded-xl text-green-700 font-semibold hover:bg-green-50 transition-all shadow-sm"
@@ -316,7 +317,7 @@ export default function StaffConsole() {
                 {hasMoreCompleted && (
                   <button
                     onClick={() => {
-                      console.log('📄 Loading more completed (desktop)');
+                      logger.debug('StaffConsole', 'Loading more completed (desktop)');
                       loadMoreCompleted();
                     }}
                     className="w-full py-3 px-4 bg-white border-2 border-green-200 rounded-xl text-green-700 font-semibold hover:bg-green-50 transition-all shadow-sm"

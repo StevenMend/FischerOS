@@ -18,10 +18,10 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
   const getPriceColor = (priceRange: string) => {
     switch (priceRange) {
       case '$': return 'text-green-600';
-      case '$$': return 'text-diria-teal';
-      case '$$$': return 'text-diria-gold';
-      case '$$$$': return 'text-diria-brown';
-      default: return 'text-diria-brown';
+      case '$$': return 'text-primary';
+      case '$$$': return 'text-accent';
+      case '$$$$': return 'text-foreground';
+      default: return 'text-foreground';
     }
   };
 
@@ -33,7 +33,7 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
   };
 
   return (
-    <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-diria-cream-dark overflow-hidden">
+    <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-surface-dark overflow-hidden">
       
       {/* Restaurant Image */}
       <div className="h-48 overflow-hidden relative">
@@ -46,7 +46,7 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
         {/* Featured Badge */}
         {restaurant.is_featured && (
           <div className="absolute top-4 left-4">
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-diria-gold text-white">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent text-white">
               ⭐ Featured
             </span>
           </div>
@@ -73,15 +73,15 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
         {/* Header */}
         <div className="flex items-start justify-between mb-3">
           <div className="flex-1">
-            <h3 className="font-bold text-diria-brown text-xl font-display mb-1">
+            <h3 className="font-bold text-foreground text-xl font-display mb-1">
               {restaurant.name}
             </h3>
-            <p className="text-sm text-diria-brown/70">{restaurant.cuisine}</p>
+            <p className="text-sm text-foreground/70">{restaurant.cuisine}</p>
           </div>
           <div className="flex flex-col items-end">
             <div className="flex items-center space-x-1 mb-1">
               <Star className="w-4 h-4 text-yellow-400 fill-current" />
-              <span className="text-sm font-medium text-diria-brown/70">{restaurant.rating}</span>
+              <span className="text-sm font-medium text-foreground/70">{restaurant.rating}</span>
             </div>
             <span className={`text-lg font-bold ${getPriceColor(restaurant.price_range)}`}>
               {restaurant.price_range}
@@ -90,22 +90,22 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
         </div>
 
         {/* Description */}
-        <p className="text-sm text-diria-brown/80 mb-4 line-clamp-2">
+        <p className="text-sm text-foreground/80 mb-4 line-clamp-2">
           {restaurant.short_description || restaurant.description}
         </p>
 
         {/* Details Grid */}
         <div className="space-y-2 mb-4">
-          <div className="flex items-center text-sm text-diria-brown/80">
-            <Clock className="w-4 h-4 mr-2 text-diria-teal flex-shrink-0" />
+          <div className="flex items-center text-sm text-foreground/80">
+            <Clock className="w-4 h-4 mr-2 text-primary flex-shrink-0" />
             <span>{restaurant.hours_text}</span>
           </div>
-          <div className="flex items-center text-sm text-diria-brown/80">
-            <MapPin className="w-4 h-4 mr-2 text-diria-teal flex-shrink-0" />
+          <div className="flex items-center text-sm text-foreground/80">
+            <MapPin className="w-4 h-4 mr-2 text-primary flex-shrink-0" />
             <span>{restaurant.location}</span>
           </div>
-          <div className="flex items-center text-sm text-diria-brown/80">
-            <Users className="w-4 h-4 mr-2 text-diria-teal flex-shrink-0" />
+          <div className="flex items-center text-sm text-foreground/80">
+            <Users className="w-4 h-4 mr-2 text-primary flex-shrink-0" />
             <span>{getDressCodeIcon(restaurant.dress_code)} {restaurant.dress_code}</span>
           </div>
         </div>
@@ -113,7 +113,7 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
         {/* Specialties */}
         {restaurant.specialties && restaurant.specialties.length > 0 && (
           <div className="mb-4">
-            <div className="flex items-center text-xs text-diria-brown/70 mb-2">
+            <div className="flex items-center text-xs text-foreground/70 mb-2">
               <Utensils className="w-3 h-3 mr-1" />
               <span>Specialties:</span>
             </div>
@@ -121,13 +121,13 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
               {restaurant.specialties.slice(0, 3).map((specialty, idx) => (
                 <span 
                   key={idx} 
-                  className="px-2 py-1 bg-diria-cream/50 text-diria-brown rounded-full text-xs font-medium"
+                  className="px-2 py-1 bg-surface/50 text-foreground rounded-full text-xs font-medium"
                 >
                   {specialty}
                 </span>
               ))}
               {restaurant.specialties.length > 3 && (
-                <span className="px-2 py-1 text-diria-brown/70 text-xs">
+                <span className="px-2 py-1 text-foreground/70 text-xs">
                   +{restaurant.specialties.length - 3} more
                 </span>
               )}
@@ -138,7 +138,7 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
         {/* Dietary Support */}
         {restaurant.dietary_support && restaurant.dietary_support.length > 0 && (
           <div className="mb-4">
-            <div className="text-xs text-diria-brown/70 mb-2">Dietary Options:</div>
+            <div className="text-xs text-foreground/70 mb-2">Dietary Options:</div>
             <div className="flex flex-wrap gap-1">
               {restaurant.dietary_support.map((diet, idx) => (
                 <span 
@@ -155,7 +155,7 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
         {/* Reservation Button */}
         <button 
           onClick={() => onReservation(restaurant)}
-          className="w-full bg-diria-teal text-white py-3 rounded-2xl font-semibold hover:bg-diria-teal/90 hover:shadow-md transition-all duration-300"
+          className="w-full bg-primary text-white py-3 rounded-2xl font-semibold hover:bg-primary/90 hover:shadow-md transition-all duration-300"
         >
           {restaurant.reservation_required ? 'Reserve Now' : 'Reserve Table'}
         </button>

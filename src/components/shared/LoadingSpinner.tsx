@@ -14,9 +14,9 @@ export default function LoadingSpinner({ size = 'medium', message }: LoadingSpin
 
   return (
     <div className="flex flex-col items-center justify-center space-y-3">
-      <div className={`${sizeClasses[size]} border-4 border-[#fca311]/30 border-t-[#fca311] rounded-full animate-spin`}></div>
+      <div className={`${sizeClasses[size]} border-4 border-accent/30 border-t-accent rounded-full animate-spin`}></div>
       {message && (
-        <p className="text-sm text-[#236192] font-medium">{message}</p>
+        <p className="text-sm text-primary font-medium">{message}</p>
       )}
     </div>
   );

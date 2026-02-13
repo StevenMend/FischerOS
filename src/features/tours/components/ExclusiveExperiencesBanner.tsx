@@ -86,7 +86,7 @@
 //   const currentTour = premiumTours[currentSlide];
 
 //   return (
-//     <div className="mb-12 bg-white/90 backdrop-blur-xl rounded-3xl border border-diria-cream-dark shadow-lg overflow-hidden">
+//     <div className="mb-12 bg-white/90 backdrop-blur-xl rounded-3xl border border-surface-dark shadow-lg overflow-hidden">
 //       {/* Carousel Container */}
 //       <div className="relative h-96">
 //         {/* Background Image */}
@@ -119,7 +119,7 @@
 //               <div className="max-w-2xl">
 //                 {/* Badge */}
 //                 {currentTour.badge && (
-//                   <div className="inline-flex items-center space-x-2 bg-diria-gold/90 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
+//                   <div className="inline-flex items-center space-x-2 bg-accent/90 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
 //                     <Crown className="w-4 h-4 text-white" />
 //                     <span className="text-white font-semibold text-sm">{currentTour.badge}</span>
 //                   </div>
@@ -159,18 +159,18 @@
 //                     {currentTour.originalPrice && (
 //                       <div className="text-gray-500 line-through text-lg">{currentTour.originalPrice}</div>
 //                     )}
-//                     <div className="text-3xl font-bold text-diria-brown">{currentTour.price}</div>
+//                     <div className="text-3xl font-bold text-foreground">{currentTour.price}</div>
 //                     <div className="text-sm text-green-600 font-medium">{memberDiscount}% Member Discount</div>
 //                   </div>
                   
 //                   {limitedSpots && (
 //                     <div className="text-center mb-4">
-//                       <div className="text-diria-gold font-bold">{availableToday} spots left</div>
-//                       <div className="text-xs text-diria-brown/70">available today</div>
+//                       <div className="text-accent font-bold">{availableToday} spots left</div>
+//                       <div className="text-xs text-foreground/70">available today</div>
 //                     </div>
 //                   )}
 
-//                   <button className="w-full bg-diria-gold hover:bg-diria-gold-dark text-white px-6 py-3 rounded-2xl font-semibold flex items-center justify-center space-x-2 transition-all duration-300 hover:scale-105">
+//                   <button className="w-full bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-2xl font-semibold flex items-center justify-center space-x-2 transition-all duration-300 hover:scale-105">
 //                     <span>Book Now</span>
 //                     <ArrowRight className="w-5 h-5" />
 //                   </button>
@@ -199,20 +199,20 @@
 //         <div className="flex items-center justify-between">
 //           <div className="flex items-center space-x-8">
 //             <div className="flex items-center space-x-2">
-//               <div className="w-2 h-2 bg-diria-gold rounded-full animate-pulse"></div>
-//               <span className="text-sm text-diria-brown/70">Concierge curated</span>
+//               <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+//               <span className="text-sm text-foreground/70">Concierge curated</span>
 //             </div>
 //             <div className="flex items-center space-x-2">
-//               <div className="w-2 h-2 bg-diria-teal rounded-full animate-pulse"></div>
-//               <span className="text-sm text-diria-brown/70">Small groups only</span>
+//               <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+//               <span className="text-sm text-foreground/70">Small groups only</span>
 //             </div>
 //             <div className="flex items-center space-x-2">
-//               <div className="w-2 h-2 bg-diria-brown rounded-full animate-pulse"></div>
-//               <span className="text-sm text-diria-brown/70">Premium partners</span>
+//               <div className="w-2 h-2 bg-foreground rounded-full animate-pulse"></div>
+//               <span className="text-sm text-foreground/70">Premium partners</span>
 //             </div>
 //           </div>
           
-//           <button className="bg-white border-2 border-diria-cream-dark text-diria-brown px-6 py-3 rounded-2xl font-semibold hover:shadow-md transition-all duration-300">
+//           <button className="bg-white border-2 border-surface-dark text-foreground px-6 py-3 rounded-2xl font-semibold hover:shadow-md transition-all duration-300">
 //             View All Premium Tours
 //           </button>
 //         </div>
@@ -302,7 +302,7 @@ export const ExclusiveExperiencesBanner: React.FC<ExclusiveExperiencesBannerProp
   const currentTour = premiumTours[currentSlide];
 
   return (
-    <div className="mb-6 sm:mb-8 bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-diria-cream-dark shadow-lg overflow-hidden">
+    <div className="mb-6 sm:mb-8 bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-surface-dark shadow-lg overflow-hidden">
       
       {/* Carousel - MOBILE OPTIMIZED */}
       <div className="relative h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden">
@@ -334,7 +334,7 @@ export const ExclusiveExperiencesBanner: React.FC<ExclusiveExperiencesBannerProp
           
           {/* Badge */}
           {currentTour.badge && (
-            <div className="inline-flex items-center space-x-1 bg-diria-gold/90 backdrop-blur-sm px-2 py-0.5 rounded-full mb-2 w-fit">
+            <div className="inline-flex items-center space-x-1 bg-accent/90 backdrop-blur-sm px-2 py-0.5 rounded-full mb-2 w-fit">
               <Crown className="w-3 h-3 text-white" />
               <span className="text-white font-semibold text-[10px]">{currentTour.badge}</span>
             </div>
@@ -374,7 +374,7 @@ export const ExclusiveExperiencesBanner: React.FC<ExclusiveExperiencesBannerProp
                 {currentTour.originalPrice && (
                   <div className="text-gray-500 line-through text-[10px]">{currentTour.originalPrice}</div>
                 )}
-                <div className="text-lg sm:text-xl font-bold text-diria-brown leading-none">{currentTour.price}</div>
+                <div className="text-lg sm:text-xl font-bold text-foreground leading-none">{currentTour.price}</div>
                 <div className="text-[9px] text-green-600 font-medium">{memberDiscount}% off</div>
               </div>
             </div>
@@ -400,20 +400,20 @@ export const ExclusiveExperiencesBanner: React.FC<ExclusiveExperiencesBannerProp
         <div className="flex flex-wrap items-center justify-between gap-2 text-[10px] sm:text-xs">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <div className="flex items-center space-x-1">
-              <div className="w-1.5 h-1.5 bg-diria-gold rounded-full animate-pulse"></div>
-              <span className="text-diria-brown/70">Curated</span>
+              <div className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></div>
+              <span className="text-foreground/70">Curated</span>
             </div>
             <div className="flex items-center space-x-1">
-              <div className="w-1.5 h-1.5 bg-diria-teal rounded-full animate-pulse"></div>
-              <span className="text-diria-brown/70">Small groups</span>
+              <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></div>
+              <span className="text-foreground/70">Small groups</span>
             </div>
             <div className="flex items-center space-x-1">
-              <div className="w-1.5 h-1.5 bg-diria-brown rounded-full animate-pulse"></div>
-              <span className="text-diria-brown/70">Premium</span>
+              <div className="w-1.5 h-1.5 bg-foreground rounded-full animate-pulse"></div>
+              <span className="text-foreground/70">Premium</span>
             </div>
           </div>
           
-          <button className="bg-white border-2 border-diria-cream-dark text-diria-brown px-3 py-1.5 rounded-xl font-semibold text-[10px] sm:text-xs hover:shadow-md transition-all whitespace-nowrap">
+          <button className="bg-white border-2 border-surface-dark text-foreground px-3 py-1.5 rounded-xl font-semibold text-[10px] sm:text-xs hover:shadow-md transition-all whitespace-nowrap">
             View All
           </button>
         </div>

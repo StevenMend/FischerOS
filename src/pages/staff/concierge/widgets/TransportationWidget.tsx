@@ -25,7 +25,7 @@ export function TransportationWidget() {
     {
       id: '2',
       guestName: 'Guest 205',
-      destination: 'Tamarindo Downtown',
+      destination: 'Downtown',
       time: '3:00 PM',
       status: 'pending',
       vehicleType: 'Van'

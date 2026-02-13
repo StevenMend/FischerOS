@@ -17,7 +17,7 @@ export const CuisineFilter: React.FC<CuisineFilterProps> = ({
 }) => {
   return (
     <div className="mb-8">
-      <h3 className="text-lg font-semibold text-diria-brown mb-4">Filter by Cuisine</h3>
+      <h3 className="text-lg font-semibold text-foreground mb-4">Filter by Cuisine</h3>
       <div className="flex flex-wrap gap-3">
         {cuisines.map((cuisine) => (
           <button
@@ -25,8 +25,8 @@ export const CuisineFilter: React.FC<CuisineFilterProps> = ({
             onClick={() => onCuisineChange(cuisine)}
             className={`px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300 ${
               selectedCuisine === cuisine
-                ? 'bg-diria-teal text-white shadow-md'
-                : 'bg-white text-diria-brown border-2 border-diria-cream-dark hover:border-diria-teal'
+                ? 'bg-primary text-white shadow-md'
+                : 'bg-white text-foreground border-2 border-surface-dark hover:border-primary'
             }`}
           >
             {cuisine}

@@ -26,12 +26,12 @@ export const TourCard: React.FC<TourCardProps> = ({
       case 'easy': return 'bg-green-100 text-green-700';
       case 'moderate': return 'bg-yellow-100 text-yellow-700';
       case 'challenging': return 'bg-red-100 text-red-700';
-      default: return 'bg-diria-cream/50 text-diria-brown';
+      default: return 'bg-surface/50 text-foreground';
     }
   };
 
   return (
-    <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-diria-cream-dark overflow-hidden">
+    <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-surface-dark overflow-hidden">
       <div className="h-48 overflow-hidden relative">
         <img 
           src={tour.cover_image} 
@@ -45,7 +45,7 @@ export const TourCard: React.FC<TourCardProps> = ({
         </div>
         {tour.is_featured && (
           <div className="absolute top-4 left-4">
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-diria-gold text-white">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent text-white">
               ⭐ Featured
             </span>
           </div>
@@ -54,76 +54,76 @@ export const TourCard: React.FC<TourCardProps> = ({
 
       <div className="p-6">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="font-bold text-diria-brown text-xl font-display">{tour.name}</h3>
+          <h3 className="font-bold text-foreground text-xl font-display">{tour.name}</h3>
           <div className="flex items-center space-x-1">
             <Star className="w-4 h-4 text-yellow-400 fill-current" />
-            <span className="text-sm font-medium text-diria-brown/70">{tour.rating}</span>
+            <span className="text-sm font-medium text-foreground/70">{tour.rating}</span>
           </div>
         </div>
 
         <div className="flex items-center justify-between mb-4">
-          <span className="text-2xl font-bold text-diria-brown">
+          <span className="text-2xl font-bold text-foreground">
             ${tour.price_adult}
             {tour.price_child && (
-              <span className="text-sm text-diria-brown/70 ml-2">
+              <span className="text-sm text-foreground/70 ml-2">
                 (Child: ${tour.price_child})
               </span>
             )}
           </span>
-          <div className="flex items-center text-sm text-diria-brown/70">
-            <Clock className="w-4 h-4 mr-1 text-diria-teal" />
+          <div className="flex items-center text-sm text-foreground/70">
+            <Clock className="w-4 h-4 mr-1 text-primary" />
             {tour.duration_text}
           </div>
         </div>
 
-        <div className="mb-4 p-4 bg-diria-cream/30 rounded-2xl">
+        <div className="mb-4 p-4 bg-surface/30 rounded-2xl">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-diria-brown">{tour.partner_name}</span>
+            <span className="text-sm font-medium text-foreground">{tour.partner_name}</span>
             <span className="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full">
               {tour.category}
             </span>
           </div>
           {tour.partner_phone && (
-            <div className="text-xs text-diria-brown/70">
+            <div className="text-xs text-foreground/70">
               📞 {tour.partner_phone}
             </div>
           )}
         </div>
 
         <div className="space-y-2 mb-4">
-          <div className="flex items-center text-sm text-diria-brown/80">
-            <Users className="w-4 h-4 mr-2 text-diria-teal" />
+          <div className="flex items-center text-sm text-foreground/80">
+            <Users className="w-4 h-4 mr-2 text-primary" />
             <span className="font-medium">Max group:</span> {tour.max_participants} people
           </div>
           {tour.skill_required && (
-            <div className="flex items-center text-sm text-diria-brown/80">
-              <Shield className="w-4 h-4 mr-2 text-diria-teal" />
+            <div className="flex items-center text-sm text-foreground/80">
+              <Shield className="w-4 h-4 mr-2 text-primary" />
               <span className="font-medium">Skill:</span> {tour.skill_required}
             </div>
           )}
           {tour.safety_rating && (
-            <div className="flex items-center text-sm text-diria-brown/80">
+            <div className="flex items-center text-sm text-foreground/80">
               <Shield className="w-4 h-4 mr-2 text-green-600" />
               <span className="font-medium">Safety:</span> {tour.safety_rating}
             </div>
           )}
         </div>
 
-        <p className="text-sm text-diria-brown/80 mb-4 line-clamp-2">
+        <p className="text-sm text-foreground/80 mb-4 line-clamp-2">
           {tour.short_description || tour.description}
         </p>
 
         {showMore && (
-          <div className="mb-4 space-y-3 p-4 bg-diria-cream/20 rounded-2xl">
+          <div className="mb-4 space-y-3 p-4 bg-surface/20 rounded-2xl">
             <div className="text-xs">
-              <div className="font-medium text-diria-brown mb-1">Full Description:</div>
-              <p className="text-diria-brown/70">{tour.description}</p>
+              <div className="font-medium text-foreground mb-1">Full Description:</div>
+              <p className="text-foreground/70">{tour.description}</p>
             </div>
 
             {tour.includes && tour.includes.length > 0 && (
               <div className="text-xs">
-                <div className="font-medium text-diria-brown mb-1">Includes:</div>
-                <ul className="text-diria-brown/70 list-disc list-inside">
+                <div className="font-medium text-foreground mb-1">Includes:</div>
+                <ul className="text-foreground/70 list-disc list-inside">
                   {tour.includes.map((item, idx) => (
                     <li key={idx}>{item}</li>
                   ))}
@@ -133,8 +133,8 @@ export const TourCard: React.FC<TourCardProps> = ({
 
             {tour.what_to_bring && tour.what_to_bring.length > 0 && (
               <div className="text-xs">
-                <div className="font-medium text-diria-brown mb-1">What to Bring:</div>
-                <ul className="text-diria-brown/70 list-disc list-inside">
+                <div className="font-medium text-foreground mb-1">What to Bring:</div>
+                <ul className="text-foreground/70 list-disc list-inside">
                   {tour.what_to_bring.map((item, idx) => (
                     <li key={idx}>{item}</li>
                   ))}
@@ -152,7 +152,7 @@ export const TourCard: React.FC<TourCardProps> = ({
 
         <button
           onClick={() => setShowMore(!showMore)}
-          className="w-full mb-4 flex items-center justify-center space-x-2 text-diria-teal font-medium text-sm hover:underline"
+          className="w-full mb-4 flex items-center justify-center space-x-2 text-primary font-medium text-sm hover:underline"
         >
           <span>{showMore ? 'Show Less' : 'Show More Details'}</span>
           {showMore ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -160,7 +160,7 @@ export const TourCard: React.FC<TourCardProps> = ({
 
         <button 
           onClick={() => onBookTour(tour)}
-          className="w-full bg-diria-teal text-white py-3 rounded-2xl font-semibold hover:bg-diria-teal/90 hover:shadow-md transition-all duration-300"
+          className="w-full bg-primary text-white py-3 rounded-2xl font-semibold hover:bg-primary/90 hover:shadow-md transition-all duration-300"
         >
           Book Now
         </button>

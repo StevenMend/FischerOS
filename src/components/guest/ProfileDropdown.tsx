@@ -38,7 +38,7 @@ export default function ProfileDropdown({ isOpen, guestInfo, onClose }: ProfileD
       <div className="fixed top-20 right-6 w-64 bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/30 z-50 overflow-hidden notification-enter modal-content">
         <div className="p-4 border-b border-gray-200/50">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-[#236192] to-[#1a4a73] rounded-xl flex items-center justify-center animate-float-subtle">
+            <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center animate-float-subtle">
               <User className="w-6 h-6 text-white" />
             </div>
             <div>

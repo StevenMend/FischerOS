@@ -42,22 +42,22 @@ export const TourBookingModal: React.FC<TourBookingModalProps> = ({
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-end sm:items-center justify-center z-50 overflow-hidden">
       <div 
-        className="bg-white/95 backdrop-blur-xl rounded-t-3xl sm:rounded-3xl shadow-2xl w-full sm:max-w-lg border-t sm:border border-diria-cream-dark flex flex-col overflow-hidden"
+        className="bg-white/95 backdrop-blur-xl rounded-t-3xl sm:rounded-3xl shadow-2xl w-full sm:max-w-lg border-t sm:border border-surface-dark flex flex-col overflow-hidden"
         style={{ maxHeight: '90vh', maxWidth: '100vw' }}
       >
         
-        <div className="flex-shrink-0 flex items-center justify-between px-4 py-3 border-b border-diria-cream-dark bg-white/98">
+        <div className="flex-shrink-0 flex items-center justify-between px-4 py-3 border-b border-surface-dark bg-white/98">
           <div className="flex items-center space-x-2 min-w-0 flex-1 mr-2">
-            <div className="w-9 h-9 bg-white border-2 border-diria-cream-dark rounded-xl flex items-center justify-center flex-shrink-0">
-              <Waves className="w-5 h-5 text-diria-teal" />
+            <div className="w-9 h-9 bg-white border-2 border-surface-dark rounded-xl flex items-center justify-center flex-shrink-0">
+              <Waves className="w-5 h-5 text-primary" />
             </div>
             <div className="min-w-0 flex-1">
-              <h2 className="text-sm font-bold text-diria-brown truncate">Smart Booking</h2>
-              <p className="text-xs text-diria-brown/80 truncate">{selectedTour.name}</p>
+              <h2 className="text-sm font-bold text-foreground truncate">Smart Booking</h2>
+              <p className="text-xs text-foreground/80 truncate">{selectedTour.name}</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-diria-cream/50 rounded-xl transition-colors flex-shrink-0">
-            <X className="w-5 h-5 text-diria-brown" />
+          <button onClick={onClose} className="p-2 hover:bg-surface/50 rounded-xl transition-colors flex-shrink-0">
+            <X className="w-5 h-5 text-foreground" />
           </button>
         </div>
 
@@ -65,11 +65,11 @@ export const TourBookingModal: React.FC<TourBookingModalProps> = ({
           
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <label className="block text-xs font-medium text-diria-brown mb-1">Guests</label>
+              <label className="block text-xs font-medium text-foreground mb-1">Guests</label>
               <select
                 value={bookingData.guests}
                 onChange={(e) => setBookingData('guests', parseInt(e.target.value))}
-                className="w-full px-2.5 py-1.5 border-2 border-diria-cream-dark rounded-xl focus:ring-2 focus:ring-diria-teal bg-white/50 text-diria-brown text-xs"
+                className="w-full px-2.5 py-1.5 border-2 border-surface-dark rounded-xl focus:ring-2 focus:ring-primary bg-white/50 text-foreground text-xs"
               >
                 {Array.from({length: selectedTour.max_participants}, (_, i) => i + 1).map(num => (
                   <option key={num} value={num}>{num}</option>
@@ -77,23 +77,23 @@ export const TourBookingModal: React.FC<TourBookingModalProps> = ({
               </select>
             </div>
             <div>
-              <label className="block text-xs font-medium text-diria-brown mb-1">Date</label>
+              <label className="block text-xs font-medium text-foreground mb-1">Date</label>
               <input
                 type="date"
                 value={bookingData.date}
                 onChange={(e) => setBookingData('date', e.target.value)}
-                className="w-full px-2.5 py-1.5 border-2 border-diria-cream-dark rounded-xl focus:ring-2 focus:ring-diria-teal bg-white/50 text-diria-brown text-xs"
+                className="w-full px-2.5 py-1.5 border-2 border-surface-dark rounded-xl focus:ring-2 focus:ring-primary bg-white/50 text-foreground text-xs"
                 min={new Date().toISOString().split('T')[0]}
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-diria-brown mb-1">Time</label>
+            <label className="block text-xs font-medium text-foreground mb-1">Time</label>
             <select
               value={bookingData.time}
               onChange={(e) => setBookingData('time', e.target.value)}
-              className="w-full px-2.5 py-1.5 border-2 border-diria-cream-dark rounded-xl focus:ring-2 focus:ring-diria-teal bg-white/50 text-diria-brown text-xs"
+              className="w-full px-2.5 py-1.5 border-2 border-surface-dark rounded-xl focus:ring-2 focus:ring-primary bg-white/50 text-foreground text-xs"
             >
               <option value="09:00">9:00 AM</option>
               <option value="12:00">12:00 PM</option>
@@ -103,24 +103,24 @@ export const TourBookingModal: React.FC<TourBookingModalProps> = ({
 
           {selectedTour.skill_required && (
             <div>
-              <label className="block text-xs font-medium text-diria-brown mb-1">Skill Level</label>
+              <label className="block text-xs font-medium text-foreground mb-1">Skill Level</label>
               <select
                 value={bookingData.skillLevel}
                 onChange={(e) => setBookingData('skillLevel', e.target.value)}
-                className="w-full px-2.5 py-1.5 border-2 border-diria-cream-dark rounded-xl focus:ring-2 focus:ring-diria-teal bg-white/50 text-diria-brown text-xs"
+                className="w-full px-2.5 py-1.5 border-2 border-surface-dark rounded-xl focus:ring-2 focus:ring-primary bg-white/50 text-foreground text-xs"
               >
                 {skillLevels.map(level => (
                   <option key={level} value={level}>{level}</option>
                 ))}
               </select>
-              <p className="text-[10px] text-diria-brown/70 mt-1">
+              <p className="text-[10px] text-foreground/70 mt-1">
                 Required: {selectedTour.skill_required}
               </p>
             </div>
           )}
 
           <div>
-            <label className="block text-xs font-medium text-diria-brown mb-1">Medical Conditions</label>
+            <label className="block text-xs font-medium text-foreground mb-1">Medical Conditions</label>
             <div className="grid grid-cols-2 gap-1.5">
               {medicalOptions.map(condition => (
                 <button
@@ -130,7 +130,7 @@ export const TourBookingModal: React.FC<TourBookingModalProps> = ({
                   className={`px-2 py-1.5 text-[10px] rounded-lg border-2 transition-all font-medium ${
                     bookingData.medicalConditions.includes(condition)
                       ? 'bg-red-100 text-red-700 border-red-300'
-                      : 'bg-white text-diria-brown border-diria-cream-dark'
+                      : 'bg-white text-foreground border-surface-dark'
                   }`}
                 >
                   {condition}
@@ -140,7 +140,7 @@ export const TourBookingModal: React.FC<TourBookingModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-diria-brown mb-1">Emergency Contact</label>
+            <label className="block text-xs font-medium text-foreground mb-1">Emergency Contact</label>
             <div className="grid grid-cols-2 gap-2">
               <input
                 type="text"
@@ -150,7 +150,7 @@ export const TourBookingModal: React.FC<TourBookingModalProps> = ({
                   ...bookingData.emergencyContact, 
                   name: e.target.value
                 })}
-                className="px-2.5 py-1.5 border-2 border-diria-cream-dark rounded-xl focus:ring-2 focus:ring-diria-teal bg-white/50 text-diria-brown text-xs"
+                className="px-2.5 py-1.5 border-2 border-surface-dark rounded-xl focus:ring-2 focus:ring-primary bg-white/50 text-foreground text-xs"
               />
               <input
                 type="tel"
@@ -160,7 +160,7 @@ export const TourBookingModal: React.FC<TourBookingModalProps> = ({
                   ...bookingData.emergencyContact, 
                   phone: e.target.value
                 })}
-                className="px-2.5 py-1.5 border-2 border-diria-cream-dark rounded-xl focus:ring-2 focus:ring-diria-teal bg-white/50 text-diria-brown text-xs"
+                className="px-2.5 py-1.5 border-2 border-surface-dark rounded-xl focus:ring-2 focus:ring-primary bg-white/50 text-foreground text-xs"
               />
             </div>
           </div>
@@ -172,9 +172,9 @@ export const TourBookingModal: React.FC<TourBookingModalProps> = ({
                   type="checkbox"
                   checked={bookingData.insurance}
                   onChange={(e) => setBookingData('insurance', e.target.checked)}
-                  className="w-4 h-4 text-diria-teal border-diria-cream-dark rounded mt-0.5 flex-shrink-0"
+                  className="w-4 h-4 text-primary border-surface-dark rounded mt-0.5 flex-shrink-0"
                 />
-                <span className="text-[11px] text-diria-brown leading-tight">
+                <span className="text-[11px] text-foreground leading-tight">
                   <strong className="text-red-600">* Insurance required</strong> for this tour
                 </span>
               </label>
@@ -184,21 +184,21 @@ export const TourBookingModal: React.FC<TourBookingModalProps> = ({
                 type="checkbox"
                 checked={bookingData.waiverSigned}
                 onChange={(e) => setBookingData('waiverSigned', e.target.checked)}
-                className="w-4 h-4 text-diria-teal border-diria-cream-dark rounded mt-0.5 flex-shrink-0"
+                className="w-4 h-4 text-primary border-surface-dark rounded mt-0.5 flex-shrink-0"
               />
-              <span className="text-[11px] text-diria-brown leading-tight">
+              <span className="text-[11px] text-foreground leading-tight">
                 <strong className="text-red-600">* I agree</strong> to liability waiver & safety protocols
               </span>
             </label>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-diria-brown mb-1">Special Requests</label>
+            <label className="block text-xs font-medium text-foreground mb-1">Special Requests</label>
             <textarea
               value={bookingData.specialRequests}
               onChange={(e) => setBookingData('specialRequests', e.target.value)}
               placeholder="Any special requirements or concerns..."
-              className="w-full px-2.5 py-1.5 border-2 border-diria-cream-dark rounded-xl focus:ring-2 focus:ring-diria-teal bg-white/50 text-diria-brown resize-none text-xs"
+              className="w-full px-2.5 py-1.5 border-2 border-surface-dark rounded-xl focus:ring-2 focus:ring-primary bg-white/50 text-foreground resize-none text-xs"
               rows={2}
             />
           </div>
@@ -221,7 +221,7 @@ export const TourBookingModal: React.FC<TourBookingModalProps> = ({
           )}
         </div>
 
-        <div className="flex-shrink-0 p-3 border-t border-diria-cream-dark bg-white/98">
+        <div className="flex-shrink-0 p-3 border-t border-surface-dark bg-white/98">
           <button
             onClick={onSubmit}
             disabled={
@@ -230,7 +230,7 @@ export const TourBookingModal: React.FC<TourBookingModalProps> = ({
               !bookingData.emergencyContact.name ||
               !bookingData.emergencyContact.phone
             }
-            className="w-full bg-diria-teal text-white py-2.5 rounded-xl font-semibold text-sm hover:bg-diria-teal/90 hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-primary text-white py-2.5 rounded-xl font-semibold text-sm hover:bg-primary/90 hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Confirm Booking
           </button>

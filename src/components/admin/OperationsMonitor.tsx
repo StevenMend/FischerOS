@@ -44,7 +44,7 @@ export default function OperationsMonitor({
       
       <div className="relative">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold bg-gradient-to-r from-[#236192] to-[#1a4a73] bg-clip-text text-transparent flex items-center">
+          <h2 className="text-xl font-bold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent flex items-center">
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-3 shadow-lg group-hover:scale-110 transition-transform duration-300">
               <Monitor className="w-4 h-4 text-white" />
             </div>
@@ -55,7 +55,7 @@ export default function OperationsMonitor({
               onClick={onToggleHeatMap}
               className="p-2 hover:bg-blue-100 rounded-lg transition-all duration-300 hover:scale-110"
             >
-              <Eye className="w-4 h-4 text-[#236192]" />
+              <Eye className="w-4 h-4 text-primary" />
             </button>
             <div className="flex items-center space-x-1 bg-green-500/20 text-green-700 px-2 py-1 rounded-full text-xs font-bold">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>

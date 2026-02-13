@@ -1,7 +1,7 @@
 // src/routes/StaffRoutes.tsx - WITH ALL DEPARTMENT ROUTES
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { ROUTE_PATHS } from '../config/routes';
+import { logger } from '../core/utils/logger';
 import StaffGuard from '../auth/guards/StaffGuard';
 import StaffLayout from '../components/layout/StaffLayout';
 import StaffConsole from '../pages/staff/StaffConsole';
@@ -23,7 +23,7 @@ import TransportationDashboard from '../pages/staff/transportation/Transportatio
 import ConciergeDashboard from '../pages/staff/concierge/ConciergeDashboard';
 
 export function StaffRoutes() {
-  console.log('🔥 StaffRoutes executing');
+  logger.debug('Router', 'StaffRoutes executing');
   
   return (
     <Routes>
@@ -42,15 +42,15 @@ export function StaffRoutes() {
           
           {/* ========== DEPARTMENT ROUTES ========== */}
           <Route path="/spa" element={<SpaDashboard />} />
-          <Route path="/concierge/tours" element={<ToursDashboard />} />
+          <Route path="/tours" element={<ToursDashboard />} />
           <Route path="/concierge" element={<ConciergeDashboard />} />
           <Route path="/housekeeping" element={<HousekeepingDashboard />} />
           <Route path="/maintenance" element={<MaintenanceDashboard />} />
           <Route path="/transportation" element={<TransportationDashboard />} />
           
           {/* Default Routes */}
-          <Route path="/" element={<Navigate to={ROUTE_PATHS.staff.console} replace />} />
-          <Route path="*" element={<Navigate to={ROUTE_PATHS.staff.console} replace />} />
+          <Route path="/" element={<Navigate to="console" replace />} />
+          <Route path="*" element={<Navigate to="console" replace />} />
         </Route>
       </Route>
     </Routes>

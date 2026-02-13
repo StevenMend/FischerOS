@@ -1,5 +1,6 @@
 // src/lib/services/toast.service.ts
 import { toast as sonnerToast } from 'sonner';
+import { logger } from '../../core/utils/logger';
 
 /**
  * Centralized toast notification service using Sonner
@@ -139,7 +140,7 @@ export const showNotification = (
   message: string,
   duration?: number
 ) => {
-  console.warn('⚠️ showNotification is deprecated. Use ToastService instead.');
+  logger.warn('ToastService', 'showNotification is deprecated. Use ToastService instead.');
   
   switch (type) {
     case 'success':

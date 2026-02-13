@@ -12,4 +12,3 @@ export type UserRole = 'guest' | 'staff' | 'admin';
 // Domain type modules
 export * from './admin';
 export * from './auth';
-export * from './coordination';

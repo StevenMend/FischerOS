@@ -18,11 +18,11 @@ export const Button: React.FC<ButtonProps> = ({
   const baseClasses = 'inline-flex items-center justify-center font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed';
   
   const variants = {
-    primary: 'bg-diria-gold text-white hover:bg-diria-gold-dark shadow-sm btn-premium',
-    secondary: 'bg-diria-teal text-white hover:bg-diria-teal-dark shadow-sm btn-premium',
-    outline: 'border-2 border-diria-teal text-diria-teal hover:bg-diria-teal hover:text-white',
-    ghost: 'text-diria-brown hover:bg-diria-cream',
-    filter: 'bg-diria-cream-light hover:bg-diria-gold hover:text-white border border-diria-cream-dark'
+    primary: 'bg-accent text-white hover:bg-accent-dark shadow-sm btn-premium',
+    secondary: 'bg-primary text-white hover:bg-primary-dark shadow-sm btn-premium',
+    outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-white',
+    ghost: 'text-foreground hover:bg-surface',
+    filter: 'bg-surface-light hover:bg-accent hover:text-white border border-surface-dark'
   };
   
   const sizes = {

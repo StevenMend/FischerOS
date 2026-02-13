@@ -35,7 +35,7 @@ export const StaffSidebar: React.FC<StaffSidebarProps> = ({
 
         {/* Department-Specific Tools */}
         <div>
-          <h4 className="text-lg font-bold bg-gradient-to-r from-[#236192] to-[#1a4a73] bg-clip-text text-transparent mb-4 flex items-center">
+          <h4 className="text-lg font-bold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent mb-4 flex items-center">
             <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mr-3 shadow-sm animate-float-subtle">
               <Settings className="w-4 h-4 text-white" />
             </div>
@@ -62,8 +62,8 @@ export const StaffSidebar: React.FC<StaffSidebarProps> = ({
 
         {/* Quick Actions */}
         <div>
-          <h4 className="text-lg font-bold bg-gradient-to-r from-[#236192] to-[#1a4a73] bg-clip-text text-transparent mb-4 flex items-center">
-            <div className="w-8 h-8 bg-gradient-to-br from-[#fca311] to-[#e8940f] rounded-lg flex items-center justify-center mr-3 shadow-sm animate-float-subtle">
+          <h4 className="text-lg font-bold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent mb-4 flex items-center">
+            <div className="w-8 h-8 bg-gradient-to-br from-accent to-accent-dark rounded-lg flex items-center justify-center mr-3 shadow-sm animate-float-subtle">
               <Zap className="w-4 h-4 text-white" />
             </div>
             Quick Actions
@@ -72,7 +72,7 @@ export const StaffSidebar: React.FC<StaffSidebarProps> = ({
           <div className="space-y-3">
             <button 
               onClick={onEscalateIssue}
-              className="w-full flex items-center space-x-3 p-4 bg-gradient-to-r from-[#fca311] to-[#e8940f] text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 font-bold shadow-sm btn-premium ripple-effect"
+              className="w-full flex items-center space-x-3 p-4 bg-gradient-to-r from-accent to-accent-dark text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 font-bold shadow-sm btn-premium ripple-effect"
             >
               <AlertTriangle className="w-5 h-5" />
               <span>Escalate Issue</span>
@@ -80,7 +80,7 @@ export const StaffSidebar: React.FC<StaffSidebarProps> = ({
             
             <button 
               onClick={onBroadcastUpdate}
-              className="w-full flex items-center space-x-3 p-4 bg-gradient-to-r from-[#236192] to-[#1a4a73] text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 font-bold shadow-sm btn-premium ripple-effect"
+              className="w-full flex items-center space-x-3 p-4 bg-gradient-to-r from-primary to-primary-dark text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 font-bold shadow-sm btn-premium ripple-effect"
             >
               <MessageSquare className="w-5 h-5" />
               <span>Broadcast Update</span>

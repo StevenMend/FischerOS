@@ -5,12 +5,15 @@ import { Utensils, Clock, CheckCircle, Users, TrendingUp, AlertTriangle } from '
 import { supabase } from '../../../../lib/api/supabase';
 import { useRestaurantStaff } from '../hooks/useRestaurantStaff';
 import ReservationCard from '../components/ReservationCard';
+import { logger } from '../../../../core/utils/logger';
+import { useTenantNavigation } from '../../../../core/tenant/useTenantNavigation';
 
 type TabType = 'pending' | 'confirmed' | 'seated' | 'completed';
 
 export default function RestaurantStaffDashboard() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const { navigateStaff } = useTenantNavigation();
   
   const [activeTab, setActiveTab] = useState<TabType>('pending');
   const [restaurantId, setRestaurantId] = useState<string | null>(null);
@@ -18,7 +21,7 @@ export default function RestaurantStaffDashboard() {
   const [loadingRestaurant, setLoadingRestaurant] = useState(true);
   const [restaurantError, setRestaurantError] = useState<string | null>(null);
 
-  console.log('🍽️ RestaurantStaffDashboard rendering for slug:', slug);
+  logger.debug('Restaurants', 'RestaurantStaffDashboard rendering for slug', { slug });
 
   // Fetch restaurant data by slug
   useEffect(() => {
@@ -30,7 +33,7 @@ export default function RestaurantStaffDashboard() {
       }
 
       try {
-        console.log('🔍 Fetching restaurant by slug:', slug);
+        logger.debug('Restaurants', 'Fetching restaurant by slug', { slug });
 
         const { data, error } = await supabase
           .from('restaurants')
@@ -46,13 +49,13 @@ export default function RestaurantStaffDashboard() {
           return;
         }
 
-        console.log('✅ Restaurant found:', data);
+        logger.info('Restaurants', 'Restaurant found', { data });
 
         setRestaurantId(data.id);
         setRestaurantName(data.name);
         setLoadingRestaurant(false);
       } catch (err: any) {
-        console.error('❌ Error fetching restaurant:', err);
+        logger.error('Restaurants', 'Error fetching restaurant', { error: err });
         setRestaurantError(err.message || 'Failed to load restaurant');
         setLoadingRestaurant(false);
       }
@@ -75,7 +78,7 @@ export default function RestaurantStaffDashboard() {
     cancelReservation,
   } = useRestaurantStaff({ restaurantId: restaurantId || undefined });
 
-  console.log('🍽️ Dashboard state:', {
+  logger.debug('Restaurants', 'Dashboard state', {
     slug,
     restaurantId,
     restaurantName,
@@ -115,7 +118,7 @@ export default function RestaurantStaffDashboard() {
           <p className="text-red-600 text-sm mb-2">{restaurantError}</p>
           <p className="text-gray-500 text-xs mb-4">Slug: {slug}</p>
           <button
-            onClick={() => navigate('/staff/console')}
+            onClick={() => navigateStaff('console')}
             className="w-full bg-red-600 hover:bg-red-700 text-white py-2.5 rounded-xl font-semibold transition-all"
           >
             Go to Staff Console

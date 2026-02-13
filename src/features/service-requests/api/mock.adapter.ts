@@ -1,6 +1,7 @@
 import { ServiceRequestsPort } from './port';
 import { ServiceRequest, CreateRequestDTO, UpdateRequestDTO } from './types';
 import requestsData from '../../../data/seed/requests/service-requests.json';
+import { logger } from '../../../core/utils/logger';
 
 export class MockServiceRequestsAdapter implements ServiceRequestsPort {
   private requests: ServiceRequest[] = requestsData as ServiceRequest[];
@@ -37,7 +38,7 @@ export class MockServiceRequestsAdapter implements ServiceRequestsPort {
     };
 
     this.requests.unshift(newRequest);
-    console.log('✅ Mock Request Created:', newRequest);
+    logger.info('ServiceRequests', 'Mock Request Created', newRequest);
     return newRequest;
   }
 
@@ -56,7 +57,7 @@ export class MockServiceRequestsAdapter implements ServiceRequestsPort {
     };
 
     this.requests[index] = updated;
-    console.log('✅ Mock Request Updated:', updated);
+    logger.info('ServiceRequests', 'Mock Request Updated', updated);
     return updated;
   }
 
@@ -67,6 +68,6 @@ export class MockServiceRequestsAdapter implements ServiceRequestsPort {
       throw new Error(`Request "${id}" not found`);
     }
     this.requests.splice(index, 1);
-    console.log('✅ Mock Request Deleted:', id);
+    logger.info('ServiceRequests', 'Mock Request Deleted', { id });
   }
 }

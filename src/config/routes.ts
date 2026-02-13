@@ -2,50 +2,87 @@
 // src/config/routes.ts - Route Definitions by Role
 import { UserRole } from '../types';
 
-// Route Path Constants
+// Route Path Constants — tenant paths include :slug placeholder
 export const ROUTE_PATHS = {
-  // Public Routes
+  // MUNDO 1 — Marketing / FischerOS (no slug)
   landing: '/',
-  
-  // Guest Routes
-  guest: {
-    base: '/guest',
-    dashboard: '/guest/dashboard',
-    restaurants: '/guest/restaurants',
-    tours: '/guest/tours', 
-    spa: '/guest/spa',
-    requests: '/guest/requests',
-    profile: '/guest/profile'
-  },
-  
-  // Staff Routes
-  staff: {
-    base: '/staff',
-    console: '/staff/console',
-    requests: '/staff/requests',
-    analytics: '/staff/analytics',
-    coordination: '/staff/coordination',
-    partners: '/staff/partners'
-  },
-  
-  // Admin Routes
-  admin: {
-    base: '/admin',
-    dashboard: '/admin/dashboard',
-    operations: '/admin/operations',
-    analytics: '/admin/analytics',
-    staff: '/admin/staff',
-    partners: '/admin/partners',
-    settings: '/admin/settings'
-  },
-  
-  // Auth Routes (Separate by Philosophy)
+  pricing: '/pricing',
+  demo: '/demo',
+
+  // Auth Routes (marketing world — separate from tenant)
   auth: {
     guest: '/auth/guest',
-    staff: '/auth/staff', 
+    staff: '/auth/staff',
     admin: '/auth/admin'
+  },
+
+  // MUNDO 2 — Tenant (hotel) — all paths carry :slug
+  guest: {
+    base: '/:slug/guest',
+    dashboard: '/:slug/guest/dashboard',
+    restaurants: '/:slug/guest/restaurants',
+    tours: '/:slug/guest/tours',
+    spa: '/:slug/guest/spa',
+    requests: '/:slug/guest/requests',
+    profile: '/:slug/guest/profile'
+  },
+
+  staff: {
+    base: '/:slug/staff',
+    console: '/:slug/staff/console',
+    requests: '/:slug/staff/requests',
+    analytics: '/:slug/staff/analytics',
+    coordination: '/:slug/staff/coordination',
+    partners: '/:slug/staff/partners'
+  },
+
+  admin: {
+    base: '/:slug/admin',
+    dashboard: '/:slug/admin/dashboard',
+    operations: '/:slug/admin/operations',
+    analytics: '/:slug/admin/analytics',
+    staff: '/:slug/admin/staff',
+    partners: '/:slug/admin/partners',
+    settings: '/:slug/admin/settings'
   }
 } as const;
+
+/** Resolve a ROUTE_PATHS template by replacing :slug with an actual value. */
+export function resolvePath(template: string, slug: string): string {
+  return template.replace(':slug', slug);
+}
+
+/** Build all tenant paths for a given slug (ready to navigate). */
+export function buildTenantPaths(slug: string) {
+  return {
+    guest: {
+      base: `/${slug}/guest`,
+      dashboard: `/${slug}/guest/dashboard`,
+      restaurants: `/${slug}/guest/restaurants`,
+      tours: `/${slug}/guest/tours`,
+      spa: `/${slug}/guest/spa`,
+      requests: `/${slug}/guest/requests`,
+      profile: `/${slug}/guest/profile`,
+    },
+    staff: {
+      base: `/${slug}/staff`,
+      console: `/${slug}/staff/console`,
+      requests: `/${slug}/staff/requests`,
+      analytics: `/${slug}/staff/analytics`,
+      coordination: `/${slug}/staff/coordination`,
+      partners: `/${slug}/staff/partners`,
+    },
+    admin: {
+      base: `/${slug}/admin`,
+      dashboard: `/${slug}/admin/dashboard`,
+      operations: `/${slug}/admin/operations`,
+      analytics: `/${slug}/admin/analytics`,
+      staff: `/${slug}/admin/staff`,
+      partners: `/${slug}/admin/partners`,
+      settings: `/${slug}/admin/settings`,
+    },
+  } as const;
+}
 
 // Route Configuration by Role
 export const ROUTE_CONFIG = {
@@ -68,7 +105,7 @@ export const ROUTE_CONFIG = {
       { resource: 'requests', actions: ['read', 'write'], scope: 'own' }
     ]
   },
-  
+
   staff: {
     defaultRoute: ROUTE_PATHS.staff.console,
     allowedRoutes: [
@@ -87,7 +124,7 @@ export const ROUTE_CONFIG = {
       { resource: 'analytics', actions: ['read'], scope: 'department' }
     ]
   },
-  
+
   admin: {
     defaultRoute: ROUTE_PATHS.admin.dashboard,
     allowedRoutes: [
@@ -109,105 +146,105 @@ export const ROUTE_CONFIG = {
 // Navigation Configuration
 export const NAV_CONFIG = {
   guest: [
-    { 
-      path: ROUTE_PATHS.guest.dashboard, 
-      label: 'Dashboard', 
+    {
+      path: ROUTE_PATHS.guest.dashboard,
+      label: 'Dashboard',
       icon: 'Home',
       description: 'Overview & quick actions'
     },
-    { 
-      path: ROUTE_PATHS.guest.restaurants, 
-      label: 'Restaurants', 
+    {
+      path: ROUTE_PATHS.guest.restaurants,
+      label: 'Restaurants',
       icon: 'UtensilsCrossed',
       description: '8 dining venues'
     },
-    { 
-      path: ROUTE_PATHS.guest.tours, 
-      label: 'Tours', 
+    {
+      path: ROUTE_PATHS.guest.tours,
+      label: 'Tours',
       icon: 'MapPin',
       description: '60+ experiences'
     },
-    { 
-      path: ROUTE_PATHS.guest.spa, 
-      label: 'Spa', 
+    {
+      path: ROUTE_PATHS.guest.spa,
+      label: 'Spa',
       icon: 'Flower2',
       description: 'Wellness & relaxation'
     },
-    { 
-      path: ROUTE_PATHS.guest.requests, 
-      label: 'My Requests', 
+    {
+      path: ROUTE_PATHS.guest.requests,
+      label: 'My Requests',
       icon: 'MessageCircle',
       description: 'Track your bookings'
     }
   ],
-  
+
   staff: [
-    { 
-      path: ROUTE_PATHS.staff.console, 
-      label: 'Console', 
+    {
+      path: ROUTE_PATHS.staff.console,
+      label: 'Console',
       icon: 'Layout3',
       description: 'Request management'
     },
-    { 
-      path: ROUTE_PATHS.staff.requests, 
-      label: 'All Requests', 
+    {
+      path: ROUTE_PATHS.staff.requests,
+      label: 'All Requests',
       icon: 'Inbox',
       description: 'Department queue'
     },
-    { 
-      path: ROUTE_PATHS.staff.coordination, 
-      label: 'Coordination', 
+    {
+      path: ROUTE_PATHS.staff.coordination,
+      label: 'Coordination',
       icon: 'Users',
       description: 'Real-time updates'
     },
-    { 
-      path: ROUTE_PATHS.staff.partners, 
-      label: 'Partners', 
+    {
+      path: ROUTE_PATHS.staff.partners,
+      label: 'Partners',
       icon: 'Handshake',
       description: 'External contacts'
     },
-    { 
-      path: ROUTE_PATHS.staff.analytics, 
-      label: 'Analytics', 
+    {
+      path: ROUTE_PATHS.staff.analytics,
+      label: 'Analytics',
       icon: 'BarChart3',
       description: 'Performance metrics'
     }
   ],
-  
+
   admin: [
-    { 
-      path: ROUTE_PATHS.admin.dashboard, 
-      label: 'Dashboard', 
+    {
+      path: ROUTE_PATHS.admin.dashboard,
+      label: 'Dashboard',
       icon: 'LayoutDashboard',
       description: 'Executive overview'
     },
-    { 
-      path: ROUTE_PATHS.admin.operations, 
-      label: 'Operations', 
+    {
+      path: ROUTE_PATHS.admin.operations,
+      label: 'Operations',
       icon: 'Activity',
       description: 'Live monitoring'
     },
-    { 
-      path: ROUTE_PATHS.admin.analytics, 
-      label: 'Analytics', 
+    {
+      path: ROUTE_PATHS.admin.analytics,
+      label: 'Analytics',
       icon: 'TrendingUp',
       description: 'Business intelligence'
     },
-    { 
-      path: ROUTE_PATHS.admin.staff, 
-      label: 'Staff', 
+    {
+      path: ROUTE_PATHS.admin.staff,
+      label: 'Staff',
       icon: 'Users',
       description: 'Team management'
     },
-    { 
-      path: ROUTE_PATHS.admin.partners, 
-      label: 'Partners', 
+    {
+      path: ROUTE_PATHS.admin.partners,
+      label: 'Partners',
       icon: 'Building2',
       description: 'Partner network'
     },
-    { 
-      path: ROUTE_PATHS.admin.settings, 
-      label: 'Settings', 
+    {
+      path: ROUTE_PATHS.admin.settings,
+      label: 'Settings',
       icon: 'Settings',
       description: 'System configuration'
     }
@@ -222,14 +259,14 @@ export const ROUTE_GUARDS = {
     ...ROUTE_CONFIG.staff.allowedRoutes,
     ...ROUTE_CONFIG.admin.allowedRoutes
   ],
-  
+
   // Routes that require specific roles
   roleGuards: {
     [ROUTE_PATHS.guest.base]: ['guest'],
     [ROUTE_PATHS.staff.base]: ['staff'],
     [ROUTE_PATHS.admin.base]: ['admin']
   },
-  
+
   // Routes that require specific permissions
   permissionGuards: {
     [ROUTE_PATHS.admin.settings]: [
@@ -239,16 +276,13 @@ export const ROUTE_GUARDS = {
       { resource: 'partners', actions: ['read'], scope: 'department' }
     ]
   },
-  
+
   // Redirect rules
   redirects: {
     '/': (role: UserRole | null) => {
       if (!role) return ROUTE_PATHS.landing;
       return ROUTE_CONFIG[role].defaultRoute;
     },
-    '/guest': ROUTE_PATHS.guest.dashboard,
-    '/staff': ROUTE_PATHS.staff.console,
-    '/admin': ROUTE_PATHS.admin.dashboard
   }
 } as const;
 
@@ -257,12 +291,17 @@ export const getDefaultRouteForRole = (role: UserRole): string => {
   return ROUTE_CONFIG[role].defaultRoute;
 };
 
+/** Resolve the default route for a role, replacing :slug with the actual slug. */
+export const getDefaultRouteForRoleResolved = (role: UserRole, slug: string): string => {
+  return resolvePath(ROUTE_CONFIG[role].defaultRoute, slug);
+};
+
 export const getAuthRouteForRole = (role: UserRole): string => {
   return ROUTE_CONFIG[role].authRoute;
 };
 
 export const isRouteAllowedForRole = (route: string, role: UserRole): boolean => {
-  return ROUTE_CONFIG[role].allowedRoutes.includes(route);
+  return (ROUTE_CONFIG[role].allowedRoutes as readonly string[]).includes(route);
 };
 
 export const getNavConfigForRole = (role: UserRole) => {

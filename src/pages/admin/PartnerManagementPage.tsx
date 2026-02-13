@@ -4,12 +4,12 @@ import { Building2, TrendingUp, DollarSign, Clock } from 'lucide-react';
 export default function PartnerManagementPage() {
   return (
     <div className="p-8 space-y-6">
-      <h1 className="text-3xl font-bold text-[#fca311]">Partner Network</h1>
+      <h1 className="text-3xl font-bold text-accent">Partner Network</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-white rounded-xl p-6 border border-gray-200">
           <div className="flex items-center space-x-3">
-            <Building2 className="w-8 h-8 text-[#236192]" />
+            <Building2 className="w-8 h-8 text-primary" />
             <div>
               <p className="text-2xl font-bold text-gray-900">47</p>
               <p className="text-sm text-gray-600">Active Partners</p>
@@ -29,7 +29,7 @@ export default function PartnerManagementPage() {
 
         <div className="bg-white rounded-xl p-6 border border-gray-200">
           <div className="flex items-center space-x-3">
-            <DollarSign className="w-8 h-8 text-[#fca311]" />
+            <DollarSign className="w-8 h-8 text-accent" />
             <div>
               <p className="text-2xl font-bold text-gray-900">$2.4M</p>
               <p className="text-sm text-gray-600">Monthly Revenue</p>

@@ -1,6 +1,7 @@
 // src/components/staff/MetricsWidget.tsx - PRO VERSION WITH REAL CALCULATIONS
 import React, { useMemo } from 'react';
 import { Target, Star, BarChart3, Clock, TrendingUp } from 'lucide-react';
+import { logger } from '../../core/utils/logger';
 
 interface ServiceRequest {
   id: string;
@@ -15,7 +16,7 @@ interface MetricsWidgetProps {
 }
 
 export default function MetricsWidget({ allRequests }: MetricsWidgetProps) {
-  console.log('📊 MetricsWidget calculating:', { totalRequests: allRequests.length });
+  logger.debug('MetricsWidget', 'calculating', { totalRequests: allRequests.length });
 
   const metrics = useMemo(() => {
     const now = new Date();
@@ -54,7 +55,7 @@ export default function MetricsWidget({ allRequests }: MetricsWidgetProps) {
     const target = 25;
     const progressPercentage = Math.min(Math.round((completedToday.length / target) * 100), 100);
     
-    console.log('📊 Metrics calculated:', {
+    logger.debug('MetricsWidget', 'Metrics calculated', {
       todayTotal: todayRequests.length,
       completed: completedToday.length,
       avgTime: avgTimeDisplay,

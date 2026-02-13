@@ -4,6 +4,7 @@ import { createServiceRequestsRepository } from '../api';
 import { serviceRequestsKeys } from './keys';
 import { ServiceRequest, CreateRequestDTO } from '../api/types';
 import { ToastService } from '../../../lib/services';
+import { logger } from '../../../core/utils/logger';
 
 /**
  * Mutation hook for creating a new service request
@@ -18,7 +19,7 @@ export const useCreateRequestMutation = (guestId: string) => {
     
     // OPTIMISTIC UPDATE - Before API call
     onMutate: async (newRequest) => {
-      console.log('⚡ [OPTIMISTIC] Creating request...');
+      logger.debug('ServiceRequests', '[OPTIMISTIC] Creating request...');
       
       // Cancel ongoing queries
       await queryClient.cancelQueries({ queryKey: serviceRequestsKeys.byGuest(guestId) });
@@ -57,7 +58,7 @@ export const useCreateRequestMutation = (guestId: string) => {
 
     // SUCCESS
     onSuccess: (data) => {
-      console.log('✅ Request created successfully:', data.id);
+      logger.info('ServiceRequests', 'Request created successfully', { id: data.id });
       
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: serviceRequestsKeys.byGuest(guestId) });
@@ -68,7 +69,7 @@ export const useCreateRequestMutation = (guestId: string) => {
 
     // ERROR - Rollback
     onError: (error, variables, context) => {
-      console.error('❌ Failed to create request:', error);
+      logger.error('ServiceRequests', 'Failed to create request', { error });
       
       // Restore snapshot
       if (context?.previousRequests) {
@@ -97,7 +98,7 @@ export const useTakeRequestMutation = (departmentId: string, staffId: string) =>
     
     // OPTIMISTIC UPDATE
     onMutate: async (requestId) => {
-      console.log('⚡ [OPTIMISTIC] Taking request:', requestId);
+      logger.debug('ServiceRequests', '[OPTIMISTIC] Taking request', { requestId });
       
       await queryClient.cancelQueries({ queryKey: serviceRequestsKeys.byDepartment(departmentId) });
 
@@ -128,7 +129,7 @@ export const useTakeRequestMutation = (departmentId: string, staffId: string) =>
     },
 
     onSuccess: (data) => {
-      console.log('✅ Request taken successfully:', data.id);
+      logger.info('ServiceRequests', 'Request taken successfully', { id: data.id });
       
       queryClient.invalidateQueries({ queryKey: serviceRequestsKeys.byDepartment(departmentId) });
       
@@ -137,7 +138,7 @@ export const useTakeRequestMutation = (departmentId: string, staffId: string) =>
     },
 
     onError: (error, requestId, context) => {
-      console.error('❌ Failed to take request:', error);
+      logger.error('ServiceRequests', 'Failed to take request', { error });
       
       if (context?.previousRequests) {
         queryClient.setQueryData(
@@ -166,7 +167,7 @@ export const useUpdateStatusMutation = (departmentId: string, guestId?: string) 
     
     // OPTIMISTIC UPDATE
     onMutate: async ({ requestId, status }) => {
-      console.log('⚡ [OPTIMISTIC] Updating status:', { requestId, status });
+      logger.debug('ServiceRequests', '[OPTIMISTIC] Updating status', { requestId, status });
       
       await queryClient.cancelQueries({ queryKey: serviceRequestsKeys.byDepartment(departmentId) });
 
@@ -204,7 +205,7 @@ export const useUpdateStatusMutation = (departmentId: string, guestId?: string) 
     },
 
     onSuccess: (data, { status }) => {
-      console.log('✅ Status updated successfully:', data.id);
+      logger.info('ServiceRequests', 'Status updated successfully', { id: data.id });
       
       // Invalidate department queries
       queryClient.invalidateQueries({ queryKey: serviceRequestsKeys.byDepartment(departmentId) });
@@ -219,7 +220,7 @@ export const useUpdateStatusMutation = (departmentId: string, guestId?: string) 
     },
 
     onError: (error, variables, context) => {
-      console.error('❌ Failed to update status:', error);
+      logger.error('ServiceRequests', 'Failed to update status', { error });
       
       if (context?.previousRequests) {
         queryClient.setQueryData(
@@ -248,7 +249,7 @@ export const useRateRequestMutation = (guestId: string) => {
     
     // OPTIMISTIC UPDATE
     onMutate: async ({ requestId, rating, feedback }) => {
-      console.log('⚡ [OPTIMISTIC] Rating request:', { requestId, rating });
+      logger.debug('ServiceRequests', '[OPTIMISTIC] Rating request', { requestId, rating });
       
       await queryClient.cancelQueries({ queryKey: serviceRequestsKeys.byGuest(guestId) });
 
@@ -277,7 +278,7 @@ export const useRateRequestMutation = (guestId: string) => {
     },
 
     onSuccess: (data) => {
-      console.log('✅ Rating submitted successfully:', data.id);
+      logger.info('ServiceRequests', 'Rating submitted successfully', { id: data.id });
       
       // Don't invalidate, just update in place (more efficient)
       queryClient.setQueryData<ServiceRequest[]>(
@@ -291,7 +292,7 @@ export const useRateRequestMutation = (guestId: string) => {
     },
 
     onError: (error, variables, context) => {
-      console.error('❌ Failed to submit rating:', error);
+      logger.error('ServiceRequests', 'Failed to submit rating', { error });
       
       if (context?.previousRequests) {
         queryClient.setQueryData(

@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createToursRepository } from '../api';
 import { tourKeys } from './keys';
 import { ToastService } from '../../../lib/services/toast.service';
+import { logger } from '../../../core/utils/logger';
 import type { 
   CreateTourBookingDTO, 
   UpdateBookingStatusDTO,
@@ -43,7 +44,7 @@ export function useCreateBookingMutation() {
     },
     
     onError: (error, variables, context) => {
-      console.error('❌ Booking creation failed:', error);
+      logger.error('Tours', 'Booking creation failed', error);
       ToastService.error(`Failed to create booking: ${error.message}`);
     },
   });

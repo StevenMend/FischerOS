@@ -1,5 +1,6 @@
 // src/hooks/staff/useStaffRequests.ts - REFACTORED WITH REACT QUERY
 import { useState, useEffect, useMemo } from 'react';
+import { logger } from '../../core/utils/logger';
 import { supabase } from '../../lib/api/supabase';
 import { useAuthStore } from '../../lib/stores/useAuthStore';
 import {
@@ -84,7 +85,7 @@ export const useStaffRequests = (): UseStaffRequestsResult => {
           setMyStaffInfo({ id: staffData.id, name: staffData.name });
         }
       } catch (err: any) {
-        console.error('❌ Error fetching staff info:', err);
+        logger.error('StaffRequests', 'Error fetching staff info', err);
       }
     };
 
@@ -125,7 +126,7 @@ export const useStaffRequests = (): UseStaffRequestsResult => {
   };
 
   const loadMoreCompleted = async () => {
-    console.log('�� Load more completed - TODO: implement pagination');
+    logger.debug('StaffRequests', '�� Load more completed - TODO: implement pagination');
   };
 
   const hasMoreCompleted = completedRequests.length > 0 && completedRequests.length % 20 === 0;

@@ -34,10 +34,10 @@ export default function ToursPage({ onBack }: ToursPageProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-diria-cream-light via-diria-cream to-diria-cream-dark flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-surface-light via-surface to-surface-dark flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-diria-teal mx-auto mb-4"></div>
-          <p className="text-diria-brown">Loading tours...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-foreground">Loading tours...</p>
         </div>
       </div>
     );
@@ -45,7 +45,7 @@ export default function ToursPage({ onBack }: ToursPageProps) {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-diria-cream-light via-diria-cream to-diria-cream-dark flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-surface-light via-surface to-surface-dark flex items-center justify-center">
         <div className="text-center text-red-600">
           <p className="text-xl font-semibold mb-2">Error loading tours</p>
           <p className="text-sm">{error}</p>
@@ -62,22 +62,22 @@ export default function ToursPage({ onBack }: ToursPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-diria-cream-light via-diria-cream to-diria-cream-dark relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-surface-light via-surface to-surface-dark relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-diria-gold/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-diria-brown/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-diria-teal/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 bg-accent/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-foreground/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
       </div>
 
       <header className="relative z-10 px-8 py-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center space-x-6">
-            <div className="w-16 h-16 bg-white border-2 border-diria-cream-dark rounded-3xl flex items-center justify-center shadow-lg">
-              <Waves className="w-8 h-8 text-diria-teal" />
+            <div className="w-16 h-16 bg-white border-2 border-surface-dark rounded-3xl flex items-center justify-center shadow-lg">
+              <Waves className="w-8 h-8 text-primary" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold text-diria-brown font-display mb-2">Adventures & Experiences</h1>
-              <p className="text-xl text-diria-brown/80">{tours.length} tours • Real-time coordination • Smart matching</p>
+              <h1 className="text-4xl font-bold text-foreground font-display mb-2">Adventures & Experiences</h1>
+              <p className="text-xl text-foreground/80">{tours.length} tours • Real-time coordination • Smart matching</p>
             </div>
           </div>
         </div>
@@ -104,7 +104,7 @@ export default function ToursPage({ onBack }: ToursPageProps) {
         </div>
         {tours.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-diria-brown/70">No tours found for this category</p>
+            <p className="text-foreground/70">No tours found for this category</p>
           </div>
         )}
       </main>

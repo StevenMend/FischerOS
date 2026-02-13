@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, User, Users, BarChart3, Eye, EyeOff, Clock, Shield, Building } from 'lucide-react';
+import { SITE_CONFIG } from '../config/site';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -17,7 +18,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
     department: 'Tours',
     adminEmail: '',
     adminPassword: '',
-    property: 'Tamarindo Diriá',
+    property: SITE_CONFIG.shortName,
     rememberMe: false
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -27,7 +28,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
   if (!isOpen) return null;
 
   const departments = ['Tours', 'Restaurants', 'Spa', 'Front Desk', 'Concierge'];
-  const properties = ['Tamarindo Diriá', 'Guanacaste Resort', 'Manuel Antonio'];
+  const properties = [...SITE_CONFIG.properties];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,10 +82,10 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-[#236192] rounded-full flex items-center justify-center text-white animate-float-subtle">
+            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white animate-float-subtle">
               {getIcon()}
             </div>
-            <h2 className="text-xl font-bold text-[#236192]">{getModalTitle()}</h2>
+            <h2 className="text-xl font-bold text-primary">{getModalTitle()}</h2>
           </div>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors btn-premium">
             <X className="w-5 h-5 text-gray-500" />
@@ -117,7 +118,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
                       value={formData.roomNumber}
                       onChange={(e) => setFormData({...formData, roomNumber: e.target.value})}
                       placeholder="Ej: 304"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#236192] focus:border-transparent input-premium"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent input-premium"
                       required
                     />
                   </div>
@@ -131,7 +132,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
                       value={formData.confirmationCode}
                       onChange={(e) => setFormData({...formData, confirmationCode: e.target.value})}
                       placeholder="Ej: TD-2024-001234"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#236192] focus:border-transparent input-premium"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent input-premium"
                     />
                   </div>
                 </>
@@ -149,7 +150,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
                       value={formData.staffId}
                       onChange={(e) => setFormData({...formData, staffId: e.target.value})}
                       placeholder="Ej: ANA001"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#236192] focus:border-transparent input-premium"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent input-premium"
                       required
                     />
                   </div>
@@ -160,7 +161,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
                     <select
                       value={formData.department}
                       onChange={(e) => setFormData({...formData, department: e.target.value})}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#236192] focus:border-transparent input-premium"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent input-premium"
                     >
                       {departments.map(dept => (
                         <option key={dept} value={dept}>{dept}</option>
@@ -177,7 +178,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
                         value={formData.password}
                         onChange={(e) => setFormData({...formData, password: e.target.value})}
                         placeholder="••••••••"
-                        className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#236192] focus:border-transparent input-premium"
+                        className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent input-premium"
                         required
                       />
                       <button
@@ -202,7 +203,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
                     <select
                       value={formData.property}
                       onChange={(e) => setFormData({...formData, property: e.target.value})}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#236192] focus:border-transparent input-premium"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent input-premium"
                     >
                       {properties.map(prop => (
                         <option key={prop} value={prop}>{prop}</option>
@@ -217,8 +218,8 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
                       type="email"
                       value={formData.adminEmail}
                       onChange={(e) => setFormData({...formData, adminEmail: e.target.value})}
-                      placeholder="admin@tamarindodiria.com"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#236192] focus:border-transparent input-premium"
+                      placeholder={SITE_CONFIG.contact.email}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent input-premium"
                       required
                     />
                   </div>
@@ -232,7 +233,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
                         value={formData.adminPassword}
                         onChange={(e) => setFormData({...formData, adminPassword: e.target.value})}
                         placeholder="••••••••"
-                        className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#236192] focus:border-transparent input-premium"
+                        className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent input-premium"
                         required
                       />
                       <button
@@ -254,7 +255,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
                   id="rememberMe"
                   checked={formData.rememberMe}
                   onChange={(e) => setFormData({...formData, rememberMe: e.target.checked})}
-                  className="w-4 h-4 text-[#236192] border-gray-300 rounded focus:ring-[#236192]"
+                  className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
                 />
                 <label htmlFor="rememberMe" className="text-sm text-gray-600">
                   Recordar en este dispositivo
@@ -265,7 +266,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#236192] text-white py-3 rounded-lg font-semibold hover:bg-[#236192]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed btn-premium ripple-effect"
+                className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed btn-premium ripple-effect"
               >
                 {loading ? (
                   <div className="flex items-center justify-center space-x-2">
@@ -282,7 +283,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
                 <button
                   type="button"
                   onClick={() => setIsRecovery(true)}
-                  className="text-sm text-[#236192] hover:underline btn-premium"
+                  className="text-sm text-primary hover:underline btn-premium"
                 >
                   ¿Olvidaste tu contraseña?
                 </button>
@@ -306,7 +307,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
                   <input
                     type="text"
                     placeholder="304 o TD-2024-001234"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#236192] focus:border-transparent input-premium"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent input-premium"
                     required
                   />
                 </div>
@@ -319,8 +320,8 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
                   </label>
                   <input
                     type={loginType === 'admin' ? 'email' : 'text'}
-                    placeholder={loginType === 'staff' ? 'ANA001' : 'admin@tamarindodiria.com'}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#236192] focus:border-transparent input-premium"
+                    placeholder={loginType === 'staff' ? 'ANA001' : SITE_CONFIG.contact.email}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent input-premium"
                     required
                   />
                 </div>
@@ -328,7 +329,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
 
               <button
                 type="submit"
-                className="w-full bg-[#fca311] text-white py-3 rounded-lg font-semibold hover:bg-[#fca311]/90 transition-colors btn-premium ripple-effect"
+                className="w-full bg-accent text-white py-3 rounded-lg font-semibold hover:bg-accent/90 transition-colors btn-premium ripple-effect"
               >
                 Enviar Instrucciones
               </button>
@@ -337,7 +338,7 @@ export default function LoginModal({ isOpen, onClose, loginType, onLogin }: Logi
                 <button
                   type="button"
                   onClick={() => setIsRecovery(false)}
-                  className="text-sm text-[#236192] hover:underline btn-premium"
+                  className="text-sm text-primary hover:underline btn-premium"
                 >
                   ← Volver al login
                 </button>

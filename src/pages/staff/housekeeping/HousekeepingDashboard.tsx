@@ -1,13 +1,16 @@
-// src/pages/staff/housekeeping/HousekeepingDashboard.tsx - UPDATED
+// src/pages/staff/housekeeping/HousekeepingDashboard.tsx
 import React from 'react';
 import { Home } from 'lucide-react';
 import { DepartmentLayout } from '../../../components/staff/DepartmentLayout';
+import { useAuth } from '../../../auth/AuthProvider';
 import { useStaffRequests } from '../../../hooks/staff/useStaffRequests';
+import { logger } from '../../../core/utils/logger';
 import RequestCard from '../../../components/staff/RequestCard';
 import { RoomStatusWidget } from './widgets/RoomStatusWidget';
 import { InventoryWidget } from './widgets/InventoryWidget';
 
 export default function HousekeepingDashboard() {
+  const { user } = useAuth();
   const {
     pendingRequests,
     inProgressRequests,
@@ -37,7 +40,7 @@ export default function HousekeepingDashboard() {
       departmentName="Housekeeping"
       departmentIcon={<Home className="w-6 h-6 text-white" />}
       departmentColor="green"
-      staffName="Ana Gutierrez"
+      staffName={user?.name || 'Staff'}
       
       metrics={{
         pending: pendingRequests.length,
@@ -61,7 +64,7 @@ export default function HousekeepingDashboard() {
       sidebarWidgets={
         <>
           <RoomStatusWidget />
-          <InventoryWidget onQuickRequest={(item) => console.log('Quick request:', item)} />
+          <InventoryWidget onQuickRequest={(item) => logger.debug('Housekeeping', 'Quick request', item)} />
         </>
       }
       
