@@ -45,12 +45,10 @@ export default function DevNav() {
           <div className="bg-gray-800 rounded-lg p-6">
             <h2 className="text-xl font-bold text-green-400 mb-4">Guest</h2>
             <ul className="space-y-2">
-              <li><Link to={`/${SLUG}/guest/dashboard`} className="hover:text-green-400 transition">/{SLUG}/guest/dashboard</Link></li>
-              <li><Link to={`/${SLUG}/guest/restaurants`} className="hover:text-green-400 transition">/{SLUG}/guest/restaurants</Link></li>
-              <li><Link to={`/${SLUG}/guest/tours`} className="hover:text-green-400 transition">/{SLUG}/guest/tours</Link></li>
-              <li><Link to={`/${SLUG}/guest/spa`} className="hover:text-green-400 transition">/{SLUG}/guest/spa</Link></li>
+              <li><Link to={`/${SLUG}/guest`} className="hover:text-green-400 transition">/{SLUG}/guest (Lobby)</Link></li>
+              <li><Link to={`/${SLUG}/guest/experiences`} className="hover:text-green-400 transition">/{SLUG}/guest/experiences</Link></li>
               <li><Link to={`/${SLUG}/guest/requests`} className="hover:text-green-400 transition">/{SLUG}/guest/requests</Link></li>
-              <li><Link to={`/${SLUG}/guest/profile`} className="hover:text-green-400 transition">/{SLUG}/guest/profile</Link></li>
+              <li><Link to={`/${SLUG}/guest/card`} className="hover:text-green-400 transition">/{SLUG}/guest/card</Link></li>
             </ul>
           </div>
 

@@ -1,55 +1,62 @@
-// src/routes/GuestRoutes.tsx - ALL IMPORTS FROM FEATURES
+// src/routes/GuestRoutes.tsx — 4 consolidated guest routes
 import React from 'react';
-import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { logger } from '../core/utils/logger';
 import GuestGuard from '../auth/guards/GuestGuard';
 import GuestLayout from '../components/layout/GuestLayout';
 import GuestDashboard from '../components/GuestDashboard';
-import RestaurantsPage from '../features/restaurants/pages/RestaurantsPage';
-import ToursPage from '../features/tours/pages/ToursPage';
-import SpaPage from '../features/spa/pages/SpaPage';
+import ExperiencesPage from '../pages/guest/ExperiencesPage';
 import RequestsPage from '../features/service-requests/pages/RequestsPage';
-import ProfilePage from '../pages/guest/ProfilePage';
+import GuestCardPage from '../pages/guest/GuestCardPage';
+import { useTenantNavigation } from '../core/tenant/useTenantNavigation';
 
-function GuestDashboardWrapper() {
-  const navigate = useNavigate();
-  const location = useLocation();
+function LobbyWrapper() {
+  const { navigateGuest } = useTenantNavigation();
 
-  logger.debug('Router', 'GuestDashboardWrapper - current path:', location.pathname);
-
-  // Use relative navigation — we are inside /:slug/guest/*
   const handleNavigate = (page: string) => {
-    logger.debug('Router', 'Navigating to:', page);
-    switch(page) {
-      case 'restaurants': navigate('restaurants'); break;
-      case 'tours': navigate('tours'); break;
-      case 'spa': navigate('spa'); break;
-      case 'requests': navigate('requests'); break;
-      case 'profile': navigate('profile'); break;
-      default: navigate('dashboard');
+    logger.debug('Router', 'Lobby navigate:', page);
+    switch (page) {
+      case 'restaurants':
+      case 'tours':
+      case 'spa':
+        navigateGuest('experiences');
+        break;
+      case 'requests':
+        navigateGuest('requests');
+        break;
+      case 'profile':
+        navigateGuest('card');
+        break;
+      default:
+        break;
     }
   };
 
-  const currentPage = location.pathname.split('/').pop() || 'dashboard';
-
-  return <GuestDashboard currentPage={currentPage} onNavigate={handleNavigate} />;
+  return <GuestDashboard currentPage="lobby" onNavigate={handleNavigate} />;
 }
 
 export function GuestRoutes() {
-  logger.debug('Router', 'GuestRoutes initialized - all pages from features/');
-  
+  logger.debug('Router', 'GuestRoutes initialized — 4 consolidated routes');
+
   return (
     <Routes>
       <Route element={<GuestGuard />}>
         <Route element={<GuestLayout />}>
-          <Route path="/dashboard" element={<GuestDashboardWrapper />} />
-          <Route path="/restaurants" element={<RestaurantsPage onBack={() => {}} />} />
-          <Route path="/tours" element={<ToursPage onBack={() => {}} />} />
-          <Route path="/spa" element={<SpaPage />} />
+          {/* Primary 4 routes */}
+          <Route index element={<LobbyWrapper />} />
+          <Route path="/experiences" element={<ExperiencesPage />} />
           <Route path="/requests" element={<RequestsPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/" element={<Navigate to="dashboard" replace />} />
-          <Route path="*" element={<Navigate to="dashboard" replace />} />
+          <Route path="/card" element={<GuestCardPage />} />
+
+          {/* Legacy redirects */}
+          <Route path="/dashboard" element={<Navigate to=".." replace />} />
+          <Route path="/restaurants" element={<Navigate to="../experiences" replace />} />
+          <Route path="/tours" element={<Navigate to="../experiences" replace />} />
+          <Route path="/spa" element={<Navigate to="../experiences" replace />} />
+          <Route path="/profile" element={<Navigate to="../card" replace />} />
+
+          {/* Catch-all */}
+          <Route path="*" element={<Navigate to=".." replace />} />
         </Route>
       </Route>
     </Routes>
