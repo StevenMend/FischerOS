@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import { AlertTriangle, CheckCircle, Activity, TrendingUp } from 'lucide-react';
 import { useStaffRequests } from '../../hooks/staff/useStaffRequests';
 import { logger } from '../../core/utils/logger';
-import { useStaffModal } from '../../hooks/staff/useStaffModal';
-import { StaffModals } from '../../components/staff/StaffModals';
 import { ToastService } from '../../lib/services/toast.service';
 import RequestCard from '../../components/staff/RequestCard';
 import ProgressCard from '../../components/staff/ProgressCard';
@@ -31,20 +29,6 @@ export default function StaffConsole() {
     hasMoreCompleted,
     myDepartmentName
   } = useStaffRequests();
-
-  const {
-    showShiftHandover,
-    handoverNotes,
-    openShiftHandover,
-    closeShiftHandover,
-    updateHandoverNotes,
-    submitHandover,
-    showSatisfactionModal,
-    selectedCompletedItem,
-    openSatisfactionModal,
-    closeSatisfactionModal,
-    submitSatisfactionFeedback
-  } = useStaffModal();
 
   logger.debug('StaffConsole', 'State', {
     pending: pendingRequests.length,
@@ -225,7 +209,7 @@ export default function StaffConsole() {
             <>
               <CompletedCard 
                 items={completedRequests} 
-                onCollectSatisfaction={openSatisfactionModal} 
+
               />
               
               {hasMoreCompleted && (
@@ -311,7 +295,7 @@ export default function StaffConsole() {
               <div className="space-y-4 overflow-y-auto max-h-[calc(100vh-280px)] pr-2 custom-scrollbar">
                 <CompletedCard 
                   items={completedRequests} 
-                  onCollectSatisfaction={openSatisfactionModal} 
+  
                 />
                 
                 {hasMoreCompleted && (
@@ -349,17 +333,6 @@ export default function StaffConsole() {
         }
       `}</style>
 
-      <StaffModals
-        showShiftHandover={showShiftHandover}
-        handoverNotes={handoverNotes}
-        onCloseShiftHandover={closeShiftHandover}
-        onUpdateHandoverNotes={updateHandoverNotes}
-        onSubmitHandover={submitHandover}
-        showSatisfactionModal={showSatisfactionModal}
-        selectedCompletedItem={selectedCompletedItem}
-        onCloseSatisfactionModal={closeSatisfactionModal}
-        onSubmitSatisfaction={submitSatisfactionFeedback}
-      />
     </>
   );
 }

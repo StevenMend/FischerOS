@@ -23,7 +23,7 @@ interface ServiceRequest {
 
 interface CompletedCardProps {
   items: ServiceRequest[];
-  onCollectSatisfaction: (item: ServiceRequest) => void;
+  onCollectSatisfaction?: (item: ServiceRequest) => void;
 }
 
 const calculateDuration = (createdAt: string, completedAt: string | null): string => {
