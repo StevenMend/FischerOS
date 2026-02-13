@@ -1,8 +1,9 @@
 // src/pages/dev/DevNav.tsx - Development Navigation Hub
 import { Link } from 'react-router-dom';
+import { DEFAULT_SLUG } from '../../config/tenant-defaults';
 
 const DEV_BYPASS = import.meta.env.VITE_DEV_BYPASS === 'true';
-const SLUG = 'tamarindo-diria';
+const SLUG = DEFAULT_SLUG;
 
 export default function DevNav() {
   if (!DEV_BYPASS) {

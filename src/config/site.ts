@@ -1,4 +1,7 @@
-// src/config/site.ts - Real Tamarindo Diriá Configuration
+// src/config/site.ts — Default tenant configuration (Tamarindo Diriá).
+// This is the first/seed tenant. When Supabase is connected, tenant-specific
+// data (name, restaurants, facilities, colors, etc.) will be fetched per-tenant
+// and this file will only hold app-wide defaults (timeouts, feature flags, etc.).
 export const SITE_CONFIG = {
   // Identidad Oficial del Resort
   name: 'Tamarindo Diriá Beach Resort',

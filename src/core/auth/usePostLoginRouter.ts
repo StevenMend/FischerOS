@@ -1,6 +1,7 @@
 // src/core/auth/usePostLoginRouter.ts — Post-login routing by role/department
 import { useNavigate, useParams } from 'react-router-dom';
 import { buildTenantPaths } from '../../config/routes';
+import { DEFAULT_SLUG } from '../../config/tenant-defaults';
 import { logger } from '../utils/logger';
 
 interface StaffProfile {
@@ -31,7 +32,7 @@ const DEPARTMENT_ROUTE_MAP: Record<string, string> = {
 export function usePostLoginRouter(slugOverride?: string) {
   const navigate = useNavigate();
   const params = useParams<{ slug: string }>();
-  const slug = slugOverride ?? params.slug ?? 'tamarindo-diria';
+  const slug = slugOverride ?? params.slug ?? DEFAULT_SLUG;
 
   const paths = buildTenantPaths(slug);
 

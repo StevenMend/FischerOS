@@ -1,7 +1,6 @@
 // src/core/tenant/useTenantNavigation.ts — Slug-aware navigation helpers
 import { useNavigate, useParams } from 'react-router-dom';
-
-const DEFAULT_SLUG = 'tamarindo-diria';
+import { DEFAULT_SLUG } from '../../config/tenant-defaults';
 
 /**
  * Hook that provides slug-aware navigation for components inside /:slug routes.

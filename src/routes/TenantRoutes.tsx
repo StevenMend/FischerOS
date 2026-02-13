@@ -1,12 +1,9 @@
 // src/routes/TenantRoutes.tsx — Validates :slug and wraps tenant children
 import React from 'react';
 import { useParams, Navigate, Outlet } from 'react-router-dom';
+import { KNOWN_SLUGS, PropertySlug } from '../config/tenant-defaults';
 import { logger } from '../core/utils/logger';
 import { TenantProvider } from '../core/tenant/TenantProvider';
-
-/** Known property slugs derived from SITE_CONFIG (hardcoded for now). */
-const KNOWN_SLUGS = ['tamarindo-diria', 'guanacaste', 'manuel-antonio'] as const;
-export type PropertySlug = (typeof KNOWN_SLUGS)[number];
 
 function isKnownSlug(value: string): value is PropertySlug {
   return (KNOWN_SLUGS as readonly string[]).includes(value);

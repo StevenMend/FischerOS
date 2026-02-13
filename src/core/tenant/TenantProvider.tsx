@@ -1,44 +1,8 @@
 // src/core/tenant/TenantProvider.tsx — Tenant context from :slug
 import React, { createContext, useContext, useMemo, ReactNode } from 'react';
 import { useParams } from 'react-router-dom';
-import { SITE_CONFIG } from '../../config/site';
+import { TENANT_REGISTRY, TenantConfig } from '../../config/tenant-defaults';
 import { logger } from '../utils/logger';
-
-// ---------------------------------------------------------------------------
-// Tenant registry — hardcoded for now; will be replaced by Supabase lookup.
-// ---------------------------------------------------------------------------
-
-interface TenantConfig {
-  propertyId: string;
-  propertyName: string;
-  slug: string;
-  colors: typeof SITE_CONFIG.colors;
-  features: typeof SITE_CONFIG.features;
-}
-
-const TENANT_REGISTRY: Record<string, TenantConfig> = {
-  'tamarindo-diria': {
-    propertyId: 'prop_tamarindo_diria',
-    propertyName: 'Tamarindo Diriá Beach Resort',
-    slug: 'tamarindo-diria',
-    colors: SITE_CONFIG.colors,
-    features: SITE_CONFIG.features,
-  },
-  'guanacaste': {
-    propertyId: 'prop_guanacaste',
-    propertyName: 'Guanacaste Resort',
-    slug: 'guanacaste',
-    colors: SITE_CONFIG.colors,
-    features: SITE_CONFIG.features,
-  },
-  'manuel-antonio': {
-    propertyId: 'prop_manuel_antonio',
-    propertyName: 'Manuel Antonio',
-    slug: 'manuel-antonio',
-    colors: SITE_CONFIG.colors,
-    features: SITE_CONFIG.features,
-  },
-};
 
 // ---------------------------------------------------------------------------
 // Context
