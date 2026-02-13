@@ -1,168 +1,73 @@
-// src/components/staff/StaffHeader.tsx - FIXES FINALES
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// src/components/staff/StaffHeader.tsx — Top bar with avatar, department, notifications
+import { Bell, Menu, X } from 'lucide-react';
 import { useAuth } from '../../auth/AuthProvider';
-import { 
-  Bell, 
-  Menu, 
-  X, 
-  LogOut, 
-  Settings, 
-  BarChart3
-} from 'lucide-react';
+import { useTenantOptional } from '../../core/tenant/TenantProvider';
 
 interface StaffHeaderProps {
-  selectedDepartment?: string;
-  departments?: string[];
-  onDepartmentSelect?: (department: string) => void;
+  sidebarOpen: boolean;
+  onToggleSidebar: () => void;
 }
 
-export default function StaffHeader({
-  selectedDepartment = 'Tours',
-  departments = ['Tours', 'Restaurants', 'Spa', 'Concierge'],
-  onDepartmentSelect
-}: StaffHeaderProps) {
-  const navigate = useNavigate();
-  const { logout, user } = useAuth();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+export default function StaffHeader({ sidebarOpen, onToggleSidebar }: StaffHeaderProps) {
+  const { user } = useAuth();
+  const tenant = useTenantOptional();
 
-  const staffName = user?.name || 'Ana Gutierrez';
-  const staffInitials = staffName.split(' ').map(n => n[0]).join('').substring(0, 2);
-  const notificationCount = 7;
-
-  const handleLogout = async () => {
-    await logout();
-    window.location.href = '/portal';
-  };
+  const staffName = user?.name || 'Staff Member';
+  const staffInitials = staffName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+  const department = user?.department || 'Operations';
+  const propertyName = tenant?.propertyName || 'FischerOS';
+  const notificationCount = 3;
 
   return (
-    <>
-      <header className="sticky top-0 bg-white border-b border-gray-200 shadow-sm z-50">
-        <div className="px-4 sm:px-6 lg:px-8 max-w-[2000px] mx-auto">
-          <div className="flex items-center justify-between h-16">
-            
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-md">
-                  <span className="text-accent font-bold text-sm">TD</span>
-                </div>
-                <div className="hidden md:block">
-                  <span className="text-sm text-gray-600 font-medium">{selectedDepartment}</span>
-                </div>
-              </div>
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
+      <div className="flex items-center justify-between h-14 px-4 lg:px-6">
+        {/* Left — Logo + Property */}
+        <div className="flex items-center gap-3">
+          {/* Mobile hamburger */}
+          <button
+            onClick={onToggleSidebar}
+            className="lg:hidden w-9 h-9 flex items-center justify-center rounded-xl hover:bg-gray-100 transition-colors"
+          >
+            {sidebarOpen ? (
+              <X className="w-5 h-5 text-gray-600" />
+            ) : (
+              <Menu className="w-5 h-5 text-gray-600" />
+            )}
+          </button>
+
+          <div className="w-8 h-8 bg-foreground rounded-lg flex items-center justify-center">
+            <span className="text-white font-bold text-xs">F</span>
+          </div>
+          <div className="hidden sm:block">
+            <p className="text-sm font-semibold text-gray-900 leading-none">{propertyName}</p>
+            <p className="text-xs text-gray-500">Operations</p>
+          </div>
+        </div>
+
+        {/* Right — Notifications + Avatar */}
+        <div className="flex items-center gap-2">
+          {/* Notifications */}
+          <button className="relative w-9 h-9 flex items-center justify-center rounded-xl hover:bg-gray-100 transition-colors">
+            <Bell className="w-[18px] h-[18px] text-gray-600" />
+            {notificationCount > 0 && (
+              <span className="absolute top-1 right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
+                <span className="text-[10px] font-bold text-white">{notificationCount}</span>
+              </span>
+            )}
+          </button>
+
+          {/* Avatar + Info */}
+          <div className="flex items-center gap-2.5 pl-2 border-l border-gray-200">
+            <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/70 rounded-lg flex items-center justify-center">
+              <span className="text-white font-semibold text-xs">{staffInitials}</span>
             </div>
-
-            <div className="flex items-center gap-3">
-              
-              <div className="hidden lg:flex items-center px-4 py-2 bg-gray-50 rounded-2xl border border-gray-200">
-                <span className="text-sm font-semibold text-gray-700">{staffName}</span>
-              </div>
-
-              <button className="relative w-11 h-11 bg-white border border-gray-200 rounded-2xl hover:shadow-md transition-all flex items-center justify-center group">
-                <Bell className="w-5 h-5 text-gray-600 group-hover:text-primary transition-colors" />
-                {notificationCount > 0 && (
-                  <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
-                    <span className="text-xs font-bold text-white">{notificationCount}</span>
-                  </div>
-                )}
-              </button>
-
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="w-11 h-11 bg-white border border-gray-200 rounded-2xl hover:shadow-md transition-all flex items-center justify-center group"
-              >
-                {isMobileMenuOpen ? (
-                  <X className="w-5 h-5 text-gray-700" />
-                ) : (
-                  <Menu className="w-5 h-5 text-gray-700 group-hover:text-primary transition-colors" />
-                )}
-              </button>
+            <div className="hidden md:block">
+              <p className="text-sm font-medium text-gray-900 leading-none">{staffName}</p>
+              <p className="text-xs text-gray-500">{department}</p>
             </div>
           </div>
         </div>
-      </header>
-
-      {isMobileMenuOpen && (
-        <>
-          <div 
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60]"
-            onClick={() => setIsMobileMenuOpen(false)}
-            style={{ top: '64px' }}
-          />
-          
-          <div className="fixed top-16 right-0 w-80 bg-white border-l border-gray-200 z-[70] shadow-2xl h-[calc(100vh-64px)] overflow-y-auto">
-            <div className="p-6 space-y-6">
-              
-              <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-200">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-md">
-                  <span className="text-base font-bold text-white">{staffInitials}</span>
-                </div>
-                <div>
-                  <p className="font-bold text-gray-900">{staffName}</p>
-                  <p className="text-sm text-gray-600">{selectedDepartment}</p>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-1">Quick Actions</h3>
-                <div className="space-y-2">
-                  <button 
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-full flex items-center gap-3 px-4 py-3 bg-white border border-gray-200 text-gray-700 rounded-2xl font-semibold hover:shadow-md hover:border-primary/40 transition-all text-sm"
-                  >
-                    <BarChart3 className="w-5 h-5 text-primary" />
-                    <span>Today's Summary</span>
-                  </button>
-                </div>
-              </div>
-
-              {departments && departments.length > 0 && (
-                <div>
-                  <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-1">Department</h3>
-                  <select
-                    value={selectedDepartment}
-                    onChange={(e) => {
-                      if (onDepartmentSelect) {
-                        onDepartmentSelect(e.target.value);
-                      }
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="w-full px-4 py-3 text-sm font-medium border border-gray-200 rounded-2xl focus:ring-2 focus:ring-primary focus:border-primary bg-white text-gray-700"
-                  >
-                    {departments.map(dept => (
-                      <option key={dept} value={dept}>{dept}</option>
-                    ))}
-                  </select>
-                </div>
-              )}
-
-              <div>
-                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-1">System</h3>
-                <div className="space-y-2">
-                  <button 
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-full flex items-center gap-3 px-4 py-3 bg-white border border-gray-200 text-gray-700 rounded-2xl font-semibold hover:shadow-md transition-all text-sm"
-                  >
-                    <Settings className="w-5 h-5 text-gray-600" />
-                    <span>Settings</span>
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      handleLogout();
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="w-full flex items-center gap-3 px-4 py-3 bg-white border-2 border-red-200 text-red-600 rounded-2xl font-semibold hover:bg-red-50 hover:shadow-md transition-all text-sm"
-                  >
-                    <LogOut className="w-5 h-5" />
-                    <span>Logout</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-    </>
+      </div>
+    </header>
   );
 }

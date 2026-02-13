@@ -37,7 +37,7 @@ export function usePostLoginRouter(slugOverride?: string) {
   const paths = buildTenantPaths(slug);
 
   const routeGuest = () => {
-    navigate(paths.guest.dashboard);
+    navigate(paths.guest.base);
   };
 
   const routeAdmin = () => {

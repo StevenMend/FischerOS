@@ -61,7 +61,7 @@ export function AppRouter() {
                 <Route path="guest/*" element={<GuestRoutes />} />
                 <Route path="staff/*" element={<StaffRoutes />} />
                 <Route path="admin/*" element={<AdminRoutes />} />
-                <Route index element={<Navigate to="guest/dashboard" replace />} />
+                <Route index element={<Navigate to="guest" replace />} />
               </Route>
 
               {/* Fallback */}

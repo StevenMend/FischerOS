@@ -19,12 +19,16 @@ export const ROUTE_PATHS = {
   // MUNDO 2 — Tenant (hotel) — all paths carry :slug
   guest: {
     base: '/:slug/guest',
+    lobby: '/:slug/guest',
+    experiences: '/:slug/guest/experiences',
+    requests: '/:slug/guest/requests',
+    card: '/:slug/guest/card',
+    // Deprecated — kept for backward compat
     dashboard: '/:slug/guest/dashboard',
     restaurants: '/:slug/guest/restaurants',
     tours: '/:slug/guest/tours',
     spa: '/:slug/guest/spa',
-    requests: '/:slug/guest/requests',
-    profile: '/:slug/guest/profile'
+    profile: '/:slug/guest/profile',
   },
 
   staff: {
@@ -57,11 +61,15 @@ export function buildTenantPaths(slug: string) {
   return {
     guest: {
       base: `/${slug}/guest`,
+      lobby: `/${slug}/guest`,
+      experiences: `/${slug}/guest/experiences`,
+      requests: `/${slug}/guest/requests`,
+      card: `/${slug}/guest/card`,
+      // Deprecated
       dashboard: `/${slug}/guest/dashboard`,
       restaurants: `/${slug}/guest/restaurants`,
       tours: `/${slug}/guest/tours`,
       spa: `/${slug}/guest/spa`,
-      requests: `/${slug}/guest/requests`,
       profile: `/${slug}/guest/profile`,
     },
     staff: {
@@ -87,14 +95,12 @@ export function buildTenantPaths(slug: string) {
 // Route Configuration by Role
 export const ROUTE_CONFIG = {
   guest: {
-    defaultRoute: ROUTE_PATHS.guest.dashboard,
+    defaultRoute: ROUTE_PATHS.guest.base,
     allowedRoutes: [
-      ROUTE_PATHS.guest.dashboard,
-      ROUTE_PATHS.guest.restaurants,
-      ROUTE_PATHS.guest.tours,
-      ROUTE_PATHS.guest.spa,
+      ROUTE_PATHS.guest.base,
+      ROUTE_PATHS.guest.experiences,
       ROUTE_PATHS.guest.requests,
-      ROUTE_PATHS.guest.profile
+      ROUTE_PATHS.guest.card,
     ],
     authRoute: ROUTE_PATHS.auth.guest,
     sessionTimeout: 24 * 60 * 60 * 1000, // 24 hours
@@ -147,35 +153,29 @@ export const ROUTE_CONFIG = {
 export const NAV_CONFIG = {
   guest: [
     {
-      path: ROUTE_PATHS.guest.dashboard,
-      label: 'Dashboard',
+      path: ROUTE_PATHS.guest.lobby,
+      label: 'Lobby',
       icon: 'Home',
-      description: 'Overview & quick actions'
+      description: 'Welcome & highlights'
     },
     {
-      path: ROUTE_PATHS.guest.restaurants,
-      label: 'Restaurants',
-      icon: 'UtensilsCrossed',
-      description: '8 dining venues'
-    },
-    {
-      path: ROUTE_PATHS.guest.tours,
-      label: 'Tours',
-      icon: 'MapPin',
-      description: '60+ experiences'
-    },
-    {
-      path: ROUTE_PATHS.guest.spa,
-      label: 'Spa',
-      icon: 'Flower2',
-      description: 'Wellness & relaxation'
+      path: ROUTE_PATHS.guest.experiences,
+      label: 'Experiences',
+      icon: 'Sparkles',
+      description: 'Dining, tours & spa'
     },
     {
       path: ROUTE_PATHS.guest.requests,
-      label: 'My Requests',
+      label: 'Requests',
       icon: 'MessageCircle',
-      description: 'Track your bookings'
-    }
+      description: 'Track your requests'
+    },
+    {
+      path: ROUTE_PATHS.guest.card,
+      label: 'Guest Card',
+      icon: 'CreditCard',
+      description: 'Your stay details'
+    },
   ],
 
   staff: [

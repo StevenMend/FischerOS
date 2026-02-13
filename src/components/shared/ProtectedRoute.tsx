@@ -3,7 +3,6 @@
 import React, { ReactNode } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../auth/AuthProvider';
-import LoadingSpinner from './LoadingSpinner';
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -28,7 +27,7 @@ export default function ProtectedRoute({
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 to-blue-50">
-        <LoadingSpinner size="large" />
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
       </div>
     );
   }
