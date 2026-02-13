@@ -1,107 +1,151 @@
-# Diria Guest Engine (PWA) — Public Showcase Repository
+# FischerOS
 
-This repository contains a **limited, non-sensitive public showcase** of the *Diria Guest Engine*, a real hospitality project developed for a private client. Only safe, generic, and non-confidential portions of the frontend prototype are included here.
+FischerOS is a hospitality operations platform built as a Progressive Web App (PWA).  
+It functions as a real-time operational layer connecting guests, hotel staff, and management into a single unified system.
 
-> ⚠️ Confidentiality Notice  
-> This repository does **not** include client data, proprietary workflows, backend logic, design systems, or any sensitive operational details. All protected features have been removed or replaced with placeholders.
-
----
-
-## ⭐ Purpose of This Public Version
-
-This public version exists exclusively to:
-
-- Demonstrate engineering quality, architecture, and development style  
-- Showcase UI/UX foundations, PWA structure, and component design  
-- Allow recruiters and technical reviewers to evaluate front-end work  
-- Share a safe, sanitized preview of a real client project
-
-The full production system remains private and significantly broader in scope.
+This is not a digital menu or a basic hotel app — it is an internal operating system designed to manage guest requests, staff workflows, services, and property operations from one centralized interface.
 
 ---
 
-## 🚀 Project Overview
+## What It Does
 
-The Diria Guest Engine is a **Progressive Web Application (PWA)** designed to enhance the guest experience across hotels, restaurants, and tourism services. The production system provides:
+FischerOS replaces fragmented communication tools like WhatsApp chains, paper notes, and disconnected systems with structured, trackable workflows.
 
-- Fast guest access to property services  
-- Self-service flows that reduce front-desk load  
-- Modular views for restaurants, spa, tours, housekeeping, and concierge  
-- PWA access with offline-oriented optimizations  
-- Scalable architecture prepared for AI-driven concierge automations
+Guests interact through a QR-based interface with zero downloads required.  
+Staff operate through department-specific dashboards.  
+Management gains real-time operational visibility and analytics.
 
-This repository includes the **UI/UX foundation only**, without private integrations.
+All interactions flow through a structured request and task system with full tracking and lifecycle management.
 
 ---
 
-## 🧩 Included in This Public Repository
+## Guest Experience
 
-- React + Vite PWA structure  
-- Clean and modular TypeScript codebase  
-- Core UI screens and navigation  
-- Reusable components  
-- Mocked service-request flows  
-- Example architecture patterns  
-- Placeholder API client (no keys, no private logic)
+Guests access the platform by scanning a QR code from their room or anywhere on the property.
 
-Everything here is intentionally simplified and safe for public viewing.
+From their interface they can:
 
----
+- Browse restaurants and digital menus
+- Reserve tables
+- Book spa treatments
+- Schedule tours and activities
+- Request housekeeping or amenities
+- Report maintenance issues
+- Chat with an AI concierge
+- View property maps and services
+- Check weather and local conditions
+- Discover partner businesses and experiences
 
-## 🔐 Excluded (Private / Client-Sensitive)
-
-This repository deliberately excludes:
-
-- Backend logic, database schema, business rules  
-- Supabase tables, policies, or real API connections  
-- Admin dashboards, staff tools, internal workflows  
-- AI concierge engine and automation pipelines  
-- Behavioral analytics, personalization logic  
-- Real content, media, pricing, or operational data  
-- Any client-specific documentation or assets
+Each action becomes a structured request routed automatically to the correct department.
 
 ---
 
-## 🏗️ Tech Stack (Public Parts)
+## Staff Operations
 
-- **React (TypeScript)**  
-- **Vite**  
-- **TailwindCSS**  
-- **React Router**  
-- Component-driven modular architecture  
-- PWA configuration (service worker + manifest)
+Each department operates from a focused dashboard designed around real workflows:
 
----
-
-## 📁 Simplified Directory Structure
-
-```
-src/
- ├── components/        # Shared UI components
- ├── features/          # High-level UI sections (mocked)
- ├── pages/             # Guest-facing screens
- ├── routes/            # Navigation layout
- ├── hooks/             # State utilities
- ├── lib/               # Placeholder API client (no secrets)
- └── main.tsx           # App entry point
-```
+- Housekeeping manages cleaning tasks
+- Maintenance handles issue reports
+- Concierge organizes tours and transportation
+- Restaurants manage reservations and service flow
+- Spa staff manage appointments and schedules
+- Front desk oversees guest requests and coordination
 
 ---
 
-## ⚙️ Environment Variables (Prototype Only)
-
-A template file is included:
-
-```
-VITE_SUPABASE_URL=your_value_here
-VITE_SUPABASE_ANON_KEY=your_key_here
-```
-
-These are only placeholders and do not connect to any live system.
+No manual forwarding, no lost messages, and full accountability per task.
 
 ---
 
-## 📄 Disclaimer
+## Admin & Management Layer
 
-This repository is a **public-facing demonstration** of safe frontend components from a real project.  
-All private logic, internal workflows, and client-specific implementations remain fully protected in private repositories.
+Management has access to an executive console providing:
+
+- Operational KPIs
+- Department workload visibility
+- Request analytics
+- Staff management
+- Partner management
+- Feature configuration
+- Property branding and white-label settings
+
+This layer transforms daily operations into measurable, optimizable processes.
+
+---
+
+## Problem It Solves
+
+Mid-size hotels often run operations through informal communication:
+
+- Requests arrive through messaging apps
+- Front desk manually forwards tasks
+- Departments lose track of responsibilities
+- No historical data or analytics exist
+- Managers lack visibility into operational bottlenecks
+
+FischerOS converts all interactions into structured, trackable workflows with real-time status and reporting.
+
+---
+
+## Technical Stack
+
+- React 18 + TypeScript
+- Vite
+- Supabase (Auth, Database, Realtime)
+- TanStack React Query v5
+- Zustand state management
+- React Router v7
+- Tailwind CSS
+- Service Worker (offline support)
+- Push Notifications
+
+---
+
+## Architecture
+
+Feature-based modular structure with ports & adapters.
+
+Each domain module contains:
+
+- api
+- components
+- hooks
+- pages
+- types
+
+Modules include:
+
+- Restaurants
+- Tours & Activities
+- Spa Management
+- Service Requests
+- Staff Operations
+- Admin Dashboard
+
+The platform supports:
+
+- Mock data mode for demos
+- Live Supabase integration for production
+- Multi-tenant white-label configuration
+
+---
+
+## White-Label SaaS Design
+
+FischerOS is designed as a reusable multi-property platform.
+
+Each hotel can have:
+
+- Custom branding
+- Feature toggles
+- Department configuration
+- Independent operational data
+- Dedicated routing via property slug
+
+One codebase, multiple properties.
+
+---
+
+## Vision
+
+FischerOS aims to become a vertical SaaS platform for hospitality operations — replacing fragmented internal tools with a unified, real-time operational system focused on speed, visibility, and automation.
