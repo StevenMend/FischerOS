@@ -1,0 +1,346 @@
+[
+  {
+    "name": "Catamaran Sunset Cruise",
+    "category": "Sailing",
+    "image": "https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "duration": "4 hours",
+    "difficulty": "Easy",
+    "price": "$85",
+    "rating": 4.9,
+    "description": "Velero con barra libre, snorkel y vistas del atardecer en aguas del Pacífico",
+    "includes": "Transportation, drinks, snorkel gear, guide",
+    "groupSize": "2-40 people",
+    "partnerInfo": {
+      "name": "Tamarindo Sailing Tours",
+      "responseTime": "8 min",
+      "cancellationRate": "2%",
+      "guestRating": 4.9,
+      "reliability": 98,
+      "lastContact": "5 min ago",
+      "status": "online",
+      "phone": "+506 2653-1234",
+      "emergencyProtocol": "Coast Guard certified"
+    },
+    "equipment": {
+      "available": 3,
+      "total": 4,
+      "status": "optimal",
+      "lastMaintenance": "2 days ago"
+    },
+    "weatherSensitivity": "high",
+    "skillRequired": "Beginner",
+    "safetyRating": "A+",
+    "insurance": "Required",
+    "groupOptimization": {
+      "minGroup": 6,
+      "maxGroup": 40,
+      "currentBookings": 28,
+      "efficiency": 85
+    },
+    "packages": [
+      { "name": "Sunset + Dinner", "price": 125, "savings": 15 },
+      { "name": "Catamaran + Spa", "price": 145, "savings": 25 }
+    ]
+  },
+  {
+    "name": "Surfing Lessons",
+    "category": "Surfing",
+    "image": "https://images.pexels.com/photos/390051/surfer-wave-sunset-the-indian-ocean-390051.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "duration": "2 hours",
+    "difficulty": "Easy",
+    "price": "$65",
+    "rating": 4.8,
+    "description": "Playa Tamarindo es uno de los destinos principales del surf a nivel mundial. Perfecto para principiantes",
+    "includes": "Board, instructor, photos, safety briefing",
+    "groupSize": "1-6 people",
+    "partnerInfo": {
+      "name": "Tamarindo Surf School",
+      "responseTime": "10 min",
+      "cancellationRate": "3%",
+      "guestRating": 4.8,
+      "reliability": 95,
+      "lastContact": "3 min ago",
+      "status": "online",
+      "phone": "+506 2653-7777",
+      "emergencyProtocol": "Lifeguard certified"
+    },
+    "equipment": {
+      "available": 12,
+      "total": 15,
+      "status": "optimal",
+      "lastMaintenance": "1 day ago"
+    },
+    "weatherSensitivity": "medium",
+    "skillRequired": "Beginner",
+    "safetyRating": "A",
+    "insurance": "Included",
+    "groupOptimization": {
+      "minGroup": 1,
+      "maxGroup": 6,
+      "currentBookings": 4,
+      "efficiency": 75
+    },
+    "packages": [
+      { "name": "Surf + Beach Lunch", "price": 95, "savings": 15 },
+      { "name": "Surf + Massage", "price": 125, "savings": 20 }
+    ]
+  },
+  {
+    "name": "ATV Adventure",
+    "category": "ATV",
+    "image": "https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "duration": "4 hours",
+    "difficulty": "Moderate",
+    "price": "$95",
+    "rating": 4.7,
+    "description": "Paseo divertido por praderas y ríos, con vistas espectaculares del valle y océano Pacífico",
+    "includes": "ATV, helmet, guide, refreshments",
+    "groupSize": "2-12 people",
+    "partnerInfo": {
+      "name": "ATV Costa Rica Adventures",
+      "responseTime": "12 min",
+      "cancellationRate": "4%",
+      "guestRating": 4.7,
+      "reliability": 92,
+      "lastContact": "15 min ago",
+      "status": "busy",
+      "phone": "+506 2653-5678",
+      "emergencyProtocol": "First aid certified"
+    },
+    "equipment": {
+      "available": 10,
+      "total": 12,
+      "status": "maintenance",
+      "lastMaintenance": "today"
+    },
+    "weatherSensitivity": "medium",
+    "skillRequired": "Intermediate",
+    "safetyRating": "A",
+    "insurance": "Included",
+    "groupOptimization": {
+      "minGroup": 4,
+      "maxGroup": 12,
+      "currentBookings": 8,
+      "efficiency": 88
+    },
+    "packages": [
+      { "name": "ATV + Zip-line", "price": 165, "savings": 25 },
+      { "name": "Adventure Day", "price": 195, "savings": 30 }
+    ]
+  },
+  {
+    "name": "Horseback Riding",
+    "category": "Horseback",
+    "image": "https://images.pexels.com/photos/1996333/pexels-photo-1996333.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "duration": "3 hours",
+    "difficulty": "Easy",
+    "price": "$75",
+    "rating": 4.6,
+    "description": "Cabalgata descubriendo pequeños pueblos, lomas, montañas y hermosas playas de Guanacaste",
+    "includes": "Horse, helmet, guide, refreshments",
+    "groupSize": "2-8 people",
+    "partnerInfo": {
+      "name": "Guanacaste Horseback Tours",
+      "responseTime": "9 min",
+      "cancellationRate": "2%",
+      "guestRating": 4.6,
+      "reliability": 94,
+      "lastContact": "6 min ago",
+      "status": "online",
+      "phone": "+506 2653-9012",
+      "emergencyProtocol": "Veterinary on-call"
+    },
+    "equipment": {
+      "available": 8,
+      "total": 8,
+      "status": "optimal",
+      "lastMaintenance": "5 days ago"
+    },
+    "weatherSensitivity": "low",
+    "skillRequired": "Beginner",
+    "safetyRating": "A+",
+    "insurance": "Included",
+    "groupOptimization": {
+      "minGroup": 2,
+      "maxGroup": 8,
+      "currentBookings": 5,
+      "efficiency": 80
+    },
+    "packages": [
+      { "name": "Horseback + Beach Dinner", "price": 135, "savings": 20 },
+      { "name": "Sunset Ride + Spa", "price": 145, "savings": 25 }
+    ]
+  },
+  {
+    "name": "Zip-line Canopy Tour",
+    "category": "Adventure",
+    "image": "https://images.pexels.com/photos/618833/pexels-photo-618833.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "duration": "4 hours",
+    "difficulty": "Moderate",
+    "price": "$90",
+    "rating": 4.8,
+    "description": "Deslízate entre plataformas por los doseles del bosque seco tropical. Vista aérea de flora y fauna",
+    "includes": "Equipment, guide, transportation, lunch",
+    "groupSize": "4-15 people",
+    "partnerInfo": {
+      "name": "Canopy Costa Rica",
+      "responseTime": "11 min",
+      "cancellationRate": "3%",
+      "guestRating": 4.8,
+      "reliability": 93,
+      "lastContact": "8 min ago",
+      "status": "online",
+      "phone": "+506 2653-8888",
+      "emergencyProtocol": "Rescue team certified"
+    },
+    "equipment": {
+      "available": 14,
+      "total": 15,
+      "status": "optimal",
+      "lastMaintenance": "2 days ago"
+    },
+    "weatherSensitivity": "medium",
+    "skillRequired": "Intermediate",
+    "safetyRating": "A+",
+    "insurance": "Included",
+    "groupOptimization": {
+      "minGroup": 4,
+      "maxGroup": 15,
+      "currentBookings": 11,
+      "efficiency": 85
+    },
+    "packages": [
+      { "name": "Zip-line + ATV", "price": 165, "savings": 20 },
+      { "name": "Canopy + Spa", "price": 155, "savings": 25 }
+    ]
+  },
+  {
+    "name": "Mangrove Kayaking",
+    "category": "Adventure",
+    "image": "https://images.pexels.com/photos/1670732/pexels-photo-1670732.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "duration": "3 hours",
+    "difficulty": "Easy",
+    "price": "$70",
+    "rating": 4.7,
+    "description": "Flota río abajo en aguas calmas, rodeado de naturaleza. Observa lagartos, monos y aves",
+    "includes": "Kayak, life vest, guide, binoculars",
+    "groupSize": "2-10 people",
+    "partnerInfo": {
+      "name": "Mangrove Eco Tours",
+      "responseTime": "7 min",
+      "cancellationRate": "1%",
+      "guestRating": 4.7,
+      "reliability": 96,
+      "lastContact": "4 min ago",
+      "status": "online",
+      "phone": "+506 2653-3333",
+      "emergencyProtocol": "Wildlife expert certified"
+    },
+    "equipment": {
+      "available": 10,
+      "total": 10,
+      "status": "optimal",
+      "lastMaintenance": "3 days ago"
+    },
+    "weatherSensitivity": "low",
+    "skillRequired": "Beginner",
+    "safetyRating": "A+",
+    "insurance": "Included",
+    "groupOptimization": {
+      "minGroup": 2,
+      "maxGroup": 10,
+      "currentBookings": 6,
+      "efficiency": 75
+    },
+    "packages": [
+      { "name": "Mangrove + Lunch", "price": 105, "savings": 15 },
+      { "name": "Nature + Spa", "price": 135, "savings": 20 }
+    ]
+  },
+  {
+    "name": "Volcán Arenal Tour",
+    "category": "Adventure",
+    "image": "https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "duration": "10 hours",
+    "difficulty": "Easy",
+    "price": "$145",
+    "rating": 4.9,
+    "description": "Volcán Arenal rodeado de bosque tropical lluvioso. Cono perfecto y majestuoso. Imperdible en Costa Rica",
+    "includes": "Transportation, guide, lunch, hot springs entrance",
+    "groupSize": "6-20 people",
+    "partnerInfo": {
+      "name": "Arenal Volcano Tours",
+      "responseTime": "15 min",
+      "cancellationRate": "2%",
+      "guestRating": 4.9,
+      "reliability": 97,
+      "lastContact": "10 min ago",
+      "status": "online",
+      "phone": "+506 2653-4567",
+      "emergencyProtocol": "Volcano monitoring certified"
+    },
+    "equipment": {
+      "available": 3,
+      "total": 3,
+      "status": "optimal",
+      "lastMaintenance": "1 week ago"
+    },
+    "weatherSensitivity": "low",
+    "skillRequired": "Beginner",
+    "safetyRating": "A+",
+    "insurance": "Included",
+    "groupOptimization": {
+      "minGroup": 8,
+      "maxGroup": 20,
+      "currentBookings": 15,
+      "efficiency": 90
+    },
+    "packages": [
+      { "name": "Arenal + Hot Springs", "price": 185, "savings": 25 },
+      { "name": "Volcano + Spa Day", "price": 215, "savings": 35 }
+    ]
+  },
+  {
+    "name": "Deep Sea Fishing",
+    "category": "Sailing",
+    "image": "https://images.pexels.com/photos/1562/italian-landscape-mountains-nature.jpg?auto=compress&cs=tinysrgb&w=400",
+    "duration": "6 hours",
+    "difficulty": "Moderate",
+    "price": "$350",
+    "rating": 4.8,
+    "description": "Pesca deportiva en aguas cercanas a Tamarindo. Experiencia inolvidable para el pescador deportivo",
+    "includes": "Boat, equipment, captain, drinks, fish cleaning",
+    "groupSize": "2-6 people",
+    "partnerInfo": {
+      "name": "Tamarindo Sport Fishing",
+      "responseTime": "18 min",
+      "cancellationRate": "5%",
+      "guestRating": 4.8,
+      "reliability": 90,
+      "lastContact": "20 min ago",
+      "status": "busy",
+      "phone": "+506 2653-2222",
+      "emergencyProtocol": "Coast Guard certified"
+    },
+    "equipment": {
+      "available": 2,
+      "total": 3,
+      "status": "maintenance",
+      "lastMaintenance": "today"
+    },
+    "weatherSensitivity": "high",
+    "skillRequired": "Intermediate",
+    "safetyRating": "A",
+    "insurance": "Required",
+    "groupOptimization": {
+      "minGroup": 2,
+      "maxGroup": 6,
+      "currentBookings": 4,
+      "efficiency": 80
+    },
+    "packages": [
+      { "name": "Fishing + Grill Your Catch", "price": 420, "savings": 40 },
+      { "name": "Sport Fishing + Spa", "price": 480, "savings": 60 }
+    ]
+  }
+]

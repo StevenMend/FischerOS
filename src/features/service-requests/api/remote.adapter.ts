@@ -1,0 +1,177 @@
+// src/features/service-requests/api/remote.adapter.ts
+import { ServiceRequestsPort } from './port';
+import { ServiceRequest, CreateRequestDTO, UpdateRequestDTO } from './types';
+import { supabase } from '../../../lib/api/supabase';
+import { AuthService, GuestService, DepartmentService, PropertyService } from '../../../lib/services';
+import { logger } from '../../../core/utils/logger';
+
+export class RemoteServiceRequestsAdapter implements ServiceRequestsPort {
+  // ========== QUERIES ==========
+
+  async getAll(): Promise<ServiceRequest[]> {
+    logger.debug('ServiceRequests', '[GUEST] Fetching ALL service_requests (use getByGuest instead)');
+
+    const userId = await AuthService.getCurrentUserId();
+
+    const { data, error } = await supabase
+      .from('service_requests')
+      .select('*')
+      .eq('guest_id', userId)
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      logger.error('ServiceRequests', 'Error fetching requests', { error });
+      throw error;
+    }
+
+    logger.info('ServiceRequests', 'Fetched requests', { count: data?.length });
+    return data as ServiceRequest[];
+  }
+
+  async getById(id: string): Promise<ServiceRequest> {
+    const userId = await AuthService.getCurrentUserId();
+
+    const { data, error } = await supabase
+      .from('service_requests')
+      .select('*')
+      .eq('id', id)
+      .eq('guest_id', userId)
+      .single();
+
+    if (error) throw error;
+    return data as ServiceRequest;
+  }
+
+  async getByGuest(guestId: string): Promise<ServiceRequest[]> {
+    logger.debug('ServiceRequests', '[GUEST] Fetching requests for guest', { guestId });
+
+    const currentUserId = await AuthService.getCurrentUserId();
+    if (currentUserId !== guestId) {
+      throw new Error('Unauthorized: Cannot access other guest requests');
+    }
+
+    const { data, error } = await supabase
+      .from('service_requests')
+      .select(`
+        *,
+        departments(name, code)
+      `)
+      .eq('guest_id', guestId)
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      logger.error('ServiceRequests', 'Error fetching guest requests', { error });
+      throw error;
+    }
+
+    logger.info('ServiceRequests', 'Fetched guest requests', { count: data?.length });
+    return data as ServiceRequest[];
+  }
+
+  async getByDepartment(departmentId: string): Promise<ServiceRequest[]> {
+    throw new Error('Unauthorized: Guests cannot access department requests');
+  }
+
+  // ========== MUTATIONS ==========
+
+  async create(request: CreateRequestDTO): Promise<ServiceRequest> {
+    const userId = await AuthService.getCurrentUserId();
+    const guestInfo = await GuestService.getGuestInfo(userId);
+    const departmentId = await DepartmentService.getDepartmentIdByType(request.type);
+    const propertyId = await PropertyService.getDefaultPropertyId();
+
+    const { data, error } = await supabase
+      .from('service_requests')
+      .insert({
+        guest_id: userId,
+        guest_name: guestInfo.name,
+        room_number: guestInfo.room_number,
+        type: request.type,
+        priority: request.priority,
+        status: 'pending',
+        title: request.title,
+        description: request.description,
+        department_id: departmentId,
+        property_id: propertyId
+      })
+      .select()
+      .single();
+
+    if (error) {
+      logger.error('ServiceRequests', 'Error creating request', { error });
+      throw error;
+    }
+
+    logger.info('ServiceRequests', 'Request created', { data });
+    return data as ServiceRequest;
+  }
+
+  async update(id: string, updates: UpdateRequestDTO): Promise<ServiceRequest> {
+    const userId = await AuthService.getCurrentUserId();
+
+    const { data, error } = await supabase
+      .from('service_requests')
+      .update(updates)
+      .eq('id', id)
+      .eq('guest_id', userId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data as ServiceRequest;
+  }
+
+  async updateStatus(id: string, status: string): Promise<ServiceRequest> {
+    throw new Error('Unauthorized: Guests cannot update request status');
+  }
+
+  async assignToStaff(id: string, staffId: string): Promise<ServiceRequest> {
+    throw new Error('Unauthorized: Guests cannot assign staff to requests');
+  }
+
+  async rate(id: string, rating: number, feedback?: string): Promise<ServiceRequest> {
+    logger.info('ServiceRequests', '[GUEST] Rating request', { id, rating, feedback });
+
+    const userId = await AuthService.getCurrentUserId();
+
+    if (rating < 1 || rating > 5) {
+      throw new Error('Rating must be between 1 and 5');
+    }
+
+    const { data, error } = await supabase
+      .from('service_requests')
+      .update({
+        rating,
+        feedback: feedback || null
+      })
+      .eq('id', id)
+      .eq('guest_id', userId)
+      .eq('status', 'completed')
+      .select()
+      .single();
+
+    if (error) {
+      logger.error('ServiceRequests', 'Error rating request', { error });
+      throw error;
+    }
+
+    if (!data) {
+      throw new Error('Request not found or not completed');
+    }
+
+    logger.info('ServiceRequests', 'Rating submitted successfully');
+    return data as ServiceRequest;
+  }
+
+  async delete(id: string): Promise<void> {
+    const userId = await AuthService.getCurrentUserId();
+
+    const { error } = await supabase
+      .from('service_requests')
+      .delete()
+      .eq('id', id)
+      .eq('guest_id', userId);
+
+    if (error) throw error;
+  }
+}

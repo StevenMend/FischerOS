@@ -1,0 +1,177 @@
+[
+  {
+    "id": "req-001",
+    "guestId": "guest-123",
+    "guestName": "John Doe",
+    "roomNumber": "304",
+    "type": "housekeeping",
+    "priority": "medium",
+    "status": "in-progress",
+    "title": "Extra Towels",
+    "description": "Need 2 extra bath towels and 1 extra pillow",
+    "location": "Room 304",
+    "assignedTo": "staff-hk-01",
+    "assignedToName": "Maria Garcia",
+    "createdAt": "2025-10-13T14:30:00Z",
+    "updatedAt": "2025-10-13T14:45:00Z",
+    "scheduledFor": "2025-10-13T15:00:00Z",
+    "notes": ["Guest preferred hypoallergenic pillows", "Delivered to room"],
+    "metadata": {
+      "department": "Housekeeping",
+      "estimatedTime": "15 minutes"
+    }
+  },
+  {
+    "id": "req-002",
+    "guestId": "guest-123",
+    "guestName": "John Doe",
+    "roomNumber": "304",
+    "type": "concierge",
+    "priority": "high",
+    "status": "completed",
+    "title": "Restaurant Recommendation",
+    "description": "Looking for romantic restaurant for anniversary dinner tonight",
+    "location": "Concierge Desk",
+    "assignedTo": "staff-con-02",
+    "assignedToName": "Carlos Martinez",
+    "createdAt": "2025-10-13T10:00:00Z",
+    "updatedAt": "2025-10-13T10:30:00Z",
+    "completedAt": "2025-10-13T10:30:00Z",
+    "notes": ["Recommended NARI Italian - 7:30 PM", "Reservation confirmed", "Arranged champagne on arrival"],
+    "metadata": {
+      "restaurantBooked": "NARI",
+      "reservationTime": "19:30",
+      "specialRequest": "Window seat, champagne"
+    }
+  },
+  {
+    "id": "req-003",
+    "guestId": "guest-123",
+    "guestName": "John Doe",
+    "roomNumber": "304",
+    "type": "maintenance",
+    "priority": "low",
+    "status": "pending",
+    "title": "AC Temperature Adjustment",
+    "description": "Air conditioning seems too cold, would like temperature adjusted",
+    "location": "Room 304",
+    "createdAt": "2025-10-12T22:00:00Z",
+    "updatedAt": "2025-10-12T22:00:00Z",
+    "scheduledFor": "2025-10-13T16:00:00Z",
+    "notes": [],
+    "metadata": {
+      "department": "Maintenance",
+      "issueType": "HVAC"
+    }
+  },
+  {
+    "id": "req-004",
+    "guestId": "guest-456",
+    "guestName": "Sarah Williams",
+    "roomNumber": "512",
+    "type": "transportation",
+    "priority": "high",
+    "status": "assigned",
+    "title": "Airport Transfer",
+    "description": "Need ride to Liberia Airport tomorrow 6:00 AM",
+    "location": "Hotel Lobby",
+    "assignedTo": "staff-trans-01",
+    "assignedToName": "Diego Hernandez",
+    "createdAt": "2025-10-13T15:00:00Z",
+    "updatedAt": "2025-10-13T15:10:00Z",
+    "scheduledFor": "2025-10-14T05:45:00Z",
+    "notes": ["Flight at 8:30 AM", "Confirmed pickup 5:45 AM"],
+    "metadata": {
+      "destination": "Liberia Airport",
+      "flightNumber": "UA1234",
+      "passengers": 2,
+      "luggage": 3
+    }
+  },
+  {
+    "id": "req-005",
+    "guestId": "guest-789",
+    "guestName": "Michael Chen",
+    "roomNumber": "208",
+    "type": "dining",
+    "priority": "medium",
+    "status": "pending",
+    "title": "Room Service Order",
+    "description": "Breakfast in room - Continental breakfast for 2",
+    "location": "Room 208",
+    "createdAt": "2025-10-13T19:30:00Z",
+    "updatedAt": "2025-10-13T19:30:00Z",
+    "scheduledFor": "2025-10-14T08:00:00Z",
+    "notes": [],
+    "metadata": {
+      "orderType": "Breakfast",
+      "guests": 2,
+      "dietaryRestrictions": ["Vegetarian"]
+    }
+  },
+  {
+    "id": "req-006",
+    "guestId": "guest-321",
+    "guestName": "Emma Rodriguez",
+    "roomNumber": "701",
+    "type": "spa",
+    "priority": "medium",
+    "status": "completed",
+    "title": "Spa Appointment Confirmation",
+    "description": "Confirm couples massage appointment for tomorrow 3 PM",
+    "location": "Spa Reception",
+    "assignedTo": "staff-spa-01",
+    "assignedToName": "Isabella Santos",
+    "createdAt": "2025-10-13T11:00:00Z",
+    "updatedAt": "2025-10-13T11:15:00Z",
+    "completedAt": "2025-10-13T11:15:00Z",
+    "notes": ["Confirmed for tomorrow 3:00 PM", "Volcanic Stone Therapy booked"],
+    "metadata": {
+      "treatmentType": "Couples Massage",
+      "duration": "90 minutes",
+      "therapists": 2
+    }
+  },
+  {
+    "id": "req-007",
+    "guestId": "guest-654",
+    "guestName": "David Kim",
+    "roomNumber": "415",
+    "type": "general",
+    "priority": "low",
+    "status": "pending",
+    "title": "WiFi Password Reset",
+    "description": "Unable to connect to WiFi, need password reset",
+    "location": "Room 415",
+    "createdAt": "2025-10-13T16:00:00Z",
+    "updatedAt": "2025-10-13T16:00:00Z",
+    "notes": [],
+    "metadata": {
+      "issueType": "Technical Support"
+    }
+  },
+  {
+    "id": "req-008",
+    "guestId": "guest-987",
+    "guestName": "Lisa Thompson",
+    "roomNumber": "620",
+    "type": "tour",
+    "priority": "high",
+    "status": "in-progress",
+    "title": "Tour Coordination",
+    "description": "Confirm pickup time for Catamaran Sunset Cruise",
+    "location": "Hotel Lobby",
+    "assignedTo": "staff-con-03",
+    "assignedToName": "Ana Morales",
+    "createdAt": "2025-10-13T13:00:00Z",
+    "updatedAt": "2025-10-13T13:30:00Z",
+    "scheduledFor": "2025-10-13T17:45:00Z",
+    "notes": ["Partner confirmed pickup 5:45 PM", "Meet at lobby"],
+    "relatedBookingId": "tour-booking-123",
+    "metadata": {
+      "tourName": "Catamaran Sunset Cruise",
+      "partner": "Tamarindo Sailing",
+      "pickupTime": "17:45"
+    }
+  }
+]

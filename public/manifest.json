@@ -1,0 +1,63 @@
+{
+  "name": "Diria Guest App",
+  "short_name": "Diria",
+  "description": "Your digital concierge at Grupo Diria - restaurants, spa, tours & services",
+  "theme_color": "#0891b2",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "start_url": "/",
+  "categories": ["hospitality", "lifestyle", "travel"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Service Request",
+      "short_name": "Request",
+      "description": "Create a new service request",
+      "url": "/guest/requests",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Restaurants",
+      "short_name": "Dine",
+      "description": "Browse restaurants",
+      "url": "/guest/restaurants",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Spa",
+      "short_name": "Spa",
+      "description": "Book spa treatments",
+      "url": "/guest/spa",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
